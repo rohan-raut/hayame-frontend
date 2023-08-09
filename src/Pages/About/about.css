@@ -1,0 +1,187 @@
+.about-us-main-container {
+    background-color: #34AFAA;
+}
+
+.about-container {
+    width: 60%;
+    background-color: white;
+    margin: 1.25rem auto;
+    padding: 1.5rem 3rem;
+    text-align: left;
+}
+
+.about-us-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.about-us-title {
+    color: #323A49;
+    margin-top: 3rem;
+    position: relative;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.about-us-title:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #090909;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.about-us-title:hover:after {
+    width: 100%;
+    left: 0;
+}
+
+.about-us-subtitle {
+    color: #606671;
+    margin-bottom: 0rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.about-us-values-content {
+    margin-top: 0.5rem;
+}
+
+
+/* vertical tab  */
+@media screen and (min-width: 769px) and (max-width: 991px) {
+    .about-us-main-container {
+        background-color: #34AFAA;
+    }
+
+    .about-container {
+        width: 90%;
+        background-color: white;
+        margin: 1.25rem auto;
+        padding: 1.5rem 3rem;
+        text-align: left;
+    }
+
+    .about-us-header {
+        text-align: center;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    .about-us-title {
+        color: #323A49;
+        margin-top: 3rem;
+        position: relative;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
+
+    .about-us-title:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #090909;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+
+    .about-us-title:hover:after {
+        width: 100%;
+        left: 0;
+    }
+
+    .about-us-subtitle {
+        color: #606671;
+        margin-bottom: 0rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    .about-us-values-content {
+        margin-top: 0.5rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-us-main-container {
+        background-color: #34AFAA;
+    }
+
+    .about-container {
+        width: 95%;
+        background-color: white;
+        margin: 1.25rem auto;
+        padding: 1.5rem 2.5rem;
+        text-align: left;
+        font-size: 0.7rem;
+    }
+
+    .about-us-header {
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.4rem;
+    }
+
+    .about-us-title {
+        color: #323A49;
+        position: relative;
+        text-decoration: none;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0;
+        padding-top: 20px;
+        margin: 0px;
+    }
+
+    .about-us-title:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #090909;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+
+    .about-us-title:hover:after {
+        width: 100%;
+        left: 0;
+    }
+
+    .about-us-subtitle {
+        color: #606671;
+        margin-bottom: 0rem;
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .about-us-values-content {
+        margin-top: 0.5rem;
+    }
+}

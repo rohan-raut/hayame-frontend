@@ -1,0 +1,110 @@
+.sect5-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    margin: 3rem 0 2rem 0;
+}
+
+.sect5-card {
+    text-align: center;
+    width: 40%;
+}
+
+.sect5-title {
+    font-weight: 900;
+    font-size: 3rem;
+    line-height: 140%;
+    letter-spacing: 0.01em;
+    color: #17262B;
+    margin: 0 auto;
+    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);;
+}
+
+.sect5-content {
+    font-weight: 400;
+    font-size: 1.35rem;
+    line-height: 140%;
+    letter-spacing: 0.01em;
+    color: #34AFAA;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.sect5-btn {
+    background-color: #17262B;
+    cursor: pointer;
+    color: #E9EBF8;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .sect5-div {
+        width: 100vw;
+        box-sizing: border-box;
+        margin-top: -2rem;
+        padding: 30px 150px;
+    }
+
+    .sect5-card {
+        width: 100%;
+    }
+
+    .sect5-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        margin-top: 0rem;
+    }
+
+    .sect5-content {
+        font-size: 0.8rem;
+        width: 100%;
+        margin: 0;
+    }
+
+    .sect5-btn {
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.5rem;
+        margin: 1rem 0 0 0;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    .sect5-div {
+        width: 100vw;
+        box-sizing: border-box;
+        margin-top: -2rem;
+    }
+
+    .sect5-card {
+        /* width: min-content; */
+        width: 100%;
+    }
+
+    .sect5-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        margin-top: 0rem;
+    }
+
+    .sect5-content {
+        font-size: 0.7rem;
+        width: 100%;
+        margin: 0;
+    }
+
+    .sect5-btn {
+        padding: 0.35rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.5rem;
+        margin: 1rem 0 0 0;
+    }
+}

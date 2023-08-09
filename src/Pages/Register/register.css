@@ -1,0 +1,36 @@
+.register-card{
+    background-color: #212427;
+    color: white;
+    margin-top: 5vh;
+}
+
+.register-h1{
+    color: #34AFAA;
+    font-size: 2.5rem;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.register-container{
+    background-color: #34AFAA;
+    /* height: 100vh; */
+    max-height: fit-content;
+    padding-bottom: 30px;
+    min-height: 100vh;
+}
+
+.register-input-label{
+    text-align: left;
+    display: block;
+}
+
+.register-input-submit{
+    margin-top: 20px;
+    background-color: #323A49;
+    color: white;
+}
+
+.register-input-field{
+    margin-bottom: 30px;
+    
+}

@@ -1,0 +1,32 @@
+.login-container{
+    background-color: #34AFAA;
+    min-height: 100vh;
+    max-height: fit-content;
+}
+
+.login-card{
+    color: white;
+    background-color: #212427;
+    padding: 40px;
+    margin-top: 12vh;
+}
+
+.login-h1{
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.login-input-label{
+    display: block;
+    text-align: left;
+}
+
+.login-input-field{
+    margin-bottom: 25px;
+}
+
+.login-input-submit{
+    color: white;   
+    background-color: #323A49;
+}
