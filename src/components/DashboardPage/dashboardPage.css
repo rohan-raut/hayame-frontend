@@ -1,0 +1,29 @@
+.dashboard-container-fluid{
+    width: 95vw;
+    min-height: 100vh;
+    max-height: fit-content;
+    padding: 0px;
+    margin: 0px;
+}
+
+.DashboardPageContent{
+    width: 95vw;
+    padding: 0px;
+    margin: 0px;
+}
+
+@media screen and (max-width: 768px){
+    .dashboard-container-fluid{
+        width: 100vw;
+        min-height: 100vh;
+        max-height: fit-content;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    .DashboardPageContent{
+        width: 100vw;
+        padding: 0px;
+        margin: 0px;
+    }
+}

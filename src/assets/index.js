@@ -26,7 +26,7 @@ import sanitation from "./sanitation.png";
 import setup from "./setup.png";
 import shipping from "./shipping.png";
 import tool from "./tool.png";
-// import waiter from "./waiter.png";
+import waiter from "./waiter.png";
 import edit from "./edit.svg";
 import team from "./team.svg";
 import im from "./im.png";
@@ -57,7 +57,7 @@ export {
   setup,
   shipping,
   tool,
-  // waiter,
+  waiter,
   edit,
   leftarrow,
   // userImg,

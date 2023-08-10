@@ -7,7 +7,8 @@ import About from "./Pages/About/About";
 import Logout from "./Pages/Logout/Logout";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
-// import DashboardPage from "./components/DashboradPage/DashboardPage";
+import VerifyUser from "./Pages/VerifyUser/VerifyUser";
+import DashboardPage from "./components/DashboardPage/DashboardPage";
 // import {
 //   Dashboard,
 //   Customers,
@@ -18,7 +19,6 @@ import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 // } from "./components/DashboradPage/Pages";
 // import DashboardForm from "./components/DashboradPage/Pages/Dashboard/DashboardForm";
 // import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
-import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 
 function App() {
 
@@ -55,10 +55,10 @@ function App() {
       path: "/verify-user",
       element: <VerifyUser />,
     },
-    // {
-    //   path: "/dashboard",
-    //   element: <DashboardPage />,
-    //   children: [
+    {
+      path: "/dashboard",
+      element: <DashboardPage />,
+      children: [
     //     {
     //       path: "/dashboard/profile",
     //       element: <Profile />,
@@ -87,12 +87,12 @@ function App() {
     //       path: "/dashboard/allocate-labours",
     //       element: <AllocateLabours />,
     //     },
-    //   ],
+      ],
     // },
     // {
     //   path: "/dashboard/dashboard",
     //   element: <Dashboard />,
-    // },
+    },
   ]);
 
   return (

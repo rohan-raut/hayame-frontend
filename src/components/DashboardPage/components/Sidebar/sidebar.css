@@ -1,0 +1,181 @@
+.sidebar-menu {
+    width: 17rem;
+    background-color: #17262B;
+    min-height: 100vh;
+    max-height: fit-content;
+    position: fixed;
+    top: 0;
+    z-index: 150;
+}
+
+.sidebar-antd-menu {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: "Poppins", sans-serif; 
+    padding: 0rem;
+    background-color: #17262B;
+    text-align: left;
+    width: 100%;
+}
+
+.sidebar-menu-item{
+    cursor: pointer;
+    color: #A2F1FB;
+}
+
+.sider {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.sider-logo {
+    border: solid cadetblue 2px;
+    background-color: #34AFAA;
+}
+
+.sider-logo > Image {
+    width: 6rem;
+}
+
+.sider-arrow {
+    display: flex;
+    background-color: #34AFAA;
+    margin-top: 2.2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.sider-arrow > img {
+    height: 2rem;
+}
+
+.closedSidebar {
+    background-color: #17262B;
+    min-height: 100vh; 
+    max-width: min-content;
+    padding: 1rem;
+    position: fixed;
+    top: 0%;
+    z-index: 150;
+}
+
+.closedSidebarArrow {
+    background-color: #34AFAA;
+    margin-top: 2.2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closedSidebarArrow > img {
+    height: 2rem;
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .sidebar-menu {
+        width: 35vw;
+        height: 190vh;
+        padding: 0;
+        position: absolute;
+        left: 0%;
+    }
+
+    .sider-logo {
+        margin-bottom: 1rem;
+        display: flex;
+    }
+
+    .closedSidebar {
+        width: 2vw;
+    }
+
+    .sider-arrow, .closedSidebarArrow {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+
+    .sider-arrow >  img, .closedSidebarArrow > img {
+        height: 1.75rem;
+    }
+
+    
+
+    .sidebar-antd-menu {
+        padding-left: 30px;
+    }
+
+    .sidebar-menu-item {
+        font-size: 1rem;
+        padding: 0;
+        display: block;
+        position: relative;
+        left: -10%;
+        margin-top: 1rem;
+    }
+
+    .closedSidebar {
+        position: absolute;
+        left: 0%;
+    }
+
+}
+
+
+@media screen and (max-width: 768px){
+    .sidebar-menu {
+        width: 60vw;
+        height: 190vh;
+        padding: 0;
+        position: absolute;
+        left: 0%;
+    }
+
+    .sider-logo {
+        margin-bottom: 1rem;
+        display: flex;
+    }
+
+    .closedSidebar {
+        width: 1px;
+    }
+
+    .sider-arrow, .closedSidebarArrow {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+
+    .sider-arrow >  img, .closedSidebarArrow > img {
+        height: 1.75rem;
+    }
+
+    
+
+    .sidebar-antd-menu {
+        padding-left: 0.75rem;
+    }
+
+    .sidebar-menu-item {
+        font-size: 1rem;
+        padding: 0;
+        display: block;
+        position: relative;
+        left: -10%;
+        margin-top: 1rem;
+    }
+
+    .closedSidebar {
+        position: absolute;
+        left: 0%;
+    }
+}
+
