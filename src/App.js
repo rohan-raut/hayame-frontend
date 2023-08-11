@@ -9,15 +9,15 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
-// import {
-//   Dashboard,
-//   Customers,
-//   Profile,
-//   AdminWorkforceList,
-//   AdminBookings,
-//   AllocateLabours,
-// } from "./components/DashboradPage/Pages";
-import DashboardForm from "./components/DashboardPage/Pages/ContractorDashboard/DashboardForm";
+import {
+  Dashboard,
+  DashboardForm,
+  // Customers,
+  Profile,
+  // AdminWorkforceList,
+  // AdminBookings,
+  // AllocateLabours,
+} from "./components/DashboardPage/Pages";
 // import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
 
 function App() {
@@ -59,39 +59,39 @@ function App() {
       path: "/dashboard",
       element: <DashboardPage />,
       children: [
-    //     {
-    //       path: "/dashboard/profile",
-    //       element: <Profile />,
-    //     },
-    //     {
-    //       path: "/dashboard/customers",
-    //       element: <Customers />,
-    //     },
+            {
+              path: "/dashboard/profile",
+              element: <Profile />,
+            },
+        //     {
+        //       path: "/dashboard/customers",
+        //       element: <Customers />,
+        //     },
         {
           path: "/dashboard/dashboardform",
           element: <DashboardForm />,
         },
-    //     {
-    //       path: "/dashboard/workforce-list",
-    //       element: <AdminWorkforceList />,
-    //     },
-    //     {
-    //       path: "/dashboard/check-bookings",
-    //       element: <AdminBookings />,
-    //     },
-    //     {
-    //       path: "/dashboard/update-labour-details",
-    //       element: <UpdateLabourDetails />,
-    //     },
-    //     {
-    //       path: "/dashboard/allocate-labours",
-    //       element: <AllocateLabours />,
-    //     },
+        //     {
+        //       path: "/dashboard/workforce-list",
+        //       element: <AdminWorkforceList />,
+        //     },
+        //     {
+        //       path: "/dashboard/check-bookings",
+        //       element: <AdminBookings />,
+        //     },
+        //     {
+        //       path: "/dashboard/update-labour-details",
+        //       element: <UpdateLabourDetails />,
+        //     },
+        //     {
+        //       path: "/dashboard/allocate-labours",
+        //       element: <AllocateLabours />,
+        //     },
       ],
-    // },
-    // {
-    //   path: "/dashboard/dashboard",
-    //   element: <Dashboard />,
+      // },
+      // {
+      //   path: "/dashboard/dashboard",
+      //   element: <Dashboard />,
     },
   ]);
 

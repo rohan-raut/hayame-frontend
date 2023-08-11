@@ -1,6 +1,7 @@
 // import Customers from "./Customers/Customers";
 import Dashboard from "./ContractorDashboard/Dashboard";
-// import Profile from "./Inventory/Profile";
+import DashboardForm from "./ContractorDashboard/DashboardForm";
+import Profile from "./Profile/Profile";
 // import AdminDashboard from "./AdminDashboard/AdminDashboard";
 // import AdminWorkforceList from "./AdminWorkforceList/AddWorkforceList";
 // import AdminBookings from "./AdminBookings/AdminBookings";
@@ -9,7 +10,8 @@ import Dashboard from "./ContractorDashboard/Dashboard";
 export {
 //   Customers,
   Dashboard,
-//   Profile,
+  DashboardForm,
+  Profile,
 //   AdminDashboard,
 //   AdminWorkforceList,
 //   AdminBookings,

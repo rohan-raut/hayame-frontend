@@ -10,7 +10,7 @@ import facebookIcon from "./facebookIcon.svg";
 import twitterIcon from "./twitterIcon.svg";
 import linkedInIcon from "./linkedInIcon.svg";
 import leftarrow from "./leftarrow.svg";
-// import userImg from "./userImg.png";
+import userImg from "./userImg.png";
 
 import bartender from "./bartender.png";
 import construction from "./construction-worker.png";
@@ -60,7 +60,7 @@ export {
   waiter,
   edit,
   leftarrow,
-  // userImg,
+  userImg,
   team,
   im,
 };
