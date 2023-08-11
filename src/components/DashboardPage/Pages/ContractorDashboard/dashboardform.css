@@ -1,0 +1,51 @@
+.contractor-dashboard-input-label{
+    display: block;
+    text-align: left;
+    margin: 2px 0px;
+}
+
+.contractor-dashboard-form-card{
+    background-color: #FFF8D1;
+    margin-top: 5vh;
+    padding: 20px 60px;
+    margin-bottom: 30px;
+    border-radius: 30px;
+}
+
+.contractor-dashboardform-input-field{
+    margin-bottom: 20px;
+}
+
+.contractor-dashboard-form-input-submit{
+    background-color: #212427;
+    color: white;
+}
+
+.contractor-dashboard-form-input-submit:hover{
+    background-color: blue;
+    color: white;
+}
+
+.contractor-dashboard-form-h2{
+    font-size: 1.7rem;
+    font-weight: 700;
+    padding: 10px 0px;
+}
+
+.contractor-dashboardform-h3{
+    font-size: 1rem;
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+
+@media screen and (max-width: 768px){
+    .contractor-dashboard-form-card{
+        background-color: #FFF8D1;
+        margin-top: 5vh;
+        padding: 20px 10px;
+        margin-bottom: 30px;
+        border-radius: 30px;
+    }
+}

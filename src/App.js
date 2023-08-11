@@ -17,7 +17,7 @@ import DashboardPage from "./components/DashboardPage/DashboardPage";
 //   AdminBookings,
 //   AllocateLabours,
 // } from "./components/DashboradPage/Pages";
-// import DashboardForm from "./components/DashboradPage/Pages/Dashboard/DashboardForm";
+import DashboardForm from "./components/DashboardPage/Pages/ContractorDashboard/DashboardForm";
 // import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
 
 function App() {
@@ -67,10 +67,10 @@ function App() {
     //       path: "/dashboard/customers",
     //       element: <Customers />,
     //     },
-    //     {
-    //       path: "/dashboard/dashboardform",
-    //       element: <DashboardForm />,
-    //     },
+        {
+          path: "/dashboard/dashboardform",
+          element: <DashboardForm />,
+        },
     //     {
     //       path: "/dashboard/workforce-list",
     //       element: <AdminWorkforceList />,

@@ -11,10 +11,10 @@ const Hero = ({ userRole }) => {
     <div className="container-fluid m-0 p-0">
       { userRole==='"Contractor"' ? (<Routes>
         <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboardform" element={<DashboardForm />} />
         {/* <Route path="/customers" element={<Customers />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/dashboardform" element={<DashboardForm />} /> */}
+        <Route path="/customers" element={<Customers />} /> */}
       </Routes>) : (<Routes>
         {/* <Route path='/' element={<AdminDashboard />} />
         <Route path='/workforce-list' element={<AdminWorkforceList />} />
