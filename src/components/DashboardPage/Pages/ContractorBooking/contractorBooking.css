@@ -9,7 +9,38 @@
 }
 
 .contractor-booking-details-card{
-    background-color: yellow;
+    background-color: #17262B;
+    height: fit-content;
+    padding: 10px 40px;
+    text-align: left;
+    color: white;
+    margin: 0px auto;
+}
+
+#detail-card-popup-row-id{
+    z-index: 100;
+    position: fixed;
+    height: 100vh;
+    display: none;
+    padding-top: 15vh;
+}
+
+.detailsCard-p{
+    font-weight: bold;
+}
+
+.detailsCard-span{
+    font-weight: 100;
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .contractor-booking-details-card{
+        margin-top: 20vh;
+    }
+
+    #detail-card-popup-row-id{
+        padding-top: 0vh;
+    }
 }
 
 

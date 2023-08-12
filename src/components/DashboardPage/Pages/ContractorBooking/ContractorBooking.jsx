@@ -1,8 +1,5 @@
 import "./contractorBooking.css"
 import React, { useRef, useState, useEffect } from 'react';
-import { SearchOutlined } from '@ant-design/icons';
-import { Button, Input, Space, Table } from 'antd';
-// import Highlighter from 'react-highlight-words';
 import Popup from "reactjs-popup";
 import { MDBDataTable } from 'mdbreact';
 
@@ -11,12 +8,30 @@ const ContractorBooking = () => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
+  const [userDetails, setUserDetails] = useState({
+    contractorName: "",
+    contractorEmail: "",
+    labourSkills: "",
+    labourCount: 0,
+    status: "",
+    startDate: "",
+    endDate: "",
+    startTime: "",
+    endTime: "",
+    location: "",
+    payment: 0
+  });
+
+  const handleCross = () => {
+    document.getElementById("detail-card-popup-row-id").style.display = "none"
+  }
 
 
   const handleDetailsAction = (e) => {
-    console.log(e.target.parentElement.parentElement.parentElement.parentElement.cells[0].innerText)
+    document.getElementById("detail-card-popup-row-id").style.display = "block";
+    let booking_id = e.target.parentElement.parentElement.cells[0].innerText
 
-    fetch("http://45.127.4.151:8000/api/booking?booking_id=" + e.target.parentElement.parentElement.parentElement.parentElement.cells[0].innerText, {
+    fetch("http://45.127.4.151:8000/api/booking?booking_id=" + booking_id, {
       method: "GET",
       headers: {
         'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -26,18 +41,22 @@ const ContractorBooking = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        // console.log(json)
-        document.getElementById('contractor-contractorName').innerText = json[0]['contractor_name']
-        document.getElementById('contractor-contractorEmail').innerText = json[0]['contractor_email']
-        document.getElementById('contractor-labourType').innerText = json[0]['labour_skill']
-        document.getElementById('contractor-labourCount').innerText = json[0]['labour_count']
-        document.getElementById('contractor-Status').innerText = json[0]['status']
-        document.getElementById('contractor-startDate').innerText = json[0]['start_date']
-        document.getElementById('contractor-endDate').innerText = json[0]['end_date']
-        document.getElementById('contractor-startTime').innerText = json[0]['start_time']
-        document.getElementById('contractor-endTime').innerText = json[0]['end_time']
-        document.getElementById('contractor-location').innerText = json[0]['location']
-        document.getElementById('contractor-totalPayment').innerText = json[0]['amount']
+        let start_date = new Date(json[0]['start_date']);
+        setUserDetails({
+          contractorName: json[0]['contractor_name'],
+          contractorEmail: json[0]['contractor_email'],
+          labourSkills: json[0]['labour_skill'],
+          labourCount: json[0]['labour_count'],
+          status: json[0]['status'],
+          startDate: json[0]['start_date'],
+          endDate: json[0]['end_date'],
+          startTime: json[0]['start_time'],
+          endTime: json[0]['end_time'],
+          location: json[0]['location'],
+          amount: json[0]['amount']
+        });
+
+        console.log(userDetails);
 
       })
 
@@ -94,7 +113,8 @@ const ContractorBooking = () => {
           "startDate": td[i]['start_date'],
           "skills": td[i]['labour_skill'],
           "jobStatus": td[i]['status'],
-          "action": <span style={{ textDecoration: "underline", cursor: "pointer" }} ><Popup trigger={<span ><span onClick={handleDetailsAction}>Details</span></span>} ><DetailsCard /></Popup></span>,
+          // "action": <p style={{ textDecoration: "underline", cursor: "pointer" }} ><Popup trigger={<span ><span onClick={handleDetailsAction}>Details</span></span>} ><DetailsCard /></Popup></p>,
+          "action": <p style={{cursor: "pointer", color: "green"}} onClick={handleDetailsAction}>Details</p>,
         });
       }
       setTableData(d);
@@ -106,69 +126,42 @@ const ContractorBooking = () => {
 
 
   return (
-    <div className="row justify-content-center m-0">
-      <div className="col-11 col-sm-11 col-md-11 col-lg-9 contractor-booking-card">
-        <MDBDataTable
-          responsive
-          striped
-          bordered
-          small
-          data={data}
-        />
-      </div>
-    </div>
-  )
-}
-
-
-const DetailsCard = () => {
-
-  const handleCross = () => {
-    document.getElementById("detailsCard").style.display = "none"
-  }
-
-
-  return (
-    // <div className='detailsCard' id="detailsCard">
-    //   <span className='detailsCard-cross' style={{ cursor: "pointer" }} onClick={handleCross} >X</span>
-    //   <p className='detailsCard-p' id='contractor-contractorName'>Avlin Jenner</p>
-    //   <p className='detailsCard-p' id='contractor-contractorEmail'>avlinjenner@gmail.com</p>
-    //   <p className='detailsCard-p' >Workforce Type: <span className='detailsCard-span' id='contractor-labourType'>Catering</span></p>
-    //   <p className='detailsCard-p' >Count: <span className='detailsCard-span' id='contractor-labourCount'>30</span></p>
-    //   <p className='detailsCard-p' >Status: <span className='detailsCard-span' id='contractor-Status'>Pending</span></p>
-    //   <div style={{ display: "flex", marginTop: "0" }}>
-    //     <p className='detailsCard-p' style={{ marginRight: "0", width: "12rem", marginTop: "0" }}>Start Date: <span className='detailsCard-span' id='contractor-startDate'>20/05/23</span></p>
-    //     <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>End Date: <span className='detailsCard-span' id='contractor-endDate'>28/06/23</span></p>
-    //   </div>
-    //   <div style={{ display: "flex", marginTop: "0" }}>
-    //     <p className='detailsCard-p' style={{ marginRight: "0", width: "12rem", marginTop: "0" }}>Start Time: <span className='detailsCard-span' id='contractor-startTime'>9:00</span></p>
-    //     <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>End Time: <span className='detailsCard-span' id='contractor-endTime'>18:00</span></p>
-    //   </div>
-    //   <p className='detailsCard-p' style={{ marginTop: "0" }}>Location: <span className='detailsCard-span' id='contractor-location'>New Jersey</span></p>
-    //   <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>100</span></p>
-    // </div>
-
-    <div className="row justify-content-center">
-      <div className="col-11 col-sm-11 col-md-10 col-lg-8 contractor-booking-details-card">
-        <div className="d-flex flex-row-reverse">
-          <span className='detailsCard-cross' style={{ cursor: "pointer" }} onClick={handleCross} >X</span>
+    <div>
+      <div className="row justify-content-center m-0">
+        <div className="col-11 col-sm-11 col-md-11 col-lg-9 contractor-booking-card">
+          <MDBDataTable
+            responsive
+            striped
+            bordered
+            small
+            data={data}
+          />
         </div>
-        <p className='detailsCard-p' id='contractor-contractorName'>Avlin Jenner</p>
-       <p className='detailsCard-p' id='contractor-contractorEmail'>avlinjenner@gmail.com</p>
-       <p className='detailsCard-p' >Workforce Type: <span className='detailsCard-span' id='contractor-labourType'>Catering</span></p>
-       <p className='detailsCard-p' >Count: <span className='detailsCard-span' id='contractor-labourCount'>30</span></p>
-       <p className='detailsCard-p' >Status: <span className='detailsCard-span' id='contractor-Status'>Pending</span></p>
-       <div style={{ display: "flex", marginTop: "0" }}>
-         <p className='detailsCard-p' style={{ marginRight: "0", width: "12rem", marginTop: "0" }}>Start Date: <span className='detailsCard-span' id='contractor-startDate'>20/05/23</span></p>
-         <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>End Date: <span className='detailsCard-span' id='contractor-endDate'>28/06/23</span></p>
-       </div>
-       <div style={{ display: "flex", marginTop: "0" }}>
-         <p className='detailsCard-p' style={{ marginRight: "0", width: "12rem", marginTop: "0" }}>Start Time: <span className='detailsCard-span' id='contractor-startTime'>9:00</span></p>
-         <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>End Time: <span className='detailsCard-span' id='contractor-endTime'>18:00</span></p>
-       </div>
-       <p className='detailsCard-p' style={{ marginTop: "0" }}>Location: <span className='detailsCard-span' id='contractor-location'>New Jersey</span></p>
-       <p className='detailsCard-p' style={{ marginTop: "0", width: "10rem" }}>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>100</span></p>
+
+        <div className="row justify-content-center detail-card-popup-row" id="detail-card-popup-row-id">
+          <div className="col-9 col-sm-9 col-md-6 col-lg-4 contractor-booking-details-card">
+            <div className="d-flex flex-row-reverse">
+              <span className='detailsCard-cross' style={{ cursor: "pointer" }} onClick={handleCross} >X</span>
+            </div>
+            <p className='detailsCard-p' id='contractor-contractorName'>{userDetails.contractorName}</p>
+            <p className='detailsCard-p' id='contractor-contractorEmail'>{userDetails.contractorEmail}</p>
+            <p className='detailsCard-p' >Workforce Type: <span className='detailsCard-span' id='contractor-labourType'>{userDetails.labourSkills}</span></p>
+            <p className='detailsCard-p' >Count: <span className='detailsCard-span' id='contractor-labourCount'>{userDetails.labourCount}</span></p>
+            <p className='detailsCard-p' >Status: <span className='detailsCard-span' id='contractor-Status'>{userDetails.status}</span></p>
+            <div className="d-flex justify-content-between">
+              <p className='detailsCard-p'>Start Date: <span className='detailsCard-span' id='contractor-startDate'>{userDetails.startDate}</span></p>
+              <p className='detailsCard-p'>End Date: <span className='detailsCard-span' id='contractor-endDate'>{userDetails.endDate}</span></p>
+            </div>
+            <div className="d-flex justify-content-between">
+              <p className='detailsCard-p'>Start Time: <span className='detailsCard-span' id='contractor-startTime'>{userDetails.startTime}</span></p>
+              <p className='detailsCard-p'>End Time: <span className='detailsCard-span' id='contractor-endTime'>{userDetails.endTime}</span></p>
+            </div>
+            <p className='detailsCard-p'>Location: <span className='detailsCard-span' id='contractor-location'>{userDetails.location}</span></p>
+            <p className='detailsCard-p'>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>
+          </div>
+        </div>
       </div>
+
     </div>
   )
 }

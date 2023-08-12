@@ -97,7 +97,7 @@ const AdminDashboard = () => {
 
   return (
 
-    <div className="row justify-content-center">
+    <div className="row justify-content-center m-0">
       <AlertMessage alert={Alert} />
       <div className="col-9 col-sm-9 col-md-8 col-lg-5 add-labour-form-card">
         <h2 className="add-labour-form-h2">Add Workforce Details</h2>
