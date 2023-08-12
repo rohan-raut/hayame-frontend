@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom"
 // import { Dashboard, Customers, Profile, AdminDashboard, AdminWorkforceList, AdminBookings, AllocateLabours } from '../../Pages'
-import { Dashboard, DashboardForm, Profile, ContractorBooking, AdminDashboard, AdminWorkforceList, UpdateLabourDetails } from '../../Pages'
+import { Dashboard, DashboardForm, Profile, ContractorBooking, AdminDashboard, AdminWorkforceList, UpdateLabourDetails, AdminBookings } from '../../Pages'
 // import UpdateLabourDetails from '../../Pages/UpdatelabourDetails/UpdateLabourDetails'
 
 const Hero = ({ userRole }) => {
@@ -18,8 +18,8 @@ const Hero = ({ userRole }) => {
         <Route path='/workforce-list' element={<AdminWorkforceList />} />
         <Route path='/update-labour-details' element={<UpdateLabourDetails />} />
         <Route path='/profile' element={<Profile />} />
-        {/* <Route path='/check-bookings' element={<AdminBookings />} />
-        <Route path='/allocate-labours' element={<AllocateLabours />} /> */}
+        <Route path='/check-bookings' element={<AdminBookings />} />
+        {/* <Route path='/allocate-labours' element={<AllocateLabours />} /> */}
       </Routes>)}
     </div>
   )

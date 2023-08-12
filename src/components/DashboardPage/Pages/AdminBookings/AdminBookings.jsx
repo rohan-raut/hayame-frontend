@@ -1,11 +1,13 @@
-import "./contractorBooking.css"
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from "react";
+import "./adminBookings.css";
+import { useNavigate } from "react-router-dom";
 import { MDBDataTable } from 'mdbreact';
 
-const ContractorBooking = () => {
+let bookingId = "";
 
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
+const AdminBookings = () => {
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
   const [userDetails, setUserDetails] = useState({
     contractorName: "",
@@ -21,23 +23,23 @@ const ContractorBooking = () => {
     payment: 0
   });
 
-  const handleCross = () => {
-    document.getElementById("detail-card-popup-row-id").style.display = "none"
-  }
+  let navigate = useNavigate();
 
 
   const handleDetailsAction = (e) => {
     document.getElementById("detail-card-popup-row-id").style.display = "block";
     let booking_id = e.target.parentElement.parentElement.cells[0].innerText
 
-    fetch("http://45.127.4.151:8000/api/booking?booking_id=" + booking_id, {
-      method: "GET",
-      headers: {
-        'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-        'Content-Type': 'application/json'
-
-      },
-    })
+    fetch(
+      "http://45.127.4.151:8000/api/booking?booking_id=" + booking_id,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((response) => response.json())
       .then((json) => {
         setUserDetails({
@@ -53,11 +55,10 @@ const ContractorBooking = () => {
           location: json[0]['location'],
           amount: json[0]['amount']
         });
-      })
+      });
+  };
 
-  }
-
-  const [tableData, setTableData] = useState([])
+  const [tableData, setTableData] = useState([]);
   const data = {
     columns: [
       {
@@ -65,20 +66,20 @@ const ContractorBooking = () => {
         field: "bookingID"
       },
       {
-        label: "Address",
-        field: "address"
+        label: "Contractor Name",
+        field: "contractorName"
       },
       {
-        label: "startDate",
-        field: "startDate"
+        label: "Contractor Email",
+        field: "contractorEmail"
       },
       {
         label: "Skills",
         field: "skills"
       },
       {
-        label: "Job Status",
-        field: "jobStatus"
+        label: "Labour Count",
+        field: "labourCount"
       },
       {
         label: "Action",
@@ -90,34 +91,44 @@ const ContractorBooking = () => {
 
 
   useEffect(() => {
-
-    let d = []
+    let d = [];
 
     const fillTable = async () => {
-      const response = await fetch('http://45.127.4.151:8000/api/booking?contractor_email=' + JSON.parse(localStorage.getItem("email")), {
-        headers: {
-          'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-          'Content-Type': 'application/json'
+      const response = await fetch(
+        "http://45.127.4.151:8000/api/booking?status=Pending",
+        {
+          headers: {
+            Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+            "Content-Type": "application/json",
+          },
         }
-      })
-      const td = await response.json()
+      );
+      const td = await response.json();
       for (let i = 0; i < td.length; i++) {
         d.push({
-          "bookingID": td[i]['booking_id'],
-          "address": td[i]['location'],
-          "startDate": td[i]['start_date'],
-          "skills": td[i]['labour_skill'],
-          "jobStatus": td[i]['status'],
-          "action": <p style={{cursor: "pointer", color: "green"}} onClick={handleDetailsAction}>Details</p>,
+          bookingID: td[i]["booking_id"],
+          contractorName: td[i]["contractor_name"],
+          contractorEmail: td[i]["contractor_email"],
+          skills: td[i]["labour_skill"],
+          labourCount: td[i]["labour_count"],
+          status: td[i]["status"],
+          action: <p style={{cursor: "pointer", color: "green"}} onClick={handleDetailsAction}>Details</p>,
         });
       }
       setTableData(d);
-    }
+    };
 
     fillTable();
-  }, [])
+  }, []);
 
 
+  const handleAllocation = (e) => {
+    navigate("/dashboard/allocate-labours?booking_id=" + bookingId);
+  };
+
+  const handleCross = () => {
+    document.getElementById("detail-card-popup-row-id").style.display = "none"
+  }
 
   return (
     <div>
@@ -133,7 +144,7 @@ const ContractorBooking = () => {
         </div>
 
         <div className="row justify-content-center detail-card-popup-row" id="detail-card-popup-row-id">
-          <div className="col-9 col-sm-9 col-md-6 col-lg-4 contractor-booking-details-card">
+          <div className="col-10 col-sm-10 col-md-8 col-lg-4 contractor-booking-details-card">
             <div className="d-flex flex-row-reverse">
               <span className='detailsCard-cross' style={{ cursor: "pointer" }} onClick={handleCross} >X</span>
             </div>
@@ -152,12 +163,17 @@ const ContractorBooking = () => {
             </div>
             <p className='detailsCard-p'>Location: <span className='detailsCard-span' id='contractor-location'>{userDetails.location}</span></p>
             <p className='detailsCard-p'>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>
+            <button className="btn btn-primary btn-sm admin-bookings-labour-allocate-btn" onClick={handleAllocation}>Allocate Workforce</button>
           </div>
         </div>
       </div>
 
     </div>
-  )
-}
+  );
+};
 
-export default ContractorBooking;
+
+export default AdminBookings;
+
+
+

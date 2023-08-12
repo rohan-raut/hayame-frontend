@@ -16,8 +16,8 @@ import {
   Profile,
   AdminDashboard,
   AdminWorkforceList,
-  UpdateLabourDetails
-  // AdminBookings,
+  UpdateLabourDetails,
+  AdminBookings,
   // AllocateLabours,
 } from "./components/DashboardPage/Pages";
 
@@ -77,10 +77,10 @@ function App() {
           path: "/dashboard/workforce-list",
           element: <AdminWorkforceList />,
         },
-        //     {
-        //       path: "/dashboard/check-bookings",
-        //       element: <AdminBookings />,
-        //     },
+        {
+          path: "/dashboard/check-bookings",
+          element: <AdminBookings />,
+        },
         {
           path: "/dashboard/update-labour-details",
           element: <UpdateLabourDetails />,

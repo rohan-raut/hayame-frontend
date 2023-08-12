@@ -4,7 +4,7 @@ import DashboardForm from "./ContractorDashboard/DashboardForm";
 import Profile from "./Profile/Profile";
 import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import AdminWorkforceList from "./AdminWorkforceList/AddWorkforceList";
-// import AdminBookings from "./AdminBookings/AdminBookings";
+import AdminBookings from "./AdminBookings/AdminBookings";
 // import AllocateLabours from "./AllocateLabours/AllocateLabours";
 import UpdateLabourDetails from "./UpdatelabourDetails/UpdateLabourDetails";
 
@@ -16,6 +16,6 @@ export {
   AdminDashboard,
   AdminWorkforceList,
   UpdateLabourDetails,
-//   AdminBookings,
+  AdminBookings,
 //   AllocateLabours,
 };
