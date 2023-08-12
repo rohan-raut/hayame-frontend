@@ -28,10 +28,10 @@ const AdminBookings = () => {
 
   const handleDetailsAction = (e) => {
     document.getElementById("detail-card-popup-row-id").style.display = "block";
-    let booking_id = e.target.parentElement.parentElement.cells[0].innerText
+    bookingId = e.target.parentElement.parentElement.cells[0].innerText
 
     fetch(
-      "http://45.127.4.151:8000/api/booking?booking_id=" + booking_id,
+      "http://45.127.4.151:8000/api/booking?booking_id=" + bookingId,
       {
         method: "GET",
         headers: {

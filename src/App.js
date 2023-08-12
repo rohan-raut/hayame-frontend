@@ -18,7 +18,7 @@ import {
   AdminWorkforceList,
   UpdateLabourDetails,
   AdminBookings,
-  // AllocateLabours,
+  AllocateLabours,
 } from "./components/DashboardPage/Pages";
 
 
@@ -85,15 +85,12 @@ function App() {
           path: "/dashboard/update-labour-details",
           element: <UpdateLabourDetails />,
         },
-        //     {
-        //       path: "/dashboard/allocate-labours",
-        //       element: <AllocateLabours />,
-        //     },
+        {
+          path: "/dashboard/allocate-labours",
+          element: <AllocateLabours />,
+        },
       ],
-      // },
-      // {
-      //   path: "/dashboard/dashboard",
-      //   element: <Dashboard />,
+
     },
   ]);
 
