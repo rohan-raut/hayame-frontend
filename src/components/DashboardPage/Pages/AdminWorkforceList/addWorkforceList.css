@@ -1,0 +1,25 @@
+
+.workforcelist-table-card{
+    background-color: white;
+    margin-top: 5vh;
+    margin-bottom: 30px;
+    padding: 20px 10px;
+    margin-left: 20vw;
+}
+
+th{
+    font-weight: 900 !important;
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .workforcelist-table-card{
+        margin-left: 10vw;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .workforcelist-table-card{
+        margin-left: 10vw;
+    }
+}
+

@@ -12,9 +12,10 @@ import DashboardPage from "./components/DashboardPage/DashboardPage";
 import {
   Dashboard,
   DashboardForm,
-  // Customers,
+  ContractorBooking,
   Profile,
-  // AdminWorkforceList,
+  AdminDashboard,
+  AdminWorkforceList,
   // AdminBookings,
   // AllocateLabours,
 } from "./components/DashboardPage/Pages";
@@ -59,22 +60,22 @@ function App() {
       path: "/dashboard",
       element: <DashboardPage />,
       children: [
-            {
-              path: "/dashboard/profile",
-              element: <Profile />,
-            },
-        //     {
-        //       path: "/dashboard/customers",
-        //       element: <Customers />,
-        //     },
+        {
+          path: "/dashboard/profile",
+          element: <Profile />,
+        },
+        {
+          path: "/dashboard/contractor-bookings",
+          element: <ContractorBooking />,
+        },
         {
           path: "/dashboard/dashboardform",
           element: <DashboardForm />,
         },
-        //     {
-        //       path: "/dashboard/workforce-list",
-        //       element: <AdminWorkforceList />,
-        //     },
+        {
+          path: "/dashboard/workforce-list",
+          element: <AdminWorkforceList />,
+        },
         //     {
         //       path: "/dashboard/check-bookings",
         //       element: <AdminBookings />,

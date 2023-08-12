@@ -64,7 +64,7 @@ const Sidebar = ({ userRole }) => {
                   },
                   {
                     label: "Bookings",
-                    key: "./customers",
+                    key: "./contractor-bookings",
                     className: "sidebar-menu-item",
                   },
                   {

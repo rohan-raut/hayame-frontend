@@ -1,0 +1,21 @@
+
+.custom-select{
+    margin-bottom: 10px;
+}
+
+.contractor-booking-card{
+    margin-left: 15vw;
+    margin-top: 7vh;
+}
+
+.contractor-booking-details-card{
+    background-color: yellow;
+}
+
+
+@media screen and (max-width: 768px){
+    .contractor-booking-card{
+        margin-left: 7vw;
+        margin-top: 7vh;
+    }
+}
