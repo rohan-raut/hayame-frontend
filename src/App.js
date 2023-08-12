@@ -16,10 +16,11 @@ import {
   Profile,
   AdminDashboard,
   AdminWorkforceList,
+  UpdateLabourDetails
   // AdminBookings,
   // AllocateLabours,
 } from "./components/DashboardPage/Pages";
-// import UpdateLabourDetails from "./components/DashboradPage/Pages/UpdatelabourDetails/UpdateLabourDetails";
+
 
 function App() {
 
@@ -80,10 +81,10 @@ function App() {
         //       path: "/dashboard/check-bookings",
         //       element: <AdminBookings />,
         //     },
-        //     {
-        //       path: "/dashboard/update-labour-details",
-        //       element: <UpdateLabourDetails />,
-        //     },
+        {
+          path: "/dashboard/update-labour-details",
+          element: <UpdateLabourDetails />,
+        },
         //     {
         //       path: "/dashboard/allocate-labours",
         //       element: <AllocateLabours />,
