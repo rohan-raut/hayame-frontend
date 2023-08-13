@@ -2,10 +2,11 @@
     display: block;
     text-align: left;
     margin: 2px 0px;
+    color: #e9ebf8;
 }
 
 .contractor-dashboard-form-card{
-    background-color: #FFF8D1;
+    background-color: #17262B;
     margin-top: 5vh;
     padding: 20px 60px;
     margin-bottom: 30px;
@@ -17,13 +18,14 @@
 }
 
 .contractor-dashboard-form-input-submit{
-    background-color: #212427;
-    color: white;
+    background-color: #e9ebf8;
+    color: #17262B;
 }
 
 .contractor-dashboard-form-input-submit:hover{
-    background-color: blue;
-    color: white;
+    background-color: #17262B;
+    color: #e9ebf8;
+    border: solid 2px #e9ebf8;
 }
 
 .contractor-dashboard-form-h2{
@@ -42,7 +44,7 @@
 
 @media screen and (max-width: 768px){
     .contractor-dashboard-form-card{
-        background-color: #FFF8D1;
+        background-color: #17262B;
         margin-top: 5vh;
         padding: 20px 10px;
         margin-bottom: 30px;
