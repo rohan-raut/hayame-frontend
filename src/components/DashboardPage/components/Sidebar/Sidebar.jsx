@@ -82,7 +82,6 @@ const Sidebar = ({ userRole }) => {
                 onClick={(item) => {
                   navigate(item.key);
                 }}
-
                 items={[
                   {
                     label: "Home",
@@ -110,7 +109,7 @@ const Sidebar = ({ userRole }) => {
                     className: "sidebar-menu-item",
                   },
                   {
-                    label: "Chech Bookings",
+                    label: "Check Bookings",
                     key: "./check-bookings",
                     className: "sidebar-menu-item",
                   },
@@ -131,7 +130,6 @@ const Sidebar = ({ userRole }) => {
         </Layout.Sider>
       ) : (
         <div className="closedSidebar">
-
           <div
             className="closedSidebarArrow"
             style={{ border: "solid 3.5px #17262B" }}
@@ -142,7 +140,6 @@ const Sidebar = ({ userRole }) => {
               onClick={toggleMenu}
             />
           </div>
-
         </div>
       )}
     </div>

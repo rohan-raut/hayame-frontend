@@ -52,7 +52,7 @@
 }
 
 .dashboard-a{
-    color: #212427;
+    color: #e9ebf8;
 }
 
 
@@ -78,7 +78,7 @@
     padding: 1rem 1.5rem;
     border-style: none;
     background-color: #212427;
-    color: #FFD000;
+    color: #E9ebf8;
     font-family: inherit;
     font-size: 1.25rem;
     cursor: pointer;
@@ -176,7 +176,7 @@
 }
 
 .contractor-dashboard-card{
-    background-color: #fff8d1;
+    background-color: #17262B;
     border-radius: 2rem;
     padding: 20px 40px;
     margin-left: 20vw; 
@@ -185,7 +185,7 @@
 
 .contractor-dashboard-link{
     text-decoration: none;
-    color: #212427;
+    color: #e9ebf8;
     font-size: 0.8rem;
 }
 
@@ -215,7 +215,7 @@
     }
 
     .contractor-dashboard-card{
-        background-color: #fff8d1;
+        background-color: #17262B;
         border-radius: 2rem;
         padding: 25px 5px;
         margin-left: 10vw; 
@@ -230,7 +230,7 @@
 
     .contractor-dashboard-link{
         text-decoration: none;
-        color: #212427;
+        color: #e9ebf8;
         font-size: 0.8rem;
     }
 }
@@ -246,7 +246,7 @@
     }
 
     .contractor-dashboard-card{
-        background-color: #fff8d1;
+        background-color: #17262B;
         border-radius: 2rem;
         padding: 25px 2px;
         margin-left: 10vw; 
@@ -261,7 +261,7 @@
 
     .contractor-dashboard-link{
         text-decoration: none;
-        color: #212427;
+        color: #e9ebf8;
         font-size: 0.6rem;
     }
 }
