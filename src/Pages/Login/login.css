@@ -5,8 +5,8 @@
 }
 
 .login-card{
-    color: white;
-    background-color: #212427;
+    color: #e9ebf8;
+    background-color: #17262b;
     padding: 40px;
     margin-top: 12vh;
 }
@@ -29,4 +29,8 @@
 .login-input-submit{
     color: white;   
     background-color: #323A49;
+}
+
+.login-input-submit:hover{
+    border: 1px solid #323A49;
 }

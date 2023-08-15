@@ -53,7 +53,7 @@ const ResetPassword = () => {
             showAlert("Password and Confirm-Password does not match", "danger");
         }
         else if (validatePassword(resetPasswordInputs.password)) {
-            let api = "http://45.127.4.151:8000/api/reset-password/" + token;
+            let api = "https://django.hayame.my/api/reset-password/" + token;
             fetch(api, {
                 method: "POST",
                 body: JSON.stringify({

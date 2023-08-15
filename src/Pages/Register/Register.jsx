@@ -18,7 +18,7 @@ const Register = () => {
 
     setTimeout(() => {
       setAlert(null);
-    }, 3000);
+    }, 2500);
   }
 
 
@@ -39,6 +39,14 @@ const Register = () => {
     return false;
   }
 
+  const validatePhone = (phone) => {
+    if(phone.length != 10){
+      showAlert("Phone Number must be 10 digits.", "danger");
+      return false;
+    }
+    return true;
+  }
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -48,8 +56,8 @@ const Register = () => {
     if (registerInputs.password != registerInputs.confirmPassword) {
       showAlert("Password and Confirm-Password does not match", "danger");
     }
-    else if (validatePassword(registerInputs.password)) {
-      fetch("http://45.127.4.151:8000/api/register", {
+    else if (validatePassword(registerInputs.password) && validatePhone(registerInputs.phoneNumber)) {
+      fetch("https://django.hayame.my/api/register", {
         method: "POST",
         body: JSON.stringify({
           username: registerInputs.emailAddress,
@@ -71,7 +79,7 @@ const Register = () => {
             showAlert("Successfully Registered. Verify your email before login.", "success");
             setTimeout(() => {
               navigate("/login");
-            }, 3000);
+            }, 2500);
           }
         });
 

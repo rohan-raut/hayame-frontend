@@ -34,7 +34,7 @@ const Login = () => {
 
     document.getElementById("login-btn").disable = true;
 
-    fetch("http://45.127.4.151:8000/api/login", {
+    fetch("https://django.hayame.my/api/login", {
       method: "POST",
       body: JSON.stringify({
         username: loginInputs.email,
@@ -52,7 +52,7 @@ const Login = () => {
 
           let localStorageToken = JSON.parse(localStorage.getItem("Token"));
 
-          fetch("http://45.127.4.151:8000/api/user-info", {
+          fetch("https://django.hayame.my/api/user-info", {
             method: "POST",
             body: JSON.stringify({
               username: loginInputs.email,

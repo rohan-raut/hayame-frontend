@@ -18,20 +18,20 @@
 }
 
 .contractor-dashboard-form-input-submit{
-    background-color: #e9ebf8;
-    color: #17262B;
+    background-color: #323A49;
+    color: white;
 }
 
 .contractor-dashboard-form-input-submit:hover{
-    background-color: #17262B;
-    color: #e9ebf8;
-    border: solid 2px #e9ebf8;
+    border: 1px solid #323A49;
+    color: white;
 }
 
 .contractor-dashboard-form-h2{
     font-size: 1.7rem;
     font-weight: 700;
     padding: 10px 0px;
+    color: #e9ebf8;
 }
 
 .contractor-dashboardform-h3{

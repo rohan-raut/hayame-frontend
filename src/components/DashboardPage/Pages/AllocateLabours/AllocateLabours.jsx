@@ -18,7 +18,7 @@ const AllocateLabours = () => {
 
   const navigate = useNavigate();
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState([]);
   const [Alert, setAlert] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({
     contractorName: "",
@@ -48,7 +48,7 @@ const AllocateLabours = () => {
   let requiredSkill = "";
 
   useEffect(() => {
-    fetch("http://45.127.4.151:8000/api/booking?booking_id=" + booking_id, {
+    fetch("https://django.hayame.my/api/booking?booking_id=" + booking_id, {
       method: "GET",
       headers: {
         Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
@@ -73,7 +73,7 @@ const AllocateLabours = () => {
         });
       });
 
-    fetch("http://45.127.4.151:8000/api/labour-list", {
+    fetch("https://django.hayame.my/api/labour-list", {
       method: "GET",
       headers: {
         Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
@@ -107,7 +107,7 @@ const AllocateLabours = () => {
     }
     labour_emails = labour_emails.substring(0, labour_emails.length - 1);
 
-    fetch("http://45.127.4.151:8000/api/allocate-labour", {
+    fetch("https://django.hayame.my/api/allocate-labour", {
       method: "POST",
       body: JSON.stringify({
         "booking_id": booking_id,
@@ -150,6 +150,7 @@ const AllocateLabours = () => {
             options={options}
             className="form-control add-labour-input-field p-0"
             isMulti
+            isOptionDisabled={() => selectedOption.length >= bookingDetails.labourCount}
           />
           <div className="my-3">
             <button type="submit" className="btn btn-primary">Submit</button>

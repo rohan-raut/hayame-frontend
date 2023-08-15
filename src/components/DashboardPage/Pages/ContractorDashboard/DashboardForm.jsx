@@ -123,7 +123,7 @@ const DashboardForm = () => {
             let costDetails = {};
             let costDetailsPublicHolidays = {};
 
-            let api_data = await fetch("http://45.127.4.151:8000/api/skill-list", {
+            let api_data = await fetch("https://django.hayame.my/api/skill-list", {
                 method: "GET",
                 headers: {
                     'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -153,7 +153,7 @@ const DashboardForm = () => {
 
             // get the public hoildays
             let publilcHolidays = 0;
-            fetch("http://45.127.4.151:8000/api/public-holidays", {
+            fetch("https://django.hayame.my/api/public-holidays", {
                 method: "GET",
                 headers: {
                     'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -216,7 +216,7 @@ const DashboardForm = () => {
 
     const handleConfirmation = () => {
 
-        fetch("http://45.127.4.151:8000/api/booking", {
+        fetch("https://django.hayame.my/api/booking", {
             method: "POST",
             body: JSON.stringify({
                 "contractor_name": JSON.parse(localStorage.getItem("first_name")) + " " + JSON.parse(localStorage.getItem("last_name")),

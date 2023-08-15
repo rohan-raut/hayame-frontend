@@ -1,6 +1,6 @@
 .register-card{
-    background-color: #212427;
-    color: white;
+    background-color: #17262b;
+    color: #e9ebf8;
     margin-top: 5vh;
 }
 
@@ -28,6 +28,10 @@
     margin-top: 20px;
     background-color: #323A49;
     color: white;
+}
+
+.register-input-submit:hover{
+    border: 1px solid #323A49;
 }
 
 .register-input-field{

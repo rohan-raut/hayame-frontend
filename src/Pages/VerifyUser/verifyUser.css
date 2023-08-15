@@ -1,12 +1,13 @@
 .verify-user-card{
     margin-top: 20vh;
-    background-color: white;
+    background-color: #17262b;
     padding: 50px 30px;
     border-radius: 30px;
+    color: #e9ebf8;
 }
 
 .login-href {
-    color: #212527;
+    color: #e9ebf8;
     cursor: pointer;
     text-decoration: underline;
 }

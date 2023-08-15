@@ -78,7 +78,7 @@ const EditForm = () => {
 
         e.preventDefault()
 
-        fetch("http://45.127.4.151:8000/api/update/user-info/" + JSON.parse(localStorage.getItem("email")), {
+        fetch("https://django.hayame.my/api/update/user-info/" + JSON.parse(localStorage.getItem("email")), {
             method: "PUT",
             body: JSON.stringify({
                 "first_name": Inputs.firstName,

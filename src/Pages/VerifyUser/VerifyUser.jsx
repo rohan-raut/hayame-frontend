@@ -15,7 +15,7 @@ const VerifyUser = () => {
       user = pair[1]
     }
 
-    let api = "http://45.127.4.151:8000/api/verify-user/" + user;
+    let api = "https://django.hayame.my/api/verify-user/" + user;
     console.log(api);
 
     fetch(api, {

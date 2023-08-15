@@ -57,7 +57,7 @@ const UpdateLabourDetails = () => {
 
     useEffect(() => {
 
-        fetch("http://45.127.4.151:8000/api/skill-list", {
+        fetch("https://django.hayame.my/api/skill-list", {
             method: "GET",
             headers: {
                 'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -79,7 +79,7 @@ const UpdateLabourDetails = () => {
 
 
 
-        fetch('http://45.127.4.151:8000/api/labour-list?email=' + labourEmail, {
+        fetch('https://django.hayame.my/api/labour-list?email=' + labourEmail, {
             method: "GET",
             headers: {
                 'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
@@ -140,7 +140,7 @@ const UpdateLabourDetails = () => {
         skills = skills.substring(0, skills.length - 1);
 
 
-        fetch("http://45.127.4.151:8000/api/update/labour-list/" + labourEmail, {
+        fetch("https://django.hayame.my/api/update/labour-list/" + labourEmail, {
             method: "PUT",
             body: JSON.stringify({
                 "first_name": Inputs.firstName,

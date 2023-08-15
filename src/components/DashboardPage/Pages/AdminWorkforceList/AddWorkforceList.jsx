@@ -56,7 +56,7 @@ const AddWorkforceList = () => {
     let d = []
 
     const fillTable = async () => {
-      const response = await fetch('http://45.127.4.151:8000/api/labour-list', {
+      const response = await fetch('https://django.hayame.my/api/labour-list', {
         headers: {
           'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
           'Content-Type': 'application/json'
