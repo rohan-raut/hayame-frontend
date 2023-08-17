@@ -81,6 +81,7 @@ const Login = () => {
                   "user_role",
                   JSON.stringify(json.user_role)
                 );
+                localStorage.setItem("isLoggedIn", true);
 
                 navigate("/dashboard");
               } else {

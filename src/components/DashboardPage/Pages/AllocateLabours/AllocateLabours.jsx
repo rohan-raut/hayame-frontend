@@ -98,33 +98,43 @@ const AllocateLabours = () => {
       });
   }, []);
 
+  const validateForm = () => {
+    if (selectedOption.length != bookingDetails.labourCount) {
+      showAlert(`Select ${bookingDetails.labourCount} labours`, "danger");
+      return false;
+    }
+    return true;
+  }
+
   const handelAllocateLabourSubmit = (e) => {
     e.preventDefault();
 
-    let labour_emails = "";
-    for (let i = 0; i < selectedOption.length; i++) {
-      labour_emails += selectedOption[i].value + ",";
-    }
-    labour_emails = labour_emails.substring(0, labour_emails.length - 1);
+    if (validateForm()) {
+      let labour_emails = "";
+      for (let i = 0; i < selectedOption.length; i++) {
+        labour_emails += selectedOption[i].value + ",";
+      }
+      labour_emails = labour_emails.substring(0, labour_emails.length - 1);
 
-    fetch("https://django.hayame.my/api/allocate-labour", {
-      method: "POST",
-      body: JSON.stringify({
-        "booking_id": booking_id,
-        "labour_email": labour_emails,
-      }),
-      headers: {
-        'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-        'Content-Type': 'application/json'
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        showAlert("Labours Allocated Successfully", "success");
-        setTimeout(() => {
-          navigate("/dashboard/check-bookings");
-        }, 2000);
+      fetch("https://django.hayame.my/api/allocate-labour", {
+        method: "POST",
+        body: JSON.stringify({
+          "booking_id": booking_id,
+          "labour_email": labour_emails,
+        }),
+        headers: {
+          'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+          'Content-Type': 'application/json'
+        },
       })
+        .then((response) => response.json())
+        .then((json) => {
+          showAlert("Labours Allocated Successfully", "success");
+          setTimeout(() => {
+            navigate("/dashboard/check-bookings");
+          }, 2000);
+        })
+    }
 
   }
 

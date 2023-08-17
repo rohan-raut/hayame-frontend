@@ -3,6 +3,7 @@ import "./navbar.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
     const handleSandwich = () => {
         if (document.getElementById("navbar-links").style.display == "none") {
             document.getElementById("navbar-links").style.display = "block";
@@ -10,6 +11,7 @@ const Navbar = () => {
             document.getElementById("navbar-links").style.display = "none";
         }
     };
+
 
     return (
         <div>
@@ -27,9 +29,16 @@ const Navbar = () => {
                             <li class="nav-item px-3">
                                 <Link class="nav-link active" aria-current="page" to="/about-us">About Us</Link>
                             </li>
+
                             <li class="nav-item px-3">
-                                <Link class="nav-link active" aria-current="page" to="/login">Login</Link>
+                                {JSON.parse(localStorage.getItem('isLoggedIn')) ? (
+                                    <Link class="nav-link active" aria-current="page" to="/dashboard">Dashboard</Link>
+                                    ) : (
+                                    <Link class="nav-link active" aria-current="page" to="/login">Login</Link>
+                                )
+                            }
                             </li>
+
                         </ul>
                     </div>
                 </div>
