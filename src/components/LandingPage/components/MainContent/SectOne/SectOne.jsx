@@ -5,14 +5,14 @@ import { Link } from "react-router-dom";
 const SectOne = () => {
   return (
     <div className="sect1-div">
-      <div className="sect1-content">
+      {/* <div className="sect1-content">
         <h3>We’re here to make your staffing easier.</h3>
         <p>
           We connect you with individuals who’ll work for as little as two hours
           at a time, allowing you to improve your customer and team experience,
           whilst keeping your costs under control.
         </p>
-      </div>
+      </div> */}
 
       <div className="hero-about-us-card">
         <article>

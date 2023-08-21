@@ -9,10 +9,10 @@ const MainContent = () => {
   return (
     <div>
       <section>
-        <SectOne />
-        <SectThree />
-        <SectTwo />
         <SectFour />
+        <SectThree />
+        <SectOne />
+        <SectTwo />
         <SectFive />
       </section>
     </div>
