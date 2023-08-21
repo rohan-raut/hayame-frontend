@@ -103,7 +103,7 @@ const Report = (props) => {
     useEffect(() => {
 
         const getReportData = async () => {
-            const response = await fetch('http://127.0.0.1:8000/api/report', {
+            const response = await fetch('https://django.hayame.my/api/report', {
                 headers: {
                     'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
                     'Content-Type': 'application/json'
