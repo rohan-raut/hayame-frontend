@@ -7,6 +7,7 @@ import AdminWorkforceList from "./AdminWorkforceList/AddWorkforceList";
 import AdminBookings from "./AdminBookings/AdminBookings";
 import AllocateLabours from "./AllocateLabours/AllocateLabours";
 import UpdateLabourDetails from "./UpdatelabourDetails/UpdateLabourDetails";
+import Report from "./Report/Report";
 
 export {
   ContractorBooking,
@@ -18,4 +19,5 @@ export {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
+  Report
 };

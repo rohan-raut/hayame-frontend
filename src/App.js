@@ -19,6 +19,7 @@ import {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
+  Report
 } from "./components/DashboardPage/Pages";
 
 
@@ -88,6 +89,10 @@ function App() {
         {
           path: "/dashboard/allocate-labours",
           element: <AllocateLabours />,
+        },
+        {
+          path: "/dashboard/report",
+          element: <Report />,
         },
       ],
 

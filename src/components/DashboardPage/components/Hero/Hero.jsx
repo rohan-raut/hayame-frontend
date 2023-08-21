@@ -10,6 +10,7 @@ import {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
+  Report
 } from "../../Pages";
 
 const Hero = ({ userRole }) => {
@@ -33,6 +34,7 @@ const Hero = ({ userRole }) => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/check-bookings" element={<AdminBookings />} />
           <Route path="/allocate-labours" element={<AllocateLabours />} />
+          <Route path="/report" element={<Report />} />
         </Routes>
       )}
     </div>

@@ -241,7 +241,7 @@ const DashboardForm = () => {
             .then((json) => {
                 showAlert("Booking Done", "success");
                 setTimeout(() => {
-                    navigate('/dashboard/customers');
+                    navigate('/dashboard/contractor-bookings');
                 }, 2000);
             })
     }

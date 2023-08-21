@@ -1,0 +1,25 @@
+.report-card{
+    margin-left: 15vw;
+    margin-top: 5vh;
+}
+
+.report-label{
+    display: block;
+    text-align: left;
+    margin-bottom: 2px;
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .report-card{
+        margin-left: 10vw;
+        margin-top: 5vh;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .report-card{
+        margin-left: 7vw;
+        margin-top: 5vh;
+    }
+}

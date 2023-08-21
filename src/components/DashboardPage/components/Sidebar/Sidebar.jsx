@@ -119,6 +119,11 @@ const Sidebar = ({ userRole }) => {
                     className: "sidebar-menu-item",
                   },
                   {
+                    label: "Report",
+                    key: "./report",
+                    className: "sidebar-menu-item",
+                  },
+                  {
                     label: "About Us",
                     key: "/about-us",
                     className: "sidebar-menu-item",
