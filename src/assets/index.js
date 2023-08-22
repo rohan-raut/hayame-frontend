@@ -31,6 +31,11 @@ import edit from "./edit.svg";
 import team from "./team.svg";
 import im from "./im.png";
 
+import DarkLabour from "./labour_dark.svg";
+import DarkPack from "./pack_dark.svg";
+import DarkCook from "./cook_dark.svg";
+import DarkSanitation from "./sanitation_dark.svg";
+
 export {
   logo,
   herobg,
@@ -63,4 +68,8 @@ export {
   userImg,
   team,
   im,
+  DarkCook,
+  DarkLabour,
+  DarkPack,
+  DarkSanitation,
 };

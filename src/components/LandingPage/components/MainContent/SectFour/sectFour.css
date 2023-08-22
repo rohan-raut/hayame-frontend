@@ -1,73 +1,138 @@
-.sect4-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.sectFour-container {
+    margin-top: 20px;
     padding: 50px 0px;
 }
 
-.sect4-card {
-    text-align: center;
+.sectFour-img {
+    width: 25%;
+    margin-right: 15px;
+}
+
+.sectFour-section-1 {
+    background-color: #d9dbdb;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.sectFour-icon-card {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 12px 15px;
     cursor: pointer;
-    background-color: #45656A;
-    border-radius: 2rem;
-    margin-top: 2rem;
-    padding: 0;
+    text-align: left;
 }
 
-.sect4-title {
-    font-weight: 900;
-    font-size: 2.2rem;
-    line-height: 140%;
-    text-align: center;
-    letter-spacing: 0.01em;
-    color: #17262B;
-    text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-    padding: 0;
+.sectFour-text-card {
+    padding-left: 30px;
+    text-align: left;
 }
 
-.sect4-table {
-    width: 100%;
-    margin-top: 0rem;
+.sectFour-section-2 {
+    padding: 25px 10px;
+    background-color: white;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px
+}
+
+.sectFour-label {
+    display: block;
+    text-align: left;
+}
+
+.sectFour-input {
+    outline: none;
+    border-bottom: 1px solid black;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 12vw;
+}
+
+.sectFour-form-card {
+    text-align: left;
+    width: 20vw;
+}
+
+.button-div {
+    width: 400px;
+}
+
+.book-now-btn {
+    margin: auto;
+}
+
+.border-right {
+    border-right: 1px solid black;
+}
+
+.pr {
+    padding-right: 40px;
+}
+
+.pl {
+    padding-left: 40px;
+}
+
+.mobile-section {
+    display: none;
+}
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+
+    .sectFour-img {
+        width: 40%;
+        margin-right: 5px;
+    }
+
+    .sectFour-icon-card {
+        padding: 30px 15px;
+    }
+
+    .sectFour-section-2 {
+        padding: 25px 10px;
+    }
+
+    .sectFour-input {
+        width: 12vw;
+    }
+
+    .sectFour-form-card {
+        text-align: left;
+        
+    }
+
+    .button-div {
+        width: 150px;
+    }
+
+    .book-now-btn {
+        padding: 10px 5px !important;
+    }
+
+    .border-right {
+        border-right: 1px solid black;
+    }
+
+    .pr {
+        padding-right: 30px;
+    }
+
+    .pl {
+        padding-left: 30px;
+    }
 }
 
 
-
-@media screen and (min-width: 769px) and (max-width: 991px){
-    .sect4-div {
-        width: 100vw;
-        box-sizing: border-box;
-        margin-top: -2rem;
+@media screen and (max-width: 768px) {
+    .mobile-section {
+        display: block;
     }
 
-    .sect4-title {
-        font-size: 1.2rem;
-        text-align: center;
-        margin: 1rem 0;
+    .sectFour-section-1 {
+        display: none;
     }
 
-    .sect4-table {
-        width: 90%;
-        transition: scale(1.2);
-        transform: scale(1.1);
-        margin-top: 1.5rem;
-        padding: 0px 20px;
-    }
-}
-
-
-@media screen and (max-width: 768px){
-
-    .sect4-title {
-        font-size: 1rem;
-        text-align: center;
-        margin: 0;
-    }
-
-    .sect4-table {
-        width: 90%;
-        transition: scale(1.2);
-        transform: scale(1.1);
-        margin-top: 1.5rem;
+    .sectFour-section-2 {
+        display: none;
     }
 }
