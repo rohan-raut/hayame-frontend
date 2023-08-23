@@ -118,7 +118,6 @@ const ContractorBooking = () => {
   }, [])
 
 
-
   return (
     <div>
       <div className="row justify-content-center m-0">

@@ -49,11 +49,28 @@ const DashboardForm = () => {
         }, 2000);
     }
 
+    const handleJobLocation = () => {
+        var id = "jobLocation";
+
+        var autocomplete;
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById(id), {
+            types: ['geocode'],
+        });
+
+        autocomplete.addListener('place_changed', function () {
+            var near_place = autocomplete.getPlace();
+        });
+
+    }
+
 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
+        if(name === "jobLocation"){
+            handleJobLocation();
+        }
     }
 
 
@@ -63,12 +80,12 @@ const DashboardForm = () => {
         let today = new Date();
         today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
-        if(startDate < today){
+        if (startDate < today) {
             showAlert("Invalid Start Date", "danger");
             return false;
         }
-        
-        if(endDate < today){
+
+        if (endDate < today) {
             showAlert("Invalid End Date", "danger");
             return false;
         }

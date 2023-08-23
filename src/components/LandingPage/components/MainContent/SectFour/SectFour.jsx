@@ -2,10 +2,13 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./sectFour.css";
 import { DarkCook, DarkLabour, DarkPack, DarkSanitation } from "../../../../../assets";
+import { useEffect } from "react";
+
 
 const SectFour = () => {
 
   const navigate = useNavigate();
+  const google = window.google;
 
   const handleLabourCard = () => {
     document.getElementById("sectFour-labour-card").style.backgroundColor = "#FFFFFF";
@@ -37,6 +40,21 @@ const SectFour = () => {
 
   const handleBookNowForm = () => {
     navigate("/dashboard");
+  }
+
+
+  const handleLocation = () => {
+    var id = "location";
+
+    var autocomplete;
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById(id), {
+      types: ['geocode'],
+    });
+
+    autocomplete.addListener('place_changed', function () {
+      var near_place = autocomplete.getPlace();
+    });
+
   }
 
 
@@ -77,7 +95,7 @@ const SectFour = () => {
           <div className="d-flex">
             <div className="sectFour-form-card border-right pr">
               <label htmlFor="location" className="sectFour-label">Location</label>
-              <input type="text" name="location" className="sectFour-input" required />
+              <input type="text" name="location" id="location" className="sectFour-input" onChange={handleLocation} required />
             </div>
             <div className="sectFour-form-card border-right pl pr">
               <label htmlFor="labourCount" className="sectFour-label">Labour Count</label>
