@@ -42,6 +42,8 @@ const ResetPassword = () => {
     }
 
     const handleResetPassword = (e) => {
+        e.preventDefault();
+        
         let paramString = (window.location.search).split('?')[1];
         let queryString = new URLSearchParams(paramString);
         let token = ""

@@ -36,6 +36,8 @@ import DarkPack from "./pack_dark.svg";
 import DarkCook from "./cook_dark.svg";
 import DarkSanitation from "./sanitation_dark.svg";
 
+import Logo from "./logo.png"
+
 export {
   logo,
   herobg,
@@ -72,4 +74,5 @@ export {
   DarkLabour,
   DarkPack,
   DarkSanitation,
+  Logo,
 };

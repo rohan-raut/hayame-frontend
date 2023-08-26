@@ -38,7 +38,8 @@ const SectFour = () => {
     document.getElementById("sectFour-sanitation-card").style.backgroundColor = "#FFFFFF";
   }
 
-  const handleBookNowForm = () => {
+  const handleBookNowForm = (e) => {
+    e.preventDefault();
     navigate("/dashboard");
   }
 

@@ -31,7 +31,7 @@ const ForgotPassword = () => {
     }
 
     const handleForgetPassword = (e) => {
-        console.log(forgotPasswordInputs);
+        e.preventDefault();
 
         fetch("https://django.hayame.my/api/forgot-password", {
             method: "POST",
