@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./sidebar.css";
 import { Menu, Layout, Image } from "antd";
 import { useNavigate } from "react-router-dom";
-import { logo, leftarrow } from "../../../../assets";
+import { logo, leftarrow, Logo } from "../../../../assets";
 import LandingPage from "../../../LandingPage/LandingPage";
 import About from "../../../../Pages/About/About";
 
@@ -22,7 +22,7 @@ const Sidebar = ({ userRole }) => {
           <div className="sidebar-menu">
             <div className="sider">
               <div className="sider-logo">
-                <img src={logo} />
+                <img src={Logo} />
               </div>
               <div className="sider-arrow">
                 <img src={leftarrow} onClick={toggleMenu} />

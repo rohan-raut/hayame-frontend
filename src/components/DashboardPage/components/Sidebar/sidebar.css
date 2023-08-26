@@ -33,12 +33,12 @@
 }
 
 .sider-logo {
-    border: solid cadetblue 2px;
+    border: solid rgb(129, 250, 254) 2px;
     background-color: #34AFAA;
 }
 
-.sider-logo > Image {
-    width: 6rem;
+.sider-logo > img {
+    width: 8vw;
 }
 
 .sider-arrow {
@@ -95,6 +95,10 @@
         display: flex;
     }
 
+    .sider-logo > img{
+        width: 15vw;
+    }
+
     .closedSidebar {
         width: 2vw;
     }
@@ -143,6 +147,10 @@
     .sider-logo {
         margin-bottom: 1rem;
         display: flex;
+    }
+
+    .sider-logo > img{
+        width: 30vw;
     }
 
     .closedSidebar {
