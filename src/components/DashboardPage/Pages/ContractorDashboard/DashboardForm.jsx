@@ -59,6 +59,7 @@ const DashboardForm = () => {
 
         autocomplete.addListener('place_changed', function () {
             var near_place = autocomplete.getPlace();
+            setInputs(values => ({ ...values, ["jobLocation"]: near_place["formatted_address"]}));
         });
 
     }

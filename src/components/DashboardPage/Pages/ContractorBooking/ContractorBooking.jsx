@@ -62,27 +62,33 @@ const ContractorBooking = () => {
     columns: [
       {
         label: "Booking ID",
-        field: "bookingID"
+        field: "bookingID",
+        width: 50
       },
       {
         label: "Address",
-        field: "address"
+        field: "address",
+        width: 50
       },
       {
         label: "startDate",
-        field: "startDate"
+        field: "startDate",
+        width: 50
       },
       {
         label: "Skills",
-        field: "skills"
+        field: "skills",
+        width: 50
       },
       {
         label: "Job Status",
-        field: "jobStatus"
+        field: "jobStatus",
+        width: 50
       },
       {
         label: "Action",
-        field: "action"
+        field: "action",
+        width: 50
       }
     ],
     rows: tableData

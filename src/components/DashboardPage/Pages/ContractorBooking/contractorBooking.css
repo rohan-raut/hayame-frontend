@@ -33,6 +33,10 @@
     font-weight: 100;
 }
 
+.sorting{
+    min-width: 120px;
+}
+
 @media screen and (min-width: 769px) and (max-width: 991px){
     .contractor-booking-details-card{
         margin-top: 20vh;
