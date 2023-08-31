@@ -33,8 +33,8 @@
 }
 
 .sider-logo {
-    border: solid rgb(129, 250, 254) 2px;
     background-color: #34AFAA;
+    padding: 5px;
 }
 
 .sider-logo > img {

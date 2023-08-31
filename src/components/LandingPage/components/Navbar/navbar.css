@@ -6,6 +6,7 @@
     width: 18vh;
 }
 
+
 @media screen and (min-width: 769px) and (max-width: 991px){
     .navbar-logo{
         width: 12vh;
