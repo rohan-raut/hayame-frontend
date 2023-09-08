@@ -1,18 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./dashboardform.css";
 import { useNavigate } from "react-router-dom";
 import AlertMessage from '../../../Alert/AlertMessage';
+import Select from "react-select";
 
 
 const DashboardForm = () => {
-
-    let paramString = (window.location.search).split('?')[1];
-    let queryString = new URLSearchParams(paramString);
-    let skill = ""
-    for (let pair of queryString.entries()) {
-        skill = pair[1]
-    }
-    let skill_frontend = skill.replace("-", "/");
 
     const [Inputs, setInputs] = useState({
         startTime: "00:00",
@@ -21,6 +14,10 @@ const DashboardForm = () => {
     });
     const [Alert, setAlert] = useState(null);
     const [confirmation, setConfirmation] = useState(false);
+    const [skillListOptions, setSkillListOptions] = useState(null);
+    const [skillList, setSkillList] = useState(null);
+    const [labourSkill, setLabourSkill] = useState(null);
+
     const [bookingDetails, setBookingDetails] = useState({
         jobLoc: "",
         labourCount: "",
@@ -29,7 +26,7 @@ const DashboardForm = () => {
         endDate: "",
         startTime: "",
         endTime: "",
-        labourSkill: skill_frontend,
+        labourSkill: "",
         hours: "",
         minutes: "",
         publilcHolidays: "",
@@ -49,6 +46,29 @@ const DashboardForm = () => {
         }, 2000);
     }
 
+    useEffect(() => {
+        fetch("https://django.hayame.my/api/skill-list", {
+            method: "GET",
+            headers: {
+                Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+                "Content-type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                let opt = [];
+                setSkillList(json);
+                for (let i = 0; i < json.length; i++) {
+                    opt.push({
+                        value: json[i]["skill"],
+                        label: json[i]["skill"],
+                    });
+                }
+                setSkillListOptions(opt);
+            });
+    }, []);
+
+
     const handleJobLocation = () => {
         var id = "jobLocation";
 
@@ -59,7 +79,7 @@ const DashboardForm = () => {
 
         autocomplete.addListener('place_changed', function () {
             var near_place = autocomplete.getPlace();
-            setInputs(values => ({ ...values, ["jobLocation"]: near_place["formatted_address"]}));
+            setInputs(values => ({ ...values, ["jobLocation"]: near_place["formatted_address"] }));
         });
 
     }
@@ -69,7 +89,7 @@ const DashboardForm = () => {
         const name = event.target.name;
         const value = event.target.value;
         setInputs(values => ({ ...values, [name]: value }))
-        if(name === "jobLocation"){
+        if (name === "jobLocation") {
             handleJobLocation();
         }
     }
@@ -101,7 +121,7 @@ const DashboardForm = () => {
         let temp = "";
         temp = startTime[0] + startTime[1];
         let startHour = parseInt(temp);
-        let startTimeStamp = (startDate.getTime() + (startHour * 3600000) - 19800000); // minus 19800000 to convert localtime to utc
+        let startTimeStamp = (startDate.getTime() + (startHour * 3600000) - 28800000); // minus 28800000 to convert localtime to utc
 
         temp = startTime[3] + startTime[4];
         let startMin = parseInt(temp);
@@ -121,7 +141,7 @@ const DashboardForm = () => {
             return false;
         }
 
-        if((startTimeStamp - currentTimeStamp) < 7200000){
+        if ((startTimeStamp - currentTimeStamp) < 7200000) {
             showAlert("Cannot Book within 2 hours", "danger");
             return false;
         }
@@ -150,18 +170,18 @@ const DashboardForm = () => {
             let costDetails = {};
             let costDetailsPublicHolidays = {};
 
-            let api_data = await fetch("https://django.hayame.my/api/skill-list", {
-                method: "GET",
-                headers: {
-                    'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-                    'Content-Type': 'application/json'
-                },
-            });
-            let parsedData = await api_data.json();
+            // let api_data = await fetch("https://django.hayame.my/api/skill-list", {
+            //     method: "GET",
+            //     headers: {
+            //         'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+            //         'Content-Type': 'application/json'
+            //     },
+            // });
+            // let parsedData = await api_data.json();
 
-            for (let i = 0; i < parsedData.length; i++) {
-                costDetails[parsedData[i].skill] = parsedData[i].cost_per_hour_normal_days;
-                costDetailsPublicHolidays[parsedData[i].skill] = parsedData[i].cost_per_hour_public_holiday;
+            for (let i = 0; i < skillList.length; i++) {
+                costDetails[skillList[i].skill] = skillList[i].cost_per_hour_normal_days;
+                costDetailsPublicHolidays[skillList[i].skill] = skillList[i].cost_per_hour_public_holiday;
             }
 
 
@@ -209,12 +229,11 @@ const DashboardForm = () => {
                     const diffTime2 = Math.abs(startTime - endTime);
                     let totalMinutesOneDay = Math.ceil(diffTime2 / (1000 * 60));
 
-                    const costPerMinNormalDays = costDetails[skill] / 60;
-                    const costPerMinPublicHoliday = costDetailsPublicHolidays[skill] / 60;
+                    const costPerMinNormalDays = costDetails[labourSkill.value] / 60;
+                    const costPerMinPublicHoliday = costDetailsPublicHolidays[labourSkill.value] / 60;
 
                     totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount);
 
-                    console.log("hello")
 
                     setBookingDetails({
                         jobLoc: jobLocation,
@@ -224,18 +243,16 @@ const DashboardForm = () => {
                         endDate: end_date,
                         startTime: start_time,
                         endTime: end_time,
-                        labourSkill: skill_frontend,
+                        labourSkill: labourSkill.value,
                         hours: Math.ceil((totalMinutesOneDay * (totalDays + publilcHolidays)) / 60),
                         minutes: ((totalMinutesOneDay * (totalDays + publilcHolidays)) % 60),
                         publilcHolidays: publilcHolidays,
-                        costPerHourNormalDays: costDetails[skill],
-                        costPerHourPublicHolidays: costDetailsPublicHolidays[skill],
+                        costPerHourNormalDays: costDetails[labourSkill.value],
+                        costPerHourPublicHolidays: costDetailsPublicHolidays[labourSkill.value],
                         totalCost: totalCost,
                     })
 
-
                     setConfirmation(prev => !prev)
-                    console.log(bookingDetails);
                 })
         }
 
@@ -248,7 +265,7 @@ const DashboardForm = () => {
             body: JSON.stringify({
                 "contractor_name": JSON.parse(localStorage.getItem("first_name")) + " " + JSON.parse(localStorage.getItem("last_name")),
                 "contractor_email": JSON.parse(localStorage.getItem("email")),
-                "labour_skill": skill,
+                "labour_skill": labourSkill.value,
                 "labour_count": bookingDetails.labourCount,
                 "labour_gender": bookingDetails.labourGender,
                 "start_date": bookingDetails.startDate,
@@ -284,6 +301,16 @@ const DashboardForm = () => {
                     <div >
                         <label htmlFor="jobLocation" className="form-label contractor-dashboard-input-label" >Job Location</label>
                         <input type="text" value={Inputs.jobLocation || ""} onChange={handleChange} name="jobLocation" id="jobLocation" className="form-control contractor-dashboardform-input-field" placeholder='Job Location' required />
+                    </div>
+
+                    <div>
+                        <label htmlFor="labourSkill" className="form-label add-labour-input-label">Labour Skill</label>
+                        <Select
+                            onChange={setLabourSkill}
+                            options={skillListOptions}
+                            className="form-control contractor-dashboardform-input-field p-0"
+                            required
+                        />
                     </div>
 
                     <div >
@@ -435,7 +462,7 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
-                    {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}           
+                    {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>RM {bookingDetails.totalCost}</span></h3>
                     <button className='btn contractor-dashboard-form-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
                 </div>)}
