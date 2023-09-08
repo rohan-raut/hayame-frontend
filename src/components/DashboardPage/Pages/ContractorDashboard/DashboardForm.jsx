@@ -101,6 +101,8 @@ const DashboardForm = () => {
         let temp = "";
         temp = startTime[0] + startTime[1];
         let startHour = parseInt(temp);
+        let startTimeStamp = (startDate.getTime() + (startHour * 3600000) - 19800000); // minus 19800000 to convert localtime to utc
+
         temp = startTime[3] + startTime[4];
         let startMin = parseInt(temp);
         temp = endTime[0] + endTime[1];
@@ -108,12 +110,19 @@ const DashboardForm = () => {
         temp = endTime[3] + endTime[4];
         let endMin = parseInt(temp);
 
+        let currentTimeStamp = Date.now();
+
         if (startTime == endTime) {
             showAlert("Start Time and End Time cannot be same", "danger");
             return false;
         }
         if ((endHour < startHour) || (endHour == startHour && endMin < startMin)) {
             showAlert("Invalid End time", "danger");
+            return false;
+        }
+
+        if((startTimeStamp - currentTimeStamp) < 7200000){
+            showAlert("Cannot Book within 2 hours", "danger");
             return false;
         }
 
@@ -424,10 +433,10 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>{bookingDetails.costPerHourNormalDays}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>{bookingDetails.costPerHourPublicHolidays}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>{bookingDetails.totalCost}</span></h3>
+                    {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3> : ""}
+                    <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
+                    {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}           
+                    <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>RM {bookingDetails.totalCost}</span></h3>
                     <button className='btn contractor-dashboard-form-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
                 </div>)}
             </div>
