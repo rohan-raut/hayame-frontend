@@ -42,13 +42,6 @@ const Register = () => {
     return false;
   }
 
-  const validatePhone = (phone) => {
-    if (phone.length != 10) {
-      showAlert("Phone Number must be 10 digits.", "danger");
-      return false;
-    }
-    return true;
-  }
 
 
   const handleRegister = (e) => {
@@ -59,7 +52,7 @@ const Register = () => {
     if (registerInputs.password != registerInputs.confirmPassword) {
       showAlert("Password and Confirm-Password does not match", "danger");
     }
-    else if (validatePassword(registerInputs.password) && validatePhone(registerInputs.phoneNumber)) {
+    else if (validatePassword(registerInputs.password)) {
       fetch("https://django.hayame.my/api/register", {
         method: "POST",
         body: JSON.stringify({
