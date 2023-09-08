@@ -62,7 +62,7 @@ const Register = () => {
           email: registerInputs.emailAddress,
           password: registerInputs.password,
           password2: registerInputs.confirmPassword,
-          phone: countryCode + ' ' + registerInputs.phoneNumber,
+          phone: countryCode.value + ' ' + registerInputs.phoneNumber,
           user_role: "Contractor",
         }),
         headers: {
