@@ -71,8 +71,15 @@ const Register = () => {
       })
         .then((response) => response.json())
         .then((json) => {
+          console.log(json)
           if (json.response != undefined) {
             showAlert("Successfully Registered. Verify your email before login.", "success");
+            setTimeout(() => {
+              navigate("/login");
+            }, 2500);
+          }
+          else{
+            showAlert("Account with this email already exists. Try to Login", "success");
             setTimeout(() => {
               navigate("/login");
             }, 2500);
