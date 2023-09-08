@@ -50,7 +50,7 @@ const Dashboard = () => {
             >
               <div className="filter-item" id="hauler">
                 <img
-                  src={hauler}
+                  src={construction}
                   alt="hauler"
                   className="contractor-dashboard-img"
                 />
@@ -66,7 +66,7 @@ const Dashboard = () => {
             >
               <div className="filter-item" id="pickpack">
                 <img
-                  src={pack}
+                  src={labour}
                   alt="pack"
                   className="contractor-dashboard-img"
                 />
@@ -82,7 +82,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={shipping}
+                  src={construction}
                   alt="shipping"
                   className="contractor-dashboard-img"
                 />
@@ -98,7 +98,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={lumper}
+                  src={labour}
                   alt="lumper"
                   className="contractor-dashboard-img"
                 />
@@ -114,7 +114,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={sanitation}
+                  src={construction}
                   alt="sanitation"
                   className="contractor-dashboard-img"
                 />
@@ -134,7 +134,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={dishwasher}
+                  src={construction}
                   alt="dishwasher"
                   className="contractor-dashboard-img"
                 />
@@ -150,7 +150,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={waiter}
+                  src={labour}
                   alt="waiter"
                   className="contractor-dashboard-img"
                 />
@@ -166,7 +166,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={sanitation}
+                  src={construction}
                   alt="sanitation"
                   className="contractor-dashboard-img"
                 />
@@ -198,7 +198,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={setup}
+                  src={construction}
                   alt="setup"
                   className="contractor-dashboard-img"
                 />
@@ -214,7 +214,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={cook}
+                  src={labour}
                   alt="cook"
                   className="contractor-dashboard-img"
                 />
@@ -235,7 +235,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={dishwasher}
+                  src={labour}
                   alt="dishwasher"
                   className="contractor-dashboard-img"
                 />
@@ -251,7 +251,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={sanitation}
+                  src={construction}
                   alt="sanitation"
                   className="contractor-dashboard-img"
                 />
@@ -267,7 +267,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={waiter}
+                  src={labour}
                   alt="waiter"
                   className="contractor-dashboard-img"
                 />
@@ -283,7 +283,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={setup}
+                  src={construction}
                   alt="setup"
                   className="contractor-dashboard-img"
                 />
@@ -299,7 +299,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={cook}
+                  src={labour}
                   alt="cook"
                   className="contractor-dashboard-img"
                 />
@@ -319,7 +319,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={dishwasher}
+                  src={construction}
                   alt="dishwasher"
                   className="contractor-dashboard-img"
                 />
@@ -335,7 +335,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={foodserviceworker}
+                  src={labour}
                   alt="foodserviceworker"
                   className="contractor-dashboard-img"
                 />
@@ -351,7 +351,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={sanitation}
+                  src={construction}
                   alt="sanitation"
                   className="contractor-dashboard-img"
                 />
@@ -367,7 +367,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={waiter}
+                  src={labour}
                   alt="waiter"
                   className="contractor-dashboard-img"
                 />
@@ -383,7 +383,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={cook}
+                  src={construction}
                   alt="cook"
                   className="contractor-dashboard-img"
                 />
@@ -399,7 +399,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={bartender}
+                  src={labour}
                   alt="bartender"
                   className="contractor-dashboard-img"
                 />
@@ -435,7 +435,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={painter}
+                  src={construction}
                   alt="painter"
                   className="contractor-dashboard-img"
                 />
@@ -451,7 +451,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={construction}
+                  src={labour}
                   alt="construction"
                   className="contractor-dashboard-img"
                 />
@@ -467,7 +467,7 @@ const Dashboard = () => {
             >
               <div className="filter-item">
                 <img
-                  src={setup}
+                  src={construction}
                   alt="setup"
                   className="contractor-dashboard-img"
                 />
