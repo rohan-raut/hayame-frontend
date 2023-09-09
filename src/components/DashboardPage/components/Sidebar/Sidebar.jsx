@@ -16,8 +16,9 @@ const Sidebar = ({ userRole }) => {
   };
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 768px)')) {
+    if (window.screen.width <= 768) {
       setShowMenu(false);
+      console.log("this is true");
     }
   }, []);
 
