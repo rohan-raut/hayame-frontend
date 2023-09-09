@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./sidebar.css";
 import { Menu, Layout, Image } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +14,14 @@ const Sidebar = ({ userRole }) => {
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (window.matchMedia('(max-width: 768px)')) {
+      setShowMenu(false);
+    }
+  }, []);
+
+
 
   return (
     <div className="Sidebar">

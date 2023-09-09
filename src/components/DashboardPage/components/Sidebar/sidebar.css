@@ -11,14 +11,14 @@
 .sidebar-antd-menu {
     font-size: 16px;
     font-weight: 700;
-    font-family: "Poppins", sans-serif; 
+    font-family: "Poppins", sans-serif;
     padding: 0rem;
     background-color: #17262B;
     text-align: left;
     width: 100%;
 }
 
-.sidebar-menu-item{
+.sidebar-menu-item {
     cursor: pointer;
     color: #A2F1FB;
 }
@@ -37,7 +37,7 @@
     padding: 5px;
 }
 
-.sider-logo > img {
+.sider-logo>img {
     width: 8vw;
 }
 
@@ -52,13 +52,13 @@
     align-items: center;
 }
 
-.sider-arrow > img {
+.sider-arrow>img {
     height: 2rem;
 }
 
 .closedSidebar {
     background-color: #17262B;
-    min-height: 100vh; 
+    min-height: 100vh;
     max-width: min-content;
     padding: 1rem;
     position: fixed;
@@ -77,11 +77,11 @@
     align-items: center;
 }
 
-.closedSidebarArrow > img {
+.closedSidebarArrow>img {
     height: 2rem;
 }
 
-@media screen and (min-width: 769px) and (max-width: 991px){
+@media screen and (min-width: 769px) and (max-width: 991px) {
     .sidebar-menu {
         width: 35vw;
         height: 190vh;
@@ -95,7 +95,7 @@
         display: flex;
     }
 
-    .sider-logo > img{
+    .sider-logo>img {
         width: 15vw;
     }
 
@@ -103,16 +103,18 @@
         width: 2vw;
     }
 
-    .sider-arrow, .closedSidebarArrow {
+    .sider-arrow,
+    .closedSidebarArrow {
         width: 2.35rem;
         height: 2.35rem;
     }
 
-    .sider-arrow >  img, .closedSidebarArrow > img {
+    .sider-arrow>img,
+    .closedSidebarArrow>img {
         height: 1.75rem;
     }
 
-    
+
 
     .sidebar-antd-menu {
         padding-left: 30px;
@@ -135,13 +137,14 @@
 }
 
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
     .sidebar-menu {
         width: 60vw;
-        height: 190vh;
+        min-height: 100vh;
         padding: 0;
-        position: absolute;
-        left: 0%;
+        position: fixed;
+        top: 0;
+        z-index: 150;
     }
 
     .sider-logo {
@@ -149,7 +152,7 @@
         display: flex;
     }
 
-    .sider-logo > img{
+    .sider-logo>img {
         width: 30vw;
     }
 
@@ -157,16 +160,18 @@
         width: 1px;
     }
 
-    .sider-arrow, .closedSidebarArrow {
+    .sider-arrow,
+    .closedSidebarArrow {
         width: 2.35rem;
         height: 2.35rem;
     }
 
-    .sider-arrow >  img, .closedSidebarArrow > img {
+    .sider-arrow>img,
+    .closedSidebarArrow>img {
         height: 1.75rem;
     }
 
-    
+
 
     .sidebar-antd-menu {
         padding-left: 0.75rem;
@@ -182,8 +187,8 @@
     }
 
     .closedSidebar {
-        position: absolute;
+        position: fixed;
         left: 0%;
+        top: 0;
     }
 }
-
