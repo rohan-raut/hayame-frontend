@@ -47,7 +47,16 @@ const DashboardForm = () => {
     }
 
     useEffect(() => {
-        fetch("https://django.hayame.my/api/skill-list", {
+        let paramString = (window.location.search).split('?')[1];
+        let queryString = new URLSearchParams(paramString);
+        let category = ""
+        for (let pair of queryString.entries()) {
+            category = pair[1]
+        }
+        category = category.replace(' ', '%20');
+        let api = "https://django.hayame.my/api/skill-list?category=" + category;
+        console.log(api);
+        fetch(api, {
             method: "GET",
             headers: {
                 Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
@@ -56,6 +65,7 @@ const DashboardForm = () => {
         })
             .then((response) => response.json())
             .then((json) => {
+                console.log(json);
                 let opt = [];
                 setSkillList(json);
                 for (let i = 0; i < json.length; i++) {
