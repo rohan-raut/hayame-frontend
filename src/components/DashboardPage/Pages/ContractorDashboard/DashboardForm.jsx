@@ -7,6 +7,9 @@ import Select from "react-select";
 
 const DashboardForm = () => {
 
+    const google = window.google;
+    const navigate = useNavigate();
+
     const [Inputs, setInputs] = useState({
         startTime: "00:00",
         endTime: "00:00",
@@ -32,6 +35,7 @@ const DashboardForm = () => {
         publilcHolidays: "",
         costPerHourNormalDays: 0,
         costPerHourPublicHolidays: 0,
+        transportationCost: 0,
         totalCost: 0,
     })
 
@@ -160,40 +164,54 @@ const DashboardForm = () => {
     }
 
 
-    const google = window.google;
-    const navigate = useNavigate();
+    async function getDistance(jobLocation) {
+        let distance = 0;
+        var distanceService = new google.maps.DistanceMatrixService();
+        await distanceService.getDistanceMatrix({
+            origins: ["Dhanori"],
+            destinations: [jobLocation],
+            travelMode: google.maps.TravelMode.DRIVING,
+            unitSystem: google.maps.UnitSystem.METRIC,
+            durationInTraffic: true,
+            avoidHighways: false,
+            avoidTolls: false
+        },
+            function (response, status) {
+                if (status !== google.maps.DistanceMatrixStatus.OK) {
+                    console.log('Error:', status);
+                } else {
+                    distance = response.rows[0].elements[0].distance.value;
+                    // $("#distance").text(response.rows[0].elements[0].distance.text).show();
+                    // $("#duration").text(response.rows[0].elements[0].duration.text).show();
+                }
+            });
+        return distance / 1000;
+    }
 
-    document.addEventListener('DOMContentLoaded', function () {
-        let autocomplete;
-        let id = 'jobLocation';
-        autocomplete = new google.maps.places.Autocomplete(document.getElementById(id), {
-            types: ['geocode']
-        });
-    });
 
 
     async function handleNextClick(e) {
         e.preventDefault();
 
         if (validateForm()) {
+            let transportation_cost = 0;
             let totalCost = 0;
             let costDetails = {};
             let costDetailsPublicHolidays = {};
-
-            // let api_data = await fetch("https://django.hayame.my/api/skill-list", {
-            //     method: "GET",
-            //     headers: {
-            //         'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-            //         'Content-Type': 'application/json'
-            //     },
-            // });
-            // let parsedData = await api_data.json();
 
             for (let i = 0; i < skillList.length; i++) {
                 costDetails[skillList[i].skill] = skillList[i].cost_per_hour_normal_days;
                 costDetailsPublicHolidays[skillList[i].skill] = skillList[i].cost_per_hour_public_holiday;
             }
 
+            let distance = await getDistance(Inputs.jobLocation);
+            console.log(distance);
+            let totals_cars = Math.trunc(Inputs.labourCount / 4);
+            if((Inputs.labourCount % 4) != 0){
+                totals_cars += 1;
+            }
+
+            transportation_cost = distance * totals_cars * 1.5;
 
             let start_time = Inputs.startTime;
             let end_time = Inputs.endTime;
@@ -242,7 +260,7 @@ const DashboardForm = () => {
                     const costPerMinNormalDays = costDetails[labourSkill.value] / 60;
                     const costPerMinPublicHoliday = costDetailsPublicHolidays[labourSkill.value] / 60;
 
-                    totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount);
+                    totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount) + transportation_cost;
 
 
                     setBookingDetails({
@@ -259,6 +277,7 @@ const DashboardForm = () => {
                         publilcHolidays: publilcHolidays,
                         costPerHourNormalDays: costDetails[labourSkill.value],
                         costPerHourPublicHolidays: costDetailsPublicHolidays[labourSkill.value],
+                        transportationCost: transportation_cost,
                         totalCost: totalCost,
                     })
 
@@ -470,6 +489,7 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
+                    <h3 className='contractor-dashboardform-h3'>Transportation Cost : <span className='confirmation-span'>{bookingDetails.transportationCost} RM</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}
