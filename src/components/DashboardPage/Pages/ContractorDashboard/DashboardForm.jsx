@@ -168,7 +168,7 @@ const DashboardForm = () => {
         let distance = 0;
         var distanceService = new google.maps.DistanceMatrixService();
         await distanceService.getDistanceMatrix({
-            origins: ["Dhanori"],
+            origins: ["Persiaran Bukit Raja, Kawasan 17 Bandar Baru Klang, 41150 Klang, Selangor"],
             destinations: [jobLocation],
             travelMode: google.maps.TravelMode.DRIVING,
             unitSystem: google.maps.UnitSystem.METRIC,
