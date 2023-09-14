@@ -260,8 +260,8 @@ const DashboardForm = () => {
                     const costPerMinNormalDays = costDetails[labourSkill.value] / 60;
                     const costPerMinPublicHoliday = costDetailsPublicHolidays[labourSkill.value] / 60;
 
+                    transportation_cost = Math.round(transportation_cost);
                     totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount) + transportation_cost;
-
 
                     setBookingDetails({
                         jobLoc: jobLocation,
@@ -272,8 +272,8 @@ const DashboardForm = () => {
                         startTime: start_time,
                         endTime: end_time,
                         labourSkill: labourSkill.value,
-                        hours: Math.ceil((totalMinutesOneDay * (totalDays + publilcHolidays)) / 60),
-                        minutes: ((totalMinutesOneDay * (totalDays + publilcHolidays)) % 60),
+                        hours: Math.ceil((labourCount * totalMinutesOneDay * (totalDays + publilcHolidays)) / 60),
+                        minutes: ((labourCount * totalMinutesOneDay * (totalDays + publilcHolidays)) % 60),
                         publilcHolidays: publilcHolidays,
                         costPerHourNormalDays: costDetails[labourSkill.value],
                         costPerHourPublicHolidays: costDetailsPublicHolidays[labourSkill.value],
@@ -489,7 +489,7 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>End Time : <span className='confirmation-span'>{bookingDetails.endTime || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Time: Hours: <span className='confirmation-span'>{bookingDetails.hours}</span> Minutes: <span className='confirmation-span'>{bookingDetails.minutes}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Transportation Cost : <span className='confirmation-span'>{bookingDetails.transportationCost} RM</span></h3>
+                    <h3 className='contractor-dashboardform-h3'>Transportation Cost : <span className='confirmation-span'>RM {bookingDetails.transportationCost}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}
