@@ -20,7 +20,7 @@ const ForgotPassword = () => {
 
         setTimeout(() => {
             setAlert(null);
-        }, 1500);
+        }, 2000);
     }
 
 
@@ -33,7 +33,7 @@ const ForgotPassword = () => {
     const handleForgetPassword = (e) => {
         e.preventDefault();
 
-        fetch("https://django.hayame.my/api/forgot-password", {
+        fetch("http://127.0.0.1:8000/api/forgot-password", {
             method: "POST",
             body: JSON.stringify({
                 "email": forgotPasswordInputs.emailAddress,
@@ -45,6 +45,11 @@ const ForgotPassword = () => {
             .then((response) => response.json())
             .then((json) => {
                 showAlert(json["response"], "success");
+                if(json.success === false){
+                    setTimeout(() => {
+                        navigate('/register');
+                    }, 1500);
+                }
             })
     }
 

@@ -53,7 +53,7 @@ const Register = () => {
       showAlert("Password and Confirm-Password does not match", "danger");
     }
     else if (validatePassword(registerInputs.password)) {
-      fetch("https://django.hayame.my/api/register", {
+      fetch("http://127.0.0.1:8000/api/register", {
         method: "POST",
         body: JSON.stringify({
           username: registerInputs.emailAddress,
@@ -71,21 +71,11 @@ const Register = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          console.log(json)
-          if (json.response != undefined) {
-            showAlert("Successfully Registered. Verify your email before login.", "success");
-            setTimeout(() => {
-              navigate("/login");
-            }, 2500);
-          }
-          else{
-            showAlert("Account with this email already exists. Try to Login", "success");
-            setTimeout(() => {
-              navigate("/login");
-            }, 2500);
-          }
+          showAlert(json.response, "success");
+          setTimeout(() => {
+            navigate('/login');
+          }, 2500);
         });
-
     }
 
   };

@@ -34,7 +34,7 @@ const Login = () => {
 
     document.getElementById("login-btn").disable = true;
 
-    fetch("https://django.hayame.my/api/login", {
+    fetch("http://127.0.0.1:8000/api/login", {
       method: "POST",
       body: JSON.stringify({
         username: loginInputs.email,
@@ -46,52 +46,14 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json.token !== undefined) {
-          showAlert("Login Successful", "success");
-          localStorage.setItem("Token", JSON.stringify(json.token));
-
-          let localStorageToken = JSON.parse(localStorage.getItem("Token"));
-
-          fetch("https://django.hayame.my/api/user-info", {
-            method: "POST",
-            body: JSON.stringify({
-              username: loginInputs.email,
-              password: loginInputs.password,
-            }),
-            headers: {
-              Authorization: "Token " + localStorageToken,
-              "Content-Type": "application/json",
-            },
-          })
-            .then((response) => response.json())
-            .then((json) => {
-
-              if (json.is_verified == true) {
-                localStorage.setItem("email", JSON.stringify(json.email));
-                localStorage.setItem(
-                  "first_name",
-                  JSON.stringify(json.first_name)
-                );
-                localStorage.setItem(
-                  "last_name",
-                  JSON.stringify(json.last_name)
-                );
-                localStorage.setItem("phone", JSON.stringify(json.phone));
-                localStorage.setItem(
-                  "user_role",
-                  JSON.stringify(json.user_role)
-                );
-                localStorage.setItem("isLoggedIn", true);
-
-                navigate("/dashboard");
-              } else {
-                showAlert("Please verify your email address before trying to Log in.", "danger");
-                navigate("/login");
-              }
-            });
-        } else {
-          showAlert("Wrong email or password", "danger");
-          document.getElementById("login-btn").disable = false;
+        if(json.is_logged_in === true){
+          showAlert(json.response, "success");
+          setTimeout(() => {
+            navigate('/dashboard')
+          }, 1500);
+        }
+        else{
+          showAlert(json.response, "danger");
         }
       });
   };
