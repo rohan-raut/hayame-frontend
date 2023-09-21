@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import { NavbarDashboard } from "../LandingPage/components";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -8,27 +8,47 @@ import "./dashboardPage.css";
 import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
-  let user_role = localStorage.getItem("user_role");
   const navigate = useNavigate();
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     const checkIfLogin = () => {
-      if (!JSON.parse(localStorage.getItem("isLoggedIn"))) {
+      if (localStorage.getItem("token") === null) {
         navigate("/login");
+      }
+      else {
+        fetch("http://127.0.0.1:8000/api/user-info", {
+          method: "GET",
+          headers: {
+            Authorization: "Token " + localStorage.getItem("token"),
+            "Content-type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => {
+            setUserRole(json.user_role);
+          });
       }
     };
 
     checkIfLogin();
+
   }, []);
+
 
   return (
     <div className="dashboard-container-fluid">
       <Header />
-      <div className="DashboardPageContent m-0">
-        <Sidebar userRole={user_role} />
-        <Hero userRole={user_role} />
-      </div>
-      {/* <Footer /> */}
+      {userRole !== null ? (
+        <div className="DashboardPageContent m-0">
+          <Sidebar userRole={userRole} />
+          <Hero userRole={userRole} />
+        </div>
+      ) :
+        (<div></div>)
+      }
+
+
     </div>
   );
 };

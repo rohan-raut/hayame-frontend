@@ -6,7 +6,7 @@ import { logo, leftarrow, Logo } from "../../../../assets";
 import LandingPage from "../../../LandingPage/LandingPage";
 import About from "../../../../Pages/About/About";
 
-const Sidebar = ({ userRole }) => {
+const Sidebar = ( { userRole }) => {
   // const location = useLocation()
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(true);
@@ -16,10 +16,11 @@ const Sidebar = ({ userRole }) => {
   };
 
   useEffect(() => {
+    
     if (window.screen.width <= 768) {
       setShowMenu(false);
-      console.log("this is true");
     }
+
   }, []);
 
 
@@ -37,7 +38,7 @@ const Sidebar = ({ userRole }) => {
                 <img src={leftarrow} onClick={toggleMenu} />
               </div>
             </div>
-            {userRole === '"Contractor"' ? (
+            {userRole === 'Contractor' ? (
               <Menu
                 className="sidebar-antd-menu"
                 theme="dark"

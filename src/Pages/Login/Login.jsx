@@ -48,6 +48,7 @@ const Login = () => {
       .then((json) => {
         if(json.is_logged_in === true){
           showAlert(json.response, "success");
+          localStorage.setItem('token', json.token);
           setTimeout(() => {
             navigate('/dashboard')
           }, 1500);

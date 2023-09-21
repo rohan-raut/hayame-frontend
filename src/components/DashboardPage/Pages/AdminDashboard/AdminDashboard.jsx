@@ -37,26 +37,24 @@ const AdminDashboard = () => {
   }
 
   useEffect(() => {
-    fetch("https://django.hayame.my/api/skill-list", {
+    fetch("http://127.0.0.1:8000/api/skill-list", {
       method: "GET",
       headers: {
-        Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+        Authorization: "Token " + localStorage.getItem("token"),
         "Content-type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((json) => {
         for (let i = 0; i < json.length; i++) {
-          if (opt.includes(json[i]["skill"]) == false) {
-            opt.push(json[i]["skill"]);
-            options.push({
-              value: json[i]["skill"],
-              label: json[i]["skill"],
-            });
-          }
+          options.push({
+            value: json[i]["skill"],
+            label: json[i]["skill"],
+          });
         }
       });
   }, []);
+
 
   const handleAddLabour = (e) => {
     e.preventDefault();
@@ -69,7 +67,8 @@ const AdminDashboard = () => {
 
     skills = skills.substring(0, skills.length - 1);
 
-    fetch("https://django.hayame.my/api/labour-list", {
+
+    fetch("http://127.0.0.1:8000/api/labour-list", {
       method: "POST",
       body: JSON.stringify({
         first_name: Inputs.firstName,
@@ -81,13 +80,14 @@ const AdminDashboard = () => {
         passport_no: Inputs.passportNumber,
       }),
       headers: {
-        Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+        Authorization: "Token " + localStorage.getItem("token"),
         "Content-type": "application/json",
       },
     })
       .then((response) => response.json())
       .then((json) => {
-        showAlert("Labour Added Successfully", "success");
+        console.log(json);
+        showAlert(json.response, "success");
         setTimeout(() => {
           navigate("/dashboard/workforce-list");
         }, 2000);

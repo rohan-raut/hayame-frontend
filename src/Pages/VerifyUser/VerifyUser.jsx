@@ -16,7 +16,6 @@ const VerifyUser = () => {
     }
 
     let api = "https://django.hayame.my/api/verify-user/" + user;
-    console.log(api);
 
     fetch(api, {
       method: "GET"

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSearchParams, Link, useNavigate } from 'react-router-dom'
 import "./updateLabourDetails.css"
-// import AdminDashboard from '../AdminDashboard/AdminDashboard'
 import Select from "react-select";
 import AlertMessage from '../../../Alert/AlertMessage';
 
@@ -57,10 +56,10 @@ const UpdateLabourDetails = () => {
 
     useEffect(() => {
 
-        fetch("https://django.hayame.my/api/skill-list", {
+        fetch("http://127.0.0.1:8000/api/skill-list", {
             method: "GET",
             headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Authorization': 'Token ' + localStorage.getItem("token"),
                 "Content-type": "application/json"
             }
         })
@@ -79,40 +78,26 @@ const UpdateLabourDetails = () => {
 
 
 
-        fetch('https://django.hayame.my/api/labour-list?email=' + labourEmail, {
+        fetch('http://127.0.0.1:8000/api/labour-list?email=' + labourEmail, {
             method: "GET",
             headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Authorization': 'Token ' + localStorage.getItem("token"),
                 'Content-Type': 'application/json'
 
             },
-        })           //api for the get request
+        })
             .then(response => response.json())
             .then(data => {
 
-                labourSkills = data[0]["skills"].split(",")
-
-                for (let i = 0; i < labourSkills.length; i++) {
-                    if (temp.includes(labourSkills[i]) == false) {
-                        temp.push(labourSkills[i]);
+                for (let i = 0; i < data.length; i++) {
+                    if (temp.includes(data[i]['skill']) == false) {
+                        temp.push(data[i]['skill']);
                         selectedOption.push({
-                            value: labourSkills[i],
-                            label: labourSkills[i]
+                            value: data[i]['skill'],
+                            label: data[i]['skill']
                         });
                     }
                 }
-
-                // setInputs({ ...Inputs, firstName: data[0]["first_name"] });
-                // setInputs({ ...Inputs, lastName: data[0]["last_name"] });
-                // setInputs({ ...Inputs, email: data[0]["email"] });
-                // setInputs({ ...Inputs, phoneNumber: data[0]["phone"] });
-                // setInputs({ ...Inputs, passportNumber: data[0]["passport_no"] });
-                // Inputs.firstName = data[0]["first_name"]
-                // Inputs.lastName = data[0]["last_name"]
-                // Inputs.email = data[0]["email"]
-                // gender = data[0]["gender"]
-                // Inputs.phoneNumber = data[0]["phone"]
-                // Inputs.passportNumber = data[0]["passport_no"]
 
                 setInputs({
                     firstName: data[0]["first_name"],
@@ -140,7 +125,7 @@ const UpdateLabourDetails = () => {
         skills = skills.substring(0, skills.length - 1);
 
 
-        fetch("https://django.hayame.my/api/update/labour-list/" + labourEmail, {
+        fetch("http://127.0.0.1:8000/api/update/labour-list/" + labourEmail, {
             method: "PUT",
             body: JSON.stringify({
                 "first_name": Inputs.firstName,
@@ -152,13 +137,13 @@ const UpdateLabourDetails = () => {
                 "passport_no": Inputs.passportNumber,
             }),
             headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Authorization': 'Token ' + localStorage.getItem("token"),
                 "Content-type": "application/json"
             }
         })
             .then((response) => response.json())
             .then((json) => {
-                showAlert("Labour Details Updated", "success");
+                showAlert(json.response, "success");
                 setTimeout(() => {
                     navigate('/dashboard/workforce-list');
                 }, 2000);

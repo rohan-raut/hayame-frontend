@@ -58,12 +58,12 @@ const DashboardForm = () => {
             category = pair[1]
         }
         category = category.replace(' ', '%20');
-        let api = "https://django.hayame.my/api/skill-list?category=" + category;
-        console.log(api);
+        let api = "http://127.0.0.1:8000/api/skill-list?category=" + category;
+
         fetch(api, {
             method: "GET",
             headers: {
-                Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+                Authorization: "Token " + localStorage.getItem("token"),
                 "Content-type": "application/json",
             },
         })
@@ -164,136 +164,67 @@ const DashboardForm = () => {
     }
 
 
-    async function getDistance(jobLocation) {
-        let distance = 0;
-        var distanceService = new google.maps.DistanceMatrixService();
-        await distanceService.getDistanceMatrix({
-            origins: ["Persiaran Bukit Raja, Kawasan 17 Bandar Baru Klang, 41150 Klang, Selangor"],
-            destinations: [jobLocation],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            durationInTraffic: true,
-            avoidHighways: false,
-            avoidTolls: false
-        },
-            function (response, status) {
-                if (status !== google.maps.DistanceMatrixStatus.OK) {
-                    console.log('Error:', status);
-                } else {
-                    distance = response.rows[0].elements[0].distance.value;
-                    // $("#distance").text(response.rows[0].elements[0].distance.text).show();
-                    // $("#duration").text(response.rows[0].elements[0].duration.text).show();
-                }
-            });
-        return distance / 1000;
-    }
-
-
-
     async function handleNextClick(e) {
         e.preventDefault();
 
         if (validateForm()) {
-            let transportation_cost = 0;
-            let totalCost = 0;
-            let costDetails = {};
-            let costDetailsPublicHolidays = {};
 
-            for (let i = 0; i < skillList.length; i++) {
-                costDetails[skillList[i].skill] = skillList[i].cost_per_hour_normal_days;
-                costDetailsPublicHolidays[skillList[i].skill] = skillList[i].cost_per_hour_public_holiday;
-            }
-
-            let distance = await getDistance(Inputs.jobLocation);
-            console.log(distance);
-            let totals_cars = Math.trunc(Inputs.labourCount / 4);
-            if((Inputs.labourCount % 4) != 0){
-                totals_cars += 1;
-            }
-
-            transportation_cost = distance * totals_cars * 1.5;
-
-            let start_time = Inputs.startTime;
-            let end_time = Inputs.endTime;
-            let labourCount = Inputs.labourCount;
-            let jobLocation = Inputs.jobLocation;
-            let labourGender = Inputs.labourGender;
-            let start_date = Inputs.startDate;
-            let end_date = Inputs.endDate;
-
-            let startDate = new Date(start_date);
-            let endDate = new Date(end_date);
-            const diffTime = Math.abs(endDate - startDate);
-            let totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-            // get the public hoildays
-            let publilcHolidays = 0;
-            fetch("https://django.hayame.my/api/public-holidays", {
-                method: "GET",
+            fetch("http://127.0.0.1:8000/api/get-booking-preview", {
+                method: "POST",
+                body: JSON.stringify({
+                    job_location: Inputs.jobLocation,
+                    labour_skill: labourSkill.value,
+                    labour_count: Inputs.labourCount,
+                    labour_gender: Inputs.labourGender,
+                    start_date: Inputs.startDate,
+                    end_date: Inputs.endDate,
+                    start_time: Inputs.startTime,
+                    end_time: Inputs.endTime,
+                }),
                 headers: {
-                    'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
-                    'Content-Type': 'application/json'
+                    Authorization: "Token " + localStorage.getItem("token"),
+                    "Content-type": "application/json",
                 },
             })
                 .then((response) => response.json())
                 .then((json) => {
-                    for (let i = 0; i < json.length; i++) {
-                        let dt = new Date(json[i]['date']);
-                        if (dt >= startDate && dt <= endDate) {
-                            publilcHolidays++;
-                        }
+                    console.log(json);
+                    if(json.success === true){
+                        setBookingDetails({
+                            jobLoc: json.job_location,
+                            labourCount: json.labour_count,
+                            labourGender: json.labour_gender,
+                            startDate: json.start_date,
+                            endDate: json.end_date,
+                            startTime: json.start_time,
+                            endTime: json.end_time,
+                            labourSkill: json.labour_skill,
+                            hours: json.hours,
+                            minutes: json.mins,
+                            publilcHolidays: json.public_holidays,
+                            costPerHourNormalDays: json.cost_per_hour_normal_days,
+                            costPerHourPublicHolidays: json.cost_per_hour_public_holiday,
+                            transportationCost: json.transportation_cost,
+                            totalCost: json.total_cost,
+                        })
+    
+                        setConfirmation(prev => !prev)
                     }
-                    totalDays -= publilcHolidays;
-                    let timeStr = start_time;
-                    let hour = timeStr[0] + timeStr[1];
-                    let minutes = timeStr[3] + timeStr[4];
+                    else{
+                        showAlert(json.response, "danger");
+                    }
+                    
+                });
 
-                    let startTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
-                    timeStr = end_time;
-                    hour = timeStr[0] + timeStr[1];
-                    minutes = timeStr[3] + timeStr[4];
-                    let endTime = new Date(2023, 6, 3, parseInt(hour), parseInt(minutes));
-
-                    const diffTime2 = Math.abs(startTime - endTime);
-                    let totalMinutesOneDay = Math.ceil(diffTime2 / (1000 * 60));
-
-                    const costPerMinNormalDays = costDetails[labourSkill.value] / 60;
-                    const costPerMinPublicHoliday = costDetailsPublicHolidays[labourSkill.value] / 60;
-
-                    transportation_cost = Math.round(transportation_cost);
-                    totalCost = (costPerMinNormalDays * totalMinutesOneDay * totalDays * labourCount) + (costPerMinPublicHoliday * totalMinutesOneDay * publilcHolidays * labourCount) + transportation_cost;
-
-                    setBookingDetails({
-                        jobLoc: jobLocation,
-                        labourCount: labourCount,
-                        labourGender: labourGender,
-                        startDate: start_date,
-                        endDate: end_date,
-                        startTime: start_time,
-                        endTime: end_time,
-                        labourSkill: labourSkill.value,
-                        hours: Math.ceil((labourCount * totalMinutesOneDay * (totalDays + publilcHolidays)) / 60),
-                        minutes: ((labourCount * totalMinutesOneDay * (totalDays + publilcHolidays)) % 60),
-                        publilcHolidays: publilcHolidays,
-                        costPerHourNormalDays: costDetails[labourSkill.value],
-                        costPerHourPublicHolidays: costDetailsPublicHolidays[labourSkill.value],
-                        transportationCost: transportation_cost,
-                        totalCost: totalCost,
-                    })
-
-                    setConfirmation(prev => !prev)
-                })
         }
 
     }
 
     const handleConfirmation = () => {
 
-        fetch("https://django.hayame.my/api/booking", {
+        fetch("http://127.0.0.1:8000/api/booking", {
             method: "POST",
             body: JSON.stringify({
-                "contractor_name": JSON.parse(localStorage.getItem("first_name")) + " " + JSON.parse(localStorage.getItem("last_name")),
-                "contractor_email": JSON.parse(localStorage.getItem("email")),
                 "labour_skill": labourSkill.value,
                 "labour_count": bookingDetails.labourCount,
                 "labour_gender": bookingDetails.labourGender,
@@ -302,17 +233,16 @@ const DashboardForm = () => {
                 "start_time": bookingDetails.startTime,
                 "end_time": bookingDetails.endTime,
                 "location": bookingDetails.jobLoc,
-                "status": "Pending",
                 "amount": bookingDetails.totalCost,
             }),
             headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Authorization': 'Token ' + localStorage.getItem("token"),
                 'Content-Type': 'application/json'
             },
         })
             .then((response) => response.json())
             .then((json) => {
-                showAlert("Booking Done", "success");
+                showAlert(json.response, "success");
                 setTimeout(() => {
                     navigate('/dashboard/contractor-bookings');
                 }, 2000);

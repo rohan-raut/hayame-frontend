@@ -56,22 +56,32 @@ const AddWorkforceList = () => {
     let d = []
 
     const fillTable = async () => {
-      const response = await fetch('https://django.hayame.my/api/labour-list', {
+      const response = await fetch('http://127.0.0.1:8000/api/labour-list', {
         headers: {
-          'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+          'Authorization': 'Token ' + localStorage.getItem("token"),
           'Content-Type': 'application/json'
         }
       })
       const td = await response.json()
+      let labours = {}
+      let cnt = 0;
       for (let i = 0; i < td.length; i++) {
-        d.push({
-          "firstName": td[i]['first_name'],
-          "lastName": td[i]['last_name'],
-          "email": td[i]['email'],
-          "skill": td[i]['skills'],
-          "phone": td[i]['phone'],
-          "action": <p style={{ cursor: "pointer", textDecoration: "underline", color: "green" }} onClick={handleEditAction}>Edit</p>
-        });
+        if(labours[td[i]['email']] === undefined){
+          labours[td[i]['email']] = cnt;
+          cnt++;
+          d.push({
+            "firstName": td[i]['first_name'],
+            "lastName": td[i]['last_name'],
+            "email": td[i]['email'],
+            "skill": td[i]['skill'],
+            "phone": td[i]['phone'],
+            "action": <p style={{ cursor: "pointer", textDecoration: "underline", color: "green" }} onClick={handleEditAction}>Edit</p>
+          })
+        }
+        else{
+          let ind = labours[td[i]['email']];
+          d[ind].skill = d[ind].skill + ', ' + td[i]['skill'];
+        }
       }
       setTableData(d)
     }

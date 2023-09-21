@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./profile.css";
 import { edit, userImg } from "../../../../assets";
 import AlertMessage from '../../../Alert/AlertMessage';
 
 
-const UserProfile = ({ editInfo, setEditInfo }) => {
+const UserProfile = ({ editInfo, setEditInfo, userInfo }) => {
     let user = {
         img: { userImg },
-        firstName: JSON.parse(localStorage.getItem("first_name")),
-        lastName: JSON.parse(localStorage.getItem("last_name")),
-        user_role: JSON.parse(localStorage.getItem("user_role")),
-        email: JSON.parse(localStorage.getItem("email")),
-        phone: JSON.parse(localStorage.getItem("phone")),
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        user_role: userInfo.userRole,
+        email: userInfo.email,
+        phone: userInfo.phone,
     }
 
     const editForm = () => {
@@ -41,14 +41,14 @@ const UserProfile = ({ editInfo, setEditInfo }) => {
     )
 }
 
-const EditForm = () => {
+const EditForm = ({userInfo}) => {
 
     const [Inputs, setInputs] = useState({
-        firstName: JSON.parse(localStorage.getItem("first_name")),
-        lastName: JSON.parse(localStorage.getItem("last_name")),
-        userRole: JSON.parse(localStorage.getItem("user_role")),
-        email: JSON.parse(localStorage.getItem("email")),
-        phoneNumber: JSON.parse(localStorage.getItem("phone"))
+        firstName: userInfo.firstName,
+        lastName: userInfo.lastName,
+        userRole: userInfo.userRole,
+        email: userInfo.email,
+        phoneNumber: userInfo.phone
     });
     const [Alert, setAlert] = useState(null);
 
@@ -69,16 +69,12 @@ const EditForm = () => {
         setInputs(values => ({ ...values, [name]: value }))
     }
 
-    // const imageUpload = (e) => {
-    //     user.img = URL.createObjectURL(e.target.files[0])
-    //     document.querySelector(".profile-edit-img").src = user.img
-    // }
 
     const handleUpdateProfile = (e) => {
 
         e.preventDefault()
 
-        fetch("https://django.hayame.my/api/update/user-info/" + JSON.parse(localStorage.getItem("email")), {
+        fetch("http://127.0.0.1:8000/api/update/user-info/" + userInfo.email, {
             method: "PUT",
             body: JSON.stringify({
                 "first_name": Inputs.firstName,
@@ -87,15 +83,12 @@ const EditForm = () => {
                 "user_role": Inputs.userRole
             }),
             headers: {
-                'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                'Authorization': 'Token ' + localStorage.getItem("token"),
                 "Content-type": "application/json"
             }
         })
             .then((response) => response.json())
             .then((json) => {
-                localStorage.setItem("first_name", JSON.stringify(json.first_name));
-                localStorage.setItem("last_name", JSON.stringify(json.last_name));
-                localStorage.setItem("phone", JSON.stringify(json.phone));
                 showAlert("User Data Updated Successfully", "success");
             });
     }
@@ -127,7 +120,7 @@ const EditForm = () => {
                     </div>
                     <div className='my-3'>
                         <label htmlFor="phoneNumber" className="form-label profile-input-label" >Phone</label>
-                        <input type="number" value={Inputs.phoneNumber || ""} onChange={handleChange} name="phoneNumber" className="form-control profile-input-field" placeholder='Phone' required />
+                        <input type="text" value={Inputs.phoneNumber || ""} onChange={handleChange} name="phoneNumber" className="form-control profile-input-field" placeholder='Phone' required />
                     </div>
                     <div className='my-3'>
                         <button type='submit' className="btn btn-primary">Update</button>
@@ -142,10 +135,44 @@ const EditForm = () => {
 const Profile = () => {
 
     const [editInfo, setEditInfo] = useState(false)
+    const [userInfo, setUserInfo] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        userRole: ""
+    })
+
+    useEffect(() => {
+        const getUserInfo = () => {
+
+            fetch("http://127.0.0.1:8000/api/user-info", {
+                method: "GET",
+                headers: {
+                    Authorization: "Token " + localStorage.getItem("token"),
+                    "Content-type": "application/json",
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    setUserInfo({
+                        firstName: json.first_name,
+                        lastName: json.last_name,
+                        email: json.email,
+                        phone: json.phone,
+                        userRole: json.user_role
+                    });
+                });
+
+        };
+
+        getUserInfo();
+
+    }, []);
 
     return (
         <div id="profile" className='profile'>
-            {editInfo ? <EditForm /> : <UserProfile editInfo={editInfo} setEditInfo={setEditInfo} />}
+            {editInfo ? <EditForm userInfo={userInfo} /> : <UserProfile editInfo={editInfo} setEditInfo={setEditInfo} userInfo={userInfo} />}
         </div>
     )
 }
