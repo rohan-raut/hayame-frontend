@@ -48,54 +48,55 @@ const AllocateLabours = () => {
   let requiredSkill = "";
 
   useEffect(() => {
-    fetch("https://django.hayame.my/api/booking?booking_id=" + booking_id, {
-      method: "GET",
-      headers: {
-        Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        requiredSkill = json[0]["labour_skill"];
-        setBookingDetails({
-          contractorName: json[0]['contractor_name'],
-          contractorEmail: json[0]['contractor_email'],
-          labourSkills: json[0]['labour_skill'],
-          labourCount: json[0]['labour_count'],
-          status: json[0]['status'],
-          startDate: json[0]['start_date'],
-          endDate: json[0]['end_date'],
-          startTime: json[0]['start_time'],
-          endTime: json[0]['end_time'],
-          location: json[0]['location'],
-          amount: json[0]['amount']
-        });
+
+    const getDetails = async () => {
+
+      let response = await fetch("https://django.hayame.my/api/booking?booking_id=" + booking_id, {
+        method: "GET",
+        headers: {
+          Authorization: "Token " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      });
+      let json = await response.json();
+      requiredSkill = json[0]["labour_skill"];
+      setBookingDetails({
+        contractorName: json[0]['contractor_name'],
+        contractorEmail: json[0]['contractor_email'],
+        labourSkills: json[0]['labour_skill'],
+        labourCount: json[0]['labour_count'],
+        status: json[0]['status'],
+        startDate: json[0]['start_date'],
+        endDate: json[0]['end_date'],
+        startTime: json[0]['start_time'],
+        endTime: json[0]['end_time'],
+        location: json[0]['location'],
+        amount: json[0]['amount']
       });
 
-    fetch("https://django.hayame.my/api/labour-list", {
-      method: "GET",
-      headers: {
-        Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        for (let i = 0; i < json.length; i++) {
-          let skills = json[i]["skills"].split(",");
-          if (skills.includes(requiredSkill)) {
-            if (labourList.includes(json[i]["email"]) == false) {
-              options.push({
-                value: json[i]["email"],
-                label: `${json[i]["email"]} (${json[i]["first_name"]} ${json[i]["last_name"]})`,
-              });
-              labourList.push(json[i]["email"]);
-            }
-
+      response = await fetch("https://django.hayame.my/api/labour-list", {
+        method: "GET",
+        headers: {
+          Authorization: "Token " + localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+      });
+      json = await response.json();
+      for (let i = 0; i < json.length; i++) {
+        if (json[i]['skill'] === requiredSkill) {
+          if (labourList.includes(json[i]["email"]) === false) {
+            options.push({
+              value: json[i]['labour_id'],
+              label: `${json[i]["email"]} (${json[i]["first_name"]} ${json[i]["last_name"]})`,
+            });
+            labourList.push(json[i]["email"]);
           }
         }
-      });
+      }
+    }
+
+    getDetails();
+
   }, []);
 
   const validateForm = () => {
@@ -110,20 +111,19 @@ const AllocateLabours = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      let labour_emails = "";
+      let labour_ids = [];
       for (let i = 0; i < selectedOption.length; i++) {
-        labour_emails += selectedOption[i].value + ",";
+        labour_ids.push(selectedOption[i].value);
       }
-      labour_emails = labour_emails.substring(0, labour_emails.length - 1);
 
       fetch("https://django.hayame.my/api/allocate-labour", {
         method: "POST",
         body: JSON.stringify({
           "booking_id": booking_id,
-          "labour_email": labour_emails,
+          "labour_ids": labour_ids,
         }),
         headers: {
-          'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+          'Authorization': 'Token ' + localStorage.getItem("token"),
           'Content-Type': 'application/json'
         },
       })
@@ -146,6 +146,7 @@ const AllocateLabours = () => {
         <h3 className="allocate-labours-h3">Contractor Name :{" "}<span className="allocate-labours-summary-span">{bookingDetails.contractorName}</span></h3>
         <h3 className="allocate-labours-h3">Contractor Email :{" "}<span className="allocate-labours-summary-span">{bookingDetails.contractorEmail}</span></h3>
         <h3 className="allocate-labours-h3">Labour Skill :{" "}<span className="allocate-labours-summary-span">{bookingDetails.labourSkills}</span></h3>
+        <h3 className="allocate-labours-h3">Labour Count :{" "}<span className="allocate-labours-summary-span">{bookingDetails.labourCount}</span></h3>
         <h3 className="allocate-labours-h3">Booking Status :{" "}<span className="allocate-labours-summary-span">{bookingDetails.status}</span></h3>
         <h3 className="allocate-labours-h3">Start Date :{" "}<span className="allocate-labours-summary-span">{bookingDetails.startDate}</span></h3>
         <h3 className="allocate-labours-h3">End Date :{" "}<span className="allocate-labours-summary-span">{bookingDetails.endDate}</span></h3>

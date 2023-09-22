@@ -99,13 +99,14 @@ const Report = (props) => {
         }
     ]
 
+    let labourListTemp = [];
 
     useEffect(() => {
 
         const getReportData = async () => {
             const response = await fetch('https://django.hayame.my/api/report', {
                 headers: {
-                    'Authorization': 'Token ' + JSON.parse(localStorage.getItem("Token")),
+                    'Authorization': 'Token ' + localStorage.getItem("token"),
                     'Content-Type': 'application/json'
                 }
             })
@@ -141,21 +142,24 @@ const Report = (props) => {
             setAllData(allDataTemp);
             setTableData(allDataTemp);
 
-            let labourListTemp = [];
+            let uniqueLabourList = [];
             fetch("https://django.hayame.my/api/labour-list", {
                 method: "GET",
                 headers: {
-                    Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+                    Authorization: "Token " + localStorage.getItem("token"),
                     "Content-Type": "application/json",
                 },
             })
                 .then((response) => response.json())
                 .then((json) => {
                     for (let i = 0; i < json.length; i++) {
-                        labourListTemp.push({
-                            value: json[i]["email"],
-                            label: json[i]["email"]
-                        })
+                        if(uniqueLabourList.includes(json[i]['email']) === false){
+                            labourListTemp.push({
+                                value: json[i]["email"],
+                                label: json[i]["email"]
+                            })
+                            uniqueLabourList.push(json[i]['email']);
+                        }
                     }
                     setSelectLabour(labourListTemp);
                 });

@@ -32,7 +32,7 @@ const Navbar = () => {
                             </li>
 
                             <li class="nav-item px-3">
-                                {JSON.parse(localStorage.getItem('isLoggedIn')) ? (
+                                {(localStorage.getItem('token') !== null) ? (
                                     <Link class="nav-link active" aria-current="page" to="/dashboard">Dashboard</Link>
                                     ) : (
                                     <Link class="nav-link active" aria-current="page" to="/login">Login</Link>

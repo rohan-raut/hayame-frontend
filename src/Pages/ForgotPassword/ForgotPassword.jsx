@@ -33,7 +33,7 @@ const ForgotPassword = () => {
     const handleForgetPassword = (e) => {
         e.preventDefault();
 
-        fetch("http://127.0.0.1:8000/api/forgot-password", {
+        fetch("https://django.hayame.my/api/forgot-password", {
             method: "POST",
             body: JSON.stringify({
                 "email": forgotPasswordInputs.emailAddress,

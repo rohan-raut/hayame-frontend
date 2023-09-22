@@ -58,7 +58,7 @@ const DashboardForm = () => {
             category = pair[1]
         }
         category = category.replace(' ', '%20');
-        let api = "http://127.0.0.1:8000/api/skill-list?category=" + category;
+        let api = "https://django.hayame.my/api/skill-list?category=" + category;
 
         fetch(api, {
             method: "GET",
@@ -169,7 +169,7 @@ const DashboardForm = () => {
 
         if (validateForm()) {
 
-            fetch("http://127.0.0.1:8000/api/get-booking-preview", {
+            fetch("https://django.hayame.my/api/get-booking-preview", {
                 method: "POST",
                 body: JSON.stringify({
                     job_location: Inputs.jobLocation,
@@ -222,7 +222,7 @@ const DashboardForm = () => {
 
     const handleConfirmation = () => {
 
-        fetch("http://127.0.0.1:8000/api/booking", {
+        fetch("https://django.hayame.my/api/booking", {
             method: "POST",
             body: JSON.stringify({
                 "labour_skill": labourSkill.value,

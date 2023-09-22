@@ -17,7 +17,7 @@ const DashboardPage = () => {
         navigate("/login");
       }
       else {
-        fetch("http://127.0.0.1:8000/api/user-info", {
+        fetch("https://django.hayame.my/api/user-info", {
           method: "GET",
           headers: {
             Authorization: "Token " + localStorage.getItem("token"),

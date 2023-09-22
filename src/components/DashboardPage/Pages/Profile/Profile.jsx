@@ -74,7 +74,7 @@ const EditForm = ({userInfo}) => {
 
         e.preventDefault()
 
-        fetch("http://127.0.0.1:8000/api/update/user-info/" + userInfo.email, {
+        fetch("https://django.hayame.my/api/update/user-info/" + userInfo.email, {
             method: "PUT",
             body: JSON.stringify({
                 "first_name": Inputs.firstName,
@@ -146,7 +146,7 @@ const Profile = () => {
     useEffect(() => {
         const getUserInfo = () => {
 
-            fetch("http://127.0.0.1:8000/api/user-info", {
+            fetch("https://django.hayame.my/api/user-info", {
                 method: "GET",
                 headers: {
                     Authorization: "Token " + localStorage.getItem("token"),

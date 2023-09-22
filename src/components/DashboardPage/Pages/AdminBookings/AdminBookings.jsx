@@ -35,7 +35,7 @@ const AdminBookings = () => {
       {
         method: "GET",
         headers: {
-          Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+          Authorization: "Token " + localStorage.getItem("token"),
           "Content-Type": "application/json",
         },
       }
@@ -98,7 +98,7 @@ const AdminBookings = () => {
         "https://django.hayame.my/api/booking?status=Pending",
         {
           headers: {
-            Authorization: "Token " + JSON.parse(localStorage.getItem("Token")),
+            Authorization: "Token " + localStorage.getItem("token"),
             "Content-Type": "application/json",
           },
         }

@@ -34,7 +34,7 @@ const Login = () => {
 
     document.getElementById("login-btn").disable = true;
 
-    fetch("http://127.0.0.1:8000/api/login", {
+    fetch("https://django.hayame.my/api/login", {
       method: "POST",
       body: JSON.stringify({
         username: loginInputs.email,

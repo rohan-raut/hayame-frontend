@@ -30,7 +30,7 @@ const ContractorBooking = () => {
     document.getElementById("detail-card-popup-row-id").style.display = "block";
     let booking_id = e.target.parentElement.parentElement.cells[0].innerText
 
-    fetch("http://127.0.0.1:8000/api/booking?booking_id=" + booking_id, {
+    fetch("https://django.hayame.my/api/booking?booking_id=" + booking_id, {
       method: "GET",
       headers: {
         'Authorization': 'Token ' + localStorage.getItem("token"),
@@ -100,7 +100,7 @@ const ContractorBooking = () => {
     let d = []
 
     const fillTable = async () => {
-      const response = await fetch('http://127.0.0.1:8000/api/booking', {
+      const response = await fetch('https://django.hayame.my/api/booking', {
         headers: {
           'Authorization': 'Token ' + localStorage.getItem("token"),
           'Content-Type': 'application/json'

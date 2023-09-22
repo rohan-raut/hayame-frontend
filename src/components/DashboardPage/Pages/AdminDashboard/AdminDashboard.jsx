@@ -37,7 +37,7 @@ const AdminDashboard = () => {
   }
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/skill-list", {
+    fetch("https://django.hayame.my/api/skill-list", {
       method: "GET",
       headers: {
         Authorization: "Token " + localStorage.getItem("token"),
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
     skills = skills.substring(0, skills.length - 1);
 
 
-    fetch("http://127.0.0.1:8000/api/labour-list", {
+    fetch("https://django.hayame.my/api/labour-list", {
       method: "POST",
       body: JSON.stringify({
         first_name: Inputs.firstName,

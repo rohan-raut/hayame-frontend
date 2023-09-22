@@ -53,7 +53,7 @@ const Register = () => {
       showAlert("Password and Confirm-Password does not match", "danger");
     }
     else if (validatePassword(registerInputs.password)) {
-      fetch("http://127.0.0.1:8000/api/register", {
+      fetch("https://django.hayame.my/api/register", {
         method: "POST",
         body: JSON.stringify({
           username: registerInputs.emailAddress,
