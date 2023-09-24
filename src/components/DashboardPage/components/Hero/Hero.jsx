@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import {
   Dashboard,
   DashboardForm,
@@ -12,8 +12,11 @@ import {
   AllocateLabours,
   Report
 } from "../../Pages";
+import Logout from '../../../../Pages/Logout/Logout';
 
-const Hero = ( { userRole }) => {
+const Hero = ({ userRole }) => {
+
+  const navigate = useNavigate();
 
   return (
     <div className="container-fluid m-0 p-0">
@@ -25,15 +28,19 @@ const Hero = ( { userRole }) => {
           <Route path="/contractor-bookings" element={<ContractorBooking />} />
         </Routes>
       ) : (
-        <Routes>
-          <Route path="/" element={<AdminDashboard />} />
-          <Route path="/workforce-list" element={<AdminWorkforceList />} />
-          <Route path="/update-labour-details" element={<UpdateLabourDetails />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/check-bookings" element={<AdminBookings />} />
-          <Route path="/allocate-labours" element={<AllocateLabours />} />
-          <Route path="/report" element={<Report />} />
-        </Routes>
+        userRole === 'Admin' ? (
+          <Routes>
+            <Route path="/" element={<AdminDashboard />} />
+            <Route path="/workforce-list" element={<AdminWorkforceList />} />
+            <Route path="/update-labour-details" element={<UpdateLabourDetails />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/check-bookings" element={<AdminBookings />} />
+            <Route path="/allocate-labours" element={<AllocateLabours />} />
+            <Route path="/report" element={<Report />} />
+          </Routes>
+        ) : (
+          <Logout />
+        )
       )}
     </div>
   );
