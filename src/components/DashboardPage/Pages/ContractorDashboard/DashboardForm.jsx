@@ -88,7 +88,7 @@ const DashboardForm = () => {
 
         var autocomplete;
         autocomplete = new google.maps.places.Autocomplete(document.getElementById(id), {
-            types: ['geocode'],
+            types: ['geocode', 'establishment'],
         });
 
         autocomplete.addListener('place_changed', function () {
