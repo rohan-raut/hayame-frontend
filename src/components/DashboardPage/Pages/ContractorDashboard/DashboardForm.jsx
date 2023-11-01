@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "./dashboardform.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AlertMessage from '../../../Alert/AlertMessage';
 import Select from "react-select";
+import { BackArrow } from '../../../../assets'
 
 
 const DashboardForm = () => {
@@ -189,7 +190,7 @@ const DashboardForm = () => {
                 .then((response) => response.json())
                 .then((json) => {
                     console.log(json);
-                    if(json.success === true){
+                    if (json.success === true) {
                         setBookingDetails({
                             jobLoc: json.job_location,
                             labourCount: json.labour_count,
@@ -207,13 +208,13 @@ const DashboardForm = () => {
                             transportationCost: json.transportation_cost,
                             totalCost: json.total_cost,
                         })
-    
+
                         setConfirmation(prev => !prev)
                     }
-                    else{
+                    else {
                         showAlert(json.response, "danger");
                     }
-                    
+
                 });
 
         }
@@ -250,12 +251,26 @@ const DashboardForm = () => {
     }
 
 
+    const handleBackArrowClick = () => {
+        setConfirmation(prev => !prev)
+    }
+
+
     return (
 
         <div className="row justify-content-center">
             <AlertMessage alert={Alert} />
             <div className="col-9 col-sm-9 col-md-8 col-lg-5 contractor-dashboard-form-card">
-                <h2 className='contractor-dashboard-form-h2'>Job Details</h2>
+                {confirmation ? (
+                    <div className="row align-items-center heading-row py-2">
+                        <div className="col-2">
+                            <span onClick={handleBackArrowClick}><img src={BackArrow} alt="back-arrow" className='dashboard-icon-backarrow' /></span>
+                        </div>
+                        <div className="col-10">
+                            <h2 className='contractor-dashboard-form-h2'>Job Details</h2>
+                        </div>
+                    </div>
+                ) : (<h2 className='contractor-dashboard-form-h2'>Job Details</h2>)}
                 {!confirmation ? (<form onSubmit={handleNextClick}>
                     <div >
                         <label htmlFor="jobLocation" className="form-label contractor-dashboard-input-label" >Job Location</label>

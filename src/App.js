@@ -75,6 +75,10 @@ function App() {
           element: <DashboardForm />,
         },
         {
+          path: "/dashboard/make-booking",
+          element: <Dashboard />,
+        },
+        {
           path: "/dashboard/workforce-list",
           element: <AdminWorkforceList />,
         },

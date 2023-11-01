@@ -31,6 +31,8 @@ const Hero = ({ userRole }) => {
         userRole === 'Admin' ? (
           <Routes>
             <Route path="/" element={<AdminDashboard />} />
+            <Route path="/make-booking" element={<Dashboard />} />
+            <Route path="/dashboardform" element={<DashboardForm />} />
             <Route path="/workforce-list" element={<AdminWorkforceList />} />
             <Route path="/update-labour-details" element={<UpdateLabourDetails />} />
             <Route path="/profile" element={<Profile />} />

@@ -36,6 +36,8 @@ import DarkPack from "./pack_dark.svg";
 import DarkCook from "./cook_dark.svg";
 import DarkSanitation from "./sanitation_dark.svg";
 
+import BackArrow from "./backarrow.svg";
+
 import Logo from "./logo.png"
 
 export {
@@ -75,4 +77,5 @@ export {
   DarkPack,
   DarkSanitation,
   Logo,
+  BackArrow,
 };

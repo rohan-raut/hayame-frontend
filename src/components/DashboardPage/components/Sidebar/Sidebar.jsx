@@ -105,6 +105,11 @@ const Sidebar = ({ userRole }) => {
                       className: "sidebar-menu-item",
                     },
                     {
+                      label: "Make Booking",
+                      key: "./make-booking",
+                      className: "sidebar-menu-item",
+                    },
+                    {
                       label: "My Account",
                       key: "./inventory",
                       children: [
