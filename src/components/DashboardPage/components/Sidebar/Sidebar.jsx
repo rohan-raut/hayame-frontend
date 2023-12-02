@@ -3,6 +3,7 @@ import "./sidebar.css";
 import { Menu, Layout, Image } from "antd";
 import { useNavigate } from "react-router-dom";
 import { logo, leftarrow, Logo } from "../../../../assets";
+import { BellFilled } from "@ant-design/icons";
 import LandingPage from "../../../LandingPage/LandingPage";
 import About from "../../../../Pages/About/About";
 
@@ -16,14 +17,10 @@ const Sidebar = ({ userRole }) => {
   };
 
   useEffect(() => {
-
     if (window.screen.width <= 768) {
       setShowMenu(false);
     }
-
   }, []);
-
-
 
   return (
     <div className="Sidebar">
@@ -38,7 +35,7 @@ const Sidebar = ({ userRole }) => {
                 <img src={leftarrow} onClick={toggleMenu} />
               </div>
             </div>
-            {userRole === 'Contractor' ? (
+            {userRole === "Contractor" ? (
               <Menu
                 className="sidebar-antd-menu"
                 theme="dark"
@@ -84,70 +81,69 @@ const Sidebar = ({ userRole }) => {
                   },
                 ]}
               ></Menu>
+            ) : userRole === "Admin" ? (
+              <Menu
+                className="sidebar-antd-menu"
+                theme="dark"
+                mode="inline"
+                onClick={(item) => {
+                  navigate(item.key);
+                }}
+                items={[
+                  {
+                    label: "Home",
+                    key: "/",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "Add Workforce",
+                    key: "./",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "Make Booking",
+                    key: "./make-booking",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "My Account",
+                    key: "./inventory",
+                    children: [
+                      {
+                        label: "Profile",
+                        key: "./profile",
+                      },
+                      {
+                        label: "Logout",
+                        key: "/logout",
+                      },
+                    ],
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "Check Bookings",
+                    key: "./check-bookings",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "Workforce List",
+                    key: "./workforce-list",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "Report",
+                    key: "./report",
+                    className: "sidebar-menu-item",
+                  },
+                  {
+                    label: "About Us",
+                    key: "/about-us",
+                    className: "sidebar-menu-item",
+                  },
+                ]}
+              ></Menu>
             ) : (
-              userRole === 'Admin' ? (
-                <Menu
-                  className="sidebar-antd-menu"
-                  theme="dark"
-                  mode="inline"
-                  onClick={(item) => {
-                    navigate(item.key);
-                  }}
-                  items={[
-                    {
-                      label: "Home",
-                      key: "/",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "Add Workforce",
-                      key: "./",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "Make Booking",
-                      key: "./make-booking",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "My Account",
-                      key: "./inventory",
-                      children: [
-                        {
-                          label: "Profile",
-                          key: "./profile",
-                        },
-                        {
-                          label: "Logout",
-                          key: "/logout",
-                        },
-                      ],
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "Check Bookings",
-                      key: "./check-bookings",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "Workforce List",
-                      key: "./workforce-list",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "Report",
-                      key: "./report",
-                      className: "sidebar-menu-item",
-                    },
-                    {
-                      label: "About Us",
-                      key: "/about-us",
-                      className: "sidebar-menu-item",
-                    },
-                  ]}
-                ></Menu>) : (
-                <div></div>
-              )
+              <div></div>
             )}
           </div>
         </Layout.Sider>

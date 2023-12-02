@@ -19,5 +19,5 @@ export {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
-  Report
+  Report,
 };

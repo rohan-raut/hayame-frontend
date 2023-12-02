@@ -1,11 +1,12 @@
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import About from "./Pages/About/About";
 import Logout from "./Pages/Logout/Logout";
-import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
@@ -19,12 +20,10 @@ import {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
-  Report
+  Report,
 } from "./components/DashboardPage/Pages";
 
-
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -99,7 +98,6 @@ function App() {
           element: <Report />,
         },
       ],
-
     },
   ]);
 
@@ -115,7 +113,9 @@ export default App;
 const Root = () => {
   return (
     <div>
-      <LandingPage />
+      <GoogleOAuthProvider clientId="204261357577-2ug75fprgr0av92lq0rqt2fdl9vhom8o.apps.googleusercontent.com">
+        <LandingPage />
+      </GoogleOAuthProvider>
       <div>
         <Outlet />
       </div>
