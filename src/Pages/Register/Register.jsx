@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/LandingPage/components";
@@ -25,6 +25,49 @@ const Register = () => {
   }
 
 
+  function handleCallBackResponse(response) {
+    // console.log(response);
+
+    fetch("https://django.hayame.my/api/google-signin", {
+      method: "POST",
+      body: JSON.stringify({
+        token: response.credential
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if (json.is_logged_in === true) {
+          showAlert(json.response, "success");
+          localStorage.setItem('token', json.token);
+          setTimeout(() => {
+            navigate('/dashboard')
+          }, 1500);
+        }
+        else {
+          showAlert(json.response, "danger");
+        }
+      });
+  }
+
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+      callback: handleCallBackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInGoogleDiv"),
+      { theme: "outline", size: "large" }
+    );
+
+  }, []);
+
+
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -49,7 +92,7 @@ const Register = () => {
 
     document.getElementById("register-btn").disable = true;
 
-    if (registerInputs.password != registerInputs.confirmPassword) {
+    if (registerInputs.password !== registerInputs.confirmPassword) {
       showAlert("Password and Confirm-Password does not match", "danger");
     }
     else if (validatePassword(registerInputs.password)) {
@@ -140,8 +183,14 @@ const Register = () => {
 
           </form>
 
+          <div className="row my-3">
+            <div id="signInGoogleDiv" className="col-6 m-0 p-0"></div>
+          </div>
+
         </div>
       </div>
+
+
 
     </div>
   );

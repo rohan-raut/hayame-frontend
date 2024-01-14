@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
 import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../../components/LandingPage/components";
@@ -9,6 +9,47 @@ const Login = () => {
 
   const [loginInputs, setLoginInputs] = useState({});
   const [Alert, setAlert] = useState(null);
+
+  function handleCallBackResponse(response) {
+    // console.log(response);
+
+    fetch("https://django.hayame.my/api/google-signin", {
+      method: "POST",
+      body: JSON.stringify({
+        token: response.credential
+      }),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        if(json.is_logged_in === true){
+          showAlert(json.response, "success");
+          localStorage.setItem('token', json.token);
+          setTimeout(() => {
+            navigate('/dashboard')
+          }, 1500);
+        }
+        else{
+          showAlert(json.response, "danger");
+        }
+      });
+  }
+
+  useEffect(() => {
+    /* global google */
+    google.accounts.id.initialize({
+      client_id: "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+      callback: handleCallBackResponse
+    })
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInGoogleDiv"),
+      { theme: "outline", size: "large"}
+    );
+
+  }, []);
 
   const showAlert = (message, type) => {
     setAlert({
@@ -87,6 +128,10 @@ const Login = () => {
               <div>
                 <button type="submit" className="btn login-input-submit" id='login-btn'>Login</button>
               </div>
+            </div>
+
+            <div className="row justify-content-end">
+              <div id="signInGoogleDiv" className="col-6 m-0 p-0"></div>
             </div>
 
           </form>
