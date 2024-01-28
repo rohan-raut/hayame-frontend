@@ -5,7 +5,7 @@ import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import About from "./Pages/About/About";
 import Logout from "./Pages/Logout/Logout";
-import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
@@ -19,12 +19,11 @@ import {
   UpdateLabourDetails,
   AdminBookings,
   AllocateLabours,
-  Report
+  Report,
+  Notifications,
 } from "./components/DashboardPage/Pages";
 
-
 function App() {
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -87,6 +86,10 @@ function App() {
           element: <AdminBookings />,
         },
         {
+          path: "/dashboard/notifications",
+          element: <Notifications />,
+        },
+        {
           path: "/dashboard/update-labour-details",
           element: <UpdateLabourDetails />,
         },
@@ -99,7 +102,6 @@ function App() {
           element: <Report />,
         },
       ],
-
     },
   ]);
 
