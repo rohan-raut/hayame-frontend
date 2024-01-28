@@ -13,13 +13,9 @@ const Sidebar = ({ userRole }) => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(true);
   const [notifications, setNotifications] = useState([]);
-  let noti = 1;
-  notifications.forEach((element) => {
-    if (!element.is_read) {
-      noti++;
-    }
-  });
-  console.log(noti);
+  const [noti, setNoti] = useState(true);
+
+  
 
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
@@ -41,6 +37,11 @@ const Sidebar = ({ userRole }) => {
       .then((json) => {
         console.log(json);
         setNotifications(json);
+        notifications.forEach((element) => {
+          if (!element.is_read) {
+            setNoti(false);
+          }
+        });
       });
   }, []);
 
@@ -152,7 +153,7 @@ const Sidebar = ({ userRole }) => {
                     key: "./notifications",
                     className: "sidebar-menu-item",
                     itemIcon:
-                      noti == 0 ? (
+                      noti == true ? (
                         <BellFilled />
                       ) : (
                         <BellFilled style={{ color: "red" }} />
