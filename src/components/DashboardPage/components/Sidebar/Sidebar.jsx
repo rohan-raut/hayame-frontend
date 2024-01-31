@@ -15,7 +15,6 @@ const Sidebar = ({ userRole }) => {
   const [notifications, setNotifications] = useState([]);
   const [noti, setNoti] = useState(true);
 
-  
 
   const toggleMenu = () => {
     setShowMenu((prev) => !prev);
@@ -26,23 +25,29 @@ const Sidebar = ({ userRole }) => {
       setShowMenu(false);
     }
 
-    fetch("https://django.hayame.my/api/notifications", {
-      method: "GET",
-      headers: {
-        Authorization: "Token " + localStorage.getItem("token"),
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        console.log(json);
-        setNotifications(json);
-        notifications.forEach((element) => {
-          if (!element.is_read) {
-            setNoti(false);
-          }
+    const checkNotifications = () => {
+      fetch("https://django.hayame.my/api/notifications", {
+        method: "GET",
+        headers: {
+          Authorization: "Token " + localStorage.getItem("token"),
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          // setNotifications(json);
+          json.forEach((element) => {
+            if (element.is_read === false) {
+              setNoti(false);
+            }
+          });
         });
-      });
+    }
+
+    checkNotifications();
+    setInterval(checkNotifications, 300000);
+
+
   }, []);
 
   return (
@@ -153,10 +158,10 @@ const Sidebar = ({ userRole }) => {
                     key: "./notifications",
                     className: "sidebar-menu-item",
                     itemIcon:
-                      noti == true ? (
-                        <BellFilled />
-                      ) : (
+                      noti == false ? (
                         <BellFilled style={{ color: "red" }} />
+                      ) : (
+                        <BellFilled />
                       ),
                   },
                   {
