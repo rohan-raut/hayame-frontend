@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "./dashboardform.css";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, redirect } from "react-router-dom";
 import AlertMessage from '../../../Alert/AlertMessage';
 import Select from "react-select";
 import { BackArrow } from '../../../../assets'
+import md5 from 'md5';
 
 
 const DashboardForm = () => {
@@ -23,6 +24,9 @@ const DashboardForm = () => {
     const [labourSkill, setLabourSkill] = useState(null);
 
     const [bookingDetails, setBookingDetails] = useState({
+        bookingId: 0,
+        contractorName: "",
+        contractorEmail: "",
         jobLoc: "",
         labourCount: "",
         labourGender: "",
@@ -170,7 +174,7 @@ const DashboardForm = () => {
 
         if (validateForm()) {
 
-            fetch("https://django.hayame.my/api/get-booking-preview", {
+            const booking_preview = await fetch("https://django.hayame.my/api/get-booking-preview", {
                 method: "POST",
                 body: JSON.stringify({
                     job_location: Inputs.jobLocation,
@@ -187,35 +191,36 @@ const DashboardForm = () => {
                     "Content-type": "application/json",
                 },
             })
-                .then((response) => response.json())
-                .then((json) => {
-                    console.log(json);
-                    if (json.success === true) {
-                        setBookingDetails({
-                            jobLoc: json.job_location,
-                            labourCount: json.labour_count,
-                            labourGender: json.labour_gender,
-                            startDate: json.start_date,
-                            endDate: json.end_date,
-                            startTime: json.start_time,
-                            endTime: json.end_time,
-                            labourSkill: json.labour_skill,
-                            hours: json.hours,
-                            minutes: json.mins,
-                            publilcHolidays: json.public_holidays,
-                            costPerHourNormalDays: json.cost_per_hour_normal_days,
-                            costPerHourPublicHolidays: json.cost_per_hour_public_holiday,
-                            transportationCost: json.transportation_cost,
-                            totalCost: json.total_cost,
-                        })
 
-                        setConfirmation(prev => !prev)
-                    }
-                    else {
-                        showAlert(json.response, "danger");
-                    }
+            const json = await booking_preview.json()
+            console.log(json);
+            if (json.success === true) {
+                setBookingDetails({
+                    bookingId: json.booking_id,
+                    contractorEmail: json.contractor_email,
+                    contractorName: json.contractor_name,
+                    jobLoc: json.job_location,
+                    labourCount: json.labour_count,
+                    labourGender: json.labour_gender,
+                    startDate: json.start_date,
+                    endDate: json.end_date,
+                    startTime: json.start_time,
+                    endTime: json.end_time,
+                    labourSkill: json.labour_skill,
+                    hours: json.hours,
+                    minutes: json.mins,
+                    publilcHolidays: json.public_holidays,
+                    costPerHourNormalDays: json.cost_per_hour_normal_days,
+                    costPerHourPublicHolidays: json.cost_per_hour_public_holiday,
+                    transportationCost: json.transportation_cost,
+                    totalCost: json.total_cost,
+                })
 
-                });
+                setConfirmation(prev => !prev)
+            }
+            else {
+                showAlert(json.response, "danger");
+            }
 
         }
 
@@ -223,31 +228,59 @@ const DashboardForm = () => {
 
     const handleConfirmation = () => {
 
-        fetch("https://django.hayame.my/api/booking", {
-            method: "POST",
-            body: JSON.stringify({
-                "labour_skill": labourSkill.value,
-                "labour_count": bookingDetails.labourCount,
-                "labour_gender": bookingDetails.labourGender,
-                "start_date": bookingDetails.startDate,
-                "end_date": bookingDetails.endDate,
-                "start_time": bookingDetails.startTime,
-                "end_time": bookingDetails.endTime,
-                "location": bookingDetails.jobLoc,
-                "amount": bookingDetails.totalCost,
-            }),
-            headers: {
-                'Authorization': 'Token ' + localStorage.getItem("token"),
-                'Content-Type': 'application/json'
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => {
-                showAlert(json.response, "success");
-                setTimeout(() => {
-                    navigate('/dashboard/contractor-bookings');
-                }, 2000);
-            })
+        let md5hash = md5(bookingDetails.totalCost + "hayamesolutions" + bookingDetails.bookingId + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
+
+        let url = "https://pay.merchant.razer.com/RMS/pay/hayamesolutions?amount=" + bookingDetails.totalCost + "&orderid=" + bookingDetails.bookingId + "&bill_name=" + bookingDetails.contractorName + "&bill_email=" + bookingDetails.contractorEmail + "&country=MY&vcode=" + md5hash;
+
+        // let url = "https://pay.merchant.razer.com/RMS/pay/hayamesolutions?amount=1&orderid=1&bill_name=Hayame&bill_email=rohanraut124@gmail.com&country=MY&vcode=977031b48ce8b66a1556482dc77bf0e7"
+
+        window.location.href = url;
+
+        // fetch("https://pay.merchant.razer.com/RMS/pay/hayamesolutions/", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         "amount": bookingDetails.totalCost,
+        //         "orderid": 1,
+        //         "bill_name": "Hayame - " + bookingDetails.labourSkill,
+        //         "bill_email": "rohanraut124@gmail.com",
+        //         "country": "MY",
+        //         "vcode": md5(bookingDetails.totalCost + "hayamesolutions" + "1" + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
+        //     }),
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     }
+        // })
+        // .then((response) => response.text())
+        // .then((response) => {
+        //     console.log(response);
+        //     // return {__html: response}
+        // })
+
+        // fetch("https://django.hayame.my/api/booking", {
+        //     method: "POST",
+        //     body: JSON.stringify({
+        //         "labour_skill": labourSkill.value,
+        //         "labour_count": bookingDetails.labourCount,
+        //         "labour_gender": bookingDetails.labourGender,
+        //         "start_date": bookingDetails.startDate,
+        //         "end_date": bookingDetails.endDate,
+        //         "start_time": bookingDetails.startTime,
+        //         "end_time": bookingDetails.endTime,
+        //         "location": bookingDetails.jobLoc,
+        //         "amount": bookingDetails.totalCost,
+        //     }),
+        //     headers: {
+        //         'Authorization': 'Token ' + localStorage.getItem("token"),
+        //         'Content-Type': 'application/json'
+        //     },
+        // })
+        //     .then((response) => response.json())
+        //     .then((json) => {
+        //         showAlert(json.response, "success");
+        //         setTimeout(() => {
+        //             navigate('/dashboard/contractor-bookings');
+        //         }, 2000);
+        //     })
     }
 
 
