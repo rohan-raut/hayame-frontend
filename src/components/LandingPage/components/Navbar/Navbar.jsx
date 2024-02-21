@@ -30,6 +30,9 @@ const Navbar = () => {
                             <li class="nav-item px-3">
                                 <Link class="nav-link active" aria-current="page" to="/about-us">About Us</Link>
                             </li>
+                            <li class="nav-item px-3">
+                                <Link class="nav-link active" aria-current="page" to="/contact-us">Contact Us</Link>
+                            </li>
 
                             <li class="nav-item px-3">
                                 {(localStorage.getItem('token') !== null) ? (

@@ -4,6 +4,9 @@ import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
 import About from "./Pages/About/About";
+import ContactUs from "./Pages/ContactUs/contactUs";
+import RefundPolicy from "./Pages/RefundPolicy/RefundPolicy";
+import ProductServices from "./Pages/ProductAndServices/ProductServices";
 import Logout from "./Pages/Logout/Logout";
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
@@ -52,6 +55,18 @@ function App() {
     {
       path: "/about-us",
       element: <About />,
+    },
+    {
+      path: "/contact-us",
+      element: <ContactUs />,
+    },
+    {
+      path: "/refund-policy",
+      element: <RefundPolicy />,
+    },
+    {
+      path: "/product-and-services",
+      element: <ProductServices />,
     },
     {
       path: "/verify-user",
