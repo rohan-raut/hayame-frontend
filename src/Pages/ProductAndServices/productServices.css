@@ -1,129 +1,43 @@
-.about-us-main-container {
+.product-services-main-container {
+    height: 100vh;
     background-color: #34AFAA;
 }
 
-.product-sevices-container {
-    min-height: 60vh;
-}
-
 .product-services-row{
-    margin-top: 110px;
+    height: 80vh;
+    padding: 0px 120px;
+    margin: 0px;
 }
 
-.about-us-header {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
+.product-services-icons{
+    width: 60px;
 }
 
-.about-us-title {
-    color: #323A49;
-    margin-top: 3rem;
-    position: relative;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    padding: 0.75rem 1rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0;
-}
-
-.about-us-title:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #090909;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
-}
-
-.about-us-title:hover:after {
-    width: 100%;
-    left: 0;
-}
-
-.about-us-subtitle {
-    color: #606671;
-    margin-bottom: 0rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.about-us-values-content {
-    margin-top: 0.5rem;
-}
-
-.skillset-list{
+.product-services-card{
+    height: fit-content;
     text-align: left;
+    margin: 15vh 0px;
+    padding: 10px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.product-services-inner-card{
+    border: 2px solid #34AFAA;
+    padding: 20px;
+}
 
-/* vertical tab  */
-@media screen and (min-width: 769px) and (max-width: 991px) {
-    .about-us-main-container {
-        background-color: #34AFAA;
-    }
+.product-services-h2{
+    margin-bottom: 0px;
+    font-size: 25px;
+}
 
-    .about-container {
-        width: 90%;
-        background-color: white;
-        margin: 1.25rem auto;
-        padding: 1.5rem 3rem;
-        text-align: left;
-    }
+.product-services-header-content{
+    margin-left: 15px;
+}
 
-    .about-us-header {
-        text-align: center;
-        font-weight: 700;
-        font-size: 2rem;
-    }
-
-    .about-us-title {
-        color: #323A49;
-        margin-top: 3rem;
-        position: relative;
-        text-decoration: none;
-        cursor: pointer;
-        display: inline-block;
-        padding: 0.75rem 1rem;
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 0;
-    }
-
-    .about-us-title:after {
-        background: none repeat scroll 0 0 transparent;
-        bottom: 0;
-        content: "";
-        display: block;
-        height: 2px;
-        left: 50%;
-        position: absolute;
-        background: #090909;
-        transition: width 0.3s ease 0s, left 0.3s ease 0s;
-        width: 0;
-    }
-
-    .about-us-title:hover:after {
-        width: 100%;
-        left: 0;
-    }
-
-    .about-us-subtitle {
-        color: #606671;
-        margin-bottom: 0rem;
-        font-size: 1.1rem;
-        font-weight: 700;
-    }
-
-    .about-us-values-content {
-        margin-top: 0.5rem;
-    }
+.product-services-skillset-list{
+    margin-top: 15px;
 }
 
 

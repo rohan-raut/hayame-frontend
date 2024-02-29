@@ -1,63 +1,35 @@
-.about-us-main-container {
-    background-color: #34AFAA;
+.contact-us-main-container {
+    height: 100vh;
 }
 
-.about-container {
-    width: 60%;
-    background-color: white;
-    margin: 1.25rem auto;
-    padding: 1.5rem 3rem;
-    text-align: left;
-    min-height: 77vh;
-}
-
-.about-us-header {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-}
-
-.about-us-title {
-    color: #323A49;
-    margin-top: 3rem;
+.contact-us-bg-img{
     position: relative;
-    text-decoration: none;
-    cursor: pointer;
-    display: inline-block;
-    padding: 0.75rem 1rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0;
+    z-index: -1;
+    background-image: url('./../../assets/contact-us.jpg');
+    height: 80vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 40%;
+    opacity: 0.3;
 }
 
-.about-us-title:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    background: #090909;
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
-    width: 0;
+.contact-us-card{
+    text-align: left;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+    margin-top: -520px;
+    margin-right: 200px;
+    height: fit-content;
+    padding: 10px;
+
 }
 
-.about-us-title:hover:after {
-    width: 100%;
-    left: 0;
+.contact-us-inner-card{
+    padding: 20px;
+    border: 2px solid #34AFAA;
 }
 
-.about-us-subtitle {
-    color: #606671;
-    margin-bottom: 0rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.about-us-values-content {
-    margin-top: 0.5rem;
-}
 
 
 /* vertical tab  */

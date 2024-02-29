@@ -35,6 +35,7 @@ import DarkLabour from "./labour_dark.svg";
 import DarkPack from "./pack_dark.svg";
 import DarkCook from "./cook_dark.svg";
 import DarkSanitation from "./sanitation_dark.svg";
+import DarkConstructionWorker from "./construction-worker_dark.svg";
 
 import BackArrow from "./backarrow.svg";
 
@@ -76,6 +77,7 @@ export {
   DarkLabour,
   DarkPack,
   DarkSanitation,
+  DarkConstructionWorker,
   Logo,
   BackArrow,
 };

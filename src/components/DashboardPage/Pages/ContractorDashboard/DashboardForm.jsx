@@ -13,8 +13,8 @@ const DashboardForm = () => {
     const navigate = useNavigate();
 
     const [Inputs, setInputs] = useState({
-        startTime: "00:00",
-        endTime: "00:00",
+        startTime: "07:00",
+        endTime: "22:00",
         labourGender: "Male"
     });
     const [Alert, setAlert] = useState(null);
@@ -159,6 +159,10 @@ const DashboardForm = () => {
             showAlert("Invalid End time", "danger");
             return false;
         }
+        if (endHour - startHour < 4) {
+            showAlert("Minimum Booking of 4 hours required", "danger");
+            return false;
+        }
 
         if ((startTimeStamp - currentTimeStamp) < 7200000) {
             showAlert("Cannot Book within 2 hours", "danger");
@@ -174,13 +178,15 @@ const DashboardForm = () => {
 
         if (validateForm()) {
 
+            console.log(Inputs);
+
             const booking_preview = await fetch("https://django.hayame.my/api/get-booking-preview", {
                 method: "POST",
                 body: JSON.stringify({
                     job_location: Inputs.jobLocation,
                     labour_skill: labourSkill.value,
                     labour_count: Inputs.labourCount,
-                    labour_gender: Inputs.labourGender,
+                    labour_gender: "Male",
                     start_date: Inputs.startDate,
                     end_date: Inputs.endDate,
                     start_time: Inputs.startTime,
@@ -195,6 +201,32 @@ const DashboardForm = () => {
             const json = await booking_preview.json()
             console.log(json);
             if (json.success === true) {
+                let hr = json.start_time[0] + json.start_time[1];
+                let mn = json.start_time[3] + json.start_time[4];
+                let st_time = "" + (parseInt(hr)%12) + ":" + mn;
+                if(parseInt(hr)%12 === 0){
+                    st_time = "12" + ":" + mn;
+                }
+                if(parseInt(hr) >= 12){
+                    st_time += " PM";
+                }
+                else{
+                    st_time += " AM";
+                }
+
+                hr = json.end_time[0] + json.end_time[1];
+                mn = json.end_time[3] + json.end_time[4];
+                let ed_time = "" + (parseInt(hr)%12) + ":" + mn;
+                if(parseInt(hr)%12 === 0){
+                    ed_time = "12" + ":" + mn;
+                }
+                if(parseInt(hr) >= 12 > 0){
+                    ed_time += " PM";
+                }
+                else{
+                    ed_time += " AM";
+                }
+
                 setBookingDetails({
                     bookingId: json.booking_id,
                     contractorEmail: json.contractor_email,
@@ -204,8 +236,8 @@ const DashboardForm = () => {
                     labourGender: json.labour_gender,
                     startDate: json.start_date,
                     endDate: json.end_date,
-                    startTime: json.start_time,
-                    endTime: json.end_time,
+                    startTime: st_time,
+                    endTime: ed_time,
                     labourSkill: json.labour_skill,
                     hours: json.hours,
                     minutes: json.mins,
@@ -326,13 +358,13 @@ const DashboardForm = () => {
                         <input type="number" value={Inputs.labourCount || ""} onChange={handleChange} name="labourCount" id="labourCount" className="form-control contractor-dashboardform-input-field" placeholder='Labour Count' required />
                     </div>
 
-                    <div >
+                    {/* <div >
                         <label htmlFor="labourGender" className="form-label contractor-dashboard-input-label" >Labour Gender</label>
                         <select name="labourGender" value={Inputs.labourGender || ""} onChange={handleChange} id="labourGender" className="form-control contractor-dashboardform-input-field">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
-                    </div>
+                    </div> */}
 
                     <div >
                         <label htmlFor="startDate" className="form-label contractor-dashboard-input-label" >Start Date</label>
@@ -348,110 +380,74 @@ const DashboardForm = () => {
                         <div>
                             <label htmlFor="startTime" className="form-label contractor-dashboard-input-label" >Start Time</label>
                             <select name="startTime" value={Inputs.startTime || ""} onChange={handleChange} id="startTime" className="form-control contractor-dashboardform-input-field">
-                                <option value="00:00">00:00</option>
-                                <option value="00:30">00:30</option>
-                                <option value="01:00">01:00</option>
-                                <option value="01:30">01:30</option>
-                                <option value="02:00">02:00</option>
-                                <option value="02:30">02:30</option>
-                                <option value="03:00">03:00</option>
-                                <option value="03:30">03:30</option>
-                                <option value="04:00">04:00</option>
-                                <option value="04:30">04:30</option>
-                                <option value="05:00">05:00</option>
-                                <option value="05:30">05:30</option>
-                                <option value="06:00">06:00</option>
-                                <option value="06:30">06:30</option>
-                                <option value="07:00">07:00</option>
-                                <option value="07:30">07:30</option>
-                                <option value="08:00">08:00</option>
-                                <option value="08:30">08:30</option>
-                                <option value="09:00">09:00</option>
-                                <option value="09:30">09:30</option>
-                                <option value="10:00">10:00</option>
-                                <option value="10:30">10:30</option>
-                                <option value="11:00">11:00</option>
-                                <option value="11:30">11:30</option>
-                                <option value="12:00">12:00</option>
-                                <option value="12:30">12:30</option>
-                                <option value="13:00">13:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="14:00">14:00</option>
-                                <option value="14:30">14:30</option>
-                                <option value="15:00">15:00</option>
-                                <option value="15:30">15:30</option>
-                                <option value="16:00">16:00</option>
-                                <option value="16:30">16:30</option>
-                                <option value="17:00">17:00</option>
-                                <option value="17:30">17:30</option>
-                                <option value="18:00">18:00</option>
-                                <option value="18:30">18:30</option>
-                                <option value="19:00">19:00</option>
-                                <option value="19:30">19:30</option>
-                                <option value="20:00">20:00</option>
-                                <option value="20:30">20:30</option>
-                                <option value="21:00">21:00</option>
-                                <option value="21:30">21:30</option>
-                                <option value="22:00">22:00</option>
-                                <option value="22:30">22:30</option>
-                                <option value="23:00">23:00</option>
-                                <option value="23:30">23:30</option>
-                                <option value="24:00">24:00</option>
+                                <option value="07:00">07:00 AM</option>
+                                <option value="07:30">07:30 AM</option>
+                                <option value="08:00">08:00 AM</option>
+                                <option value="08:30">08:30 AM</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="09:30">09:30 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="11:30">11:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="12:30">12:30 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="14:30">2:30 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="15:30">3:30 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="16:30">4:30 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="18:30">6:30 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="19:30">7:30 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="20:30">8:30 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                                <option value="21:30">9:30 PM</option>
+                                <option value="22:00">10:00 PM</option>
                             </select>
                         </div>
 
                         <div >
                             <label htmlFor="endTime" className="form-label contractor-dashboard-input-label" >End Time</label>
                             <select name="endTime" value={Inputs.endTime || ""} onChange={handleChange} id="endTime" className="form-control contractor-dashboardform-input-field">
-                                <option value="00:00">00:00</option>
-                                <option value="00:30">00:30</option>
-                                <option value="01:00">01:00</option>
-                                <option value="01:30">01:30</option>
-                                <option value="02:00">02:00</option>
-                                <option value="02:30">02:30</option>
-                                <option value="03:00">03:00</option>
-                                <option value="03:30">03:30</option>
-                                <option value="04:00">04:00</option>
-                                <option value="04:30">04:30</option>
-                                <option value="05:00">05:00</option>
-                                <option value="05:30">05:30</option>
-                                <option value="06:00">06:00</option>
-                                <option value="06:30">06:30</option>
-                                <option value="07:00">07:00</option>
-                                <option value="07:30">07:30</option>
-                                <option value="08:00">08:00</option>
-                                <option value="08:30">08:30</option>
-                                <option value="09:00">09:00</option>
-                                <option value="09:30">09:30</option>
-                                <option value="10:00">10:00</option>
-                                <option value="10:30">10:30</option>
-                                <option value="11:00">11:00</option>
-                                <option value="11:30">11:30</option>
-                                <option value="12:00">12:00</option>
-                                <option value="12:30">12:30</option>
-                                <option value="13:00">13:00</option>
-                                <option value="13:30">13:30</option>
-                                <option value="14:00">14:00</option>
-                                <option value="14:30">14:30</option>
-                                <option value="15:00">15:00</option>
-                                <option value="15:30">15:30</option>
-                                <option value="16:00">16:00</option>
-                                <option value="16:30">16:30</option>
-                                <option value="17:00">17:00</option>
-                                <option value="17:30">17:30</option>
-                                <option value="18:00">18:00</option>
-                                <option value="18:30">18:30</option>
-                                <option value="19:00">19:00</option>
-                                <option value="19:30">19:30</option>
-                                <option value="20:00">20:00</option>
-                                <option value="20:30">20:30</option>
-                                <option value="21:00">21:00</option>
-                                <option value="21:30">21:30</option>
-                                <option value="22:00">22:00</option>
-                                <option value="22:30">22:30</option>
-                                <option value="23:00">23:00</option>
-                                <option value="23:30">23:30</option>
-                                <option value="24:00">24:00</option>
+                                <option value="07:00">07:00 AM</option>
+                                <option value="07:30">07:30 AM</option>
+                                <option value="08:00">08:00 AM</option>
+                                <option value="08:30">08:30 AM</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="09:30">09:30 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="10:30">10:30 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="11:30">11:30 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="12:30">12:30 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="13:30">1:30 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="14:30">2:30 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="15:30">3:30 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="16:30">4:30 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="18:30">6:30 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="19:30">7:30 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="20:30">8:30 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                                <option value="21:30">9:30 PM</option>
+                                <option value="22:00">10:00 PM</option>
                             </select>
                         </div>
                     </div>
@@ -462,7 +458,7 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Job Location : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Skill : <span className='confirmation-span'>{bookingDetails.labourSkill || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
-                    <h3 className='contractor-dashboardform-h3'>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3>
+                    {/* <h3 className='contractor-dashboardform-h3'>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3> */}
                     <h3 className='contractor-dashboardform-h3'>Start Date : <span className='confirmation-span'>{bookingDetails.startDate || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>End Date : <span className='confirmation-span'>{bookingDetails.endDate || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
