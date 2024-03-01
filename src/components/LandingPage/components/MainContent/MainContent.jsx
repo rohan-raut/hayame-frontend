@@ -14,7 +14,7 @@ const MainContent = () => {
         <SectThree />
         <SectOne />
         <SectTwo />
-        <SectSix />
+        {/* <SectSix /> */}
         <SectFive />
       </section>
     </div>
