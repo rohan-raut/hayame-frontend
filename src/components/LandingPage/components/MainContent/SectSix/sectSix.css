@@ -3,7 +3,7 @@
     /* background-color: transparent; */
     height: 200px;
     width: 250px;
-    margin: 0px 20px;
+    margin: 10px 20px;
     perspective: 1000px;
     /* Remove this if you don't want the 3D effect */
 }
@@ -14,7 +14,7 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.8s;
+    transition: transform 0.5s;
     transform-style: preserve-3d;
 }
 
@@ -50,11 +50,45 @@
 }
 
 .sect-six-h2{
+    margin-bottom: 50px;
+    margin-top: 200px;
     font-weight: 900;
     font-size: 3rem;
-    margin-bottom: 50px;
+    color: #17262B;
 }
 
-.sect-six-h2{
-    margin-top: 250px;
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .sect-six-h2{
+        margin-bottom: 30px;
+        margin-top: 40px;
+        font-weight: 900;
+        font-size: 2rem;
+        line-height: 140%;
+        color: #17262B;
+    }
 }
+
+
+@media screen and (max-width: 768px){
+    .sect-six-h2{
+        margin-bottom: 30px;
+        margin-top: 30px;
+        font-weight: 900;
+        font-size: 1.5rem;
+        line-height: 140%;
+        color: #17262B;
+    }
+
+    .flip-card {
+        /* background-color: transparent; */
+        height: 190px;
+        width: 250px;
+        margin: 10px 20px;
+        perspective: 1000px;
+        /* Remove this if you don't want the 3D effect */
+    }
+}
+
+

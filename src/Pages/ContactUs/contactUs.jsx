@@ -12,8 +12,8 @@ const ContactUs = () => {
       <Navbar />
       <div className="contact-us-container">
         <div className="contact-us-bg-img"></div>
-        <div className="row p-0 m-0 justify-content-end">
-          <div className="col-4 contact-us-card">
+        <div className="row p-0 m-0 contact-us-row">
+          <div className="col-11 col-sm-11 col-md-7 col-lg-4 contact-us-card">
             <div className="contact-us-inner-card">
               <h1 className='about-us-header'>Contact Us</h1>
               <h2 className='about-us-title'>Company Address</h2>

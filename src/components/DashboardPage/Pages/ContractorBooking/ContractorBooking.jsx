@@ -40,6 +40,33 @@ const ContractorBooking = () => {
       .then((response) => response.json())
       .then((json) => {
         console.log(json);
+
+        let hr = json[0]['start_time'][0] + json[0]['start_time'][1];
+        let mn = json[0]['start_time'][3] + json[0]['start_time'][4];
+        let st_time = "" + (parseInt(hr) % 12) + ":" + mn;
+        if (parseInt(hr) % 12 === 0) {
+          st_time = "12" + ":" + mn;
+        }
+        if (parseInt(hr) >= 12) {
+          st_time += " PM";
+        }
+        else {
+          st_time += " AM";
+        }
+
+        hr = json[0]['end_time'][0] + json[0]['end_time'][1];
+        mn = json[0]['end_time'][3] + json[0]['end_time'][4];
+        let ed_time = "" + (parseInt(hr) % 12) + ":" + mn;
+        if (parseInt(hr) % 12 === 0) {
+          ed_time = "12" + ":" + mn;
+        }
+        if (parseInt(hr) >= 12 > 0) {
+          ed_time += " PM";
+        }
+        else {
+          ed_time += " AM";
+        }
+
         setUserDetails({
           contractorName: json[0]['contractor_name'],
           contractorEmail: json[0]['contractor_email'],
@@ -48,8 +75,8 @@ const ContractorBooking = () => {
           status: json[0]['status'],
           startDate: json[0]['start_date'],
           endDate: json[0]['end_date'],
-          startTime: json[0]['start_time'],
-          endTime: json[0]['end_time'],
+          startTime: st_time,
+          endTime: ed_time,
           location: json[0]['location'],
           amount: json[0]['amount']
         });
@@ -114,7 +141,7 @@ const ContractorBooking = () => {
           "startDate": td[i]['start_date'],
           "skills": td[i]['labour_skill'],
           "jobStatus": td[i]['status'],
-          "action": <p style={{cursor: "pointer", color: "green"}} onClick={handleDetailsAction}>Details</p>,
+          "action": <p style={{ cursor: "pointer", color: "green" }} onClick={handleDetailsAction}>Details</p>,
         });
       }
       setTableData(d);
@@ -156,7 +183,7 @@ const ContractorBooking = () => {
               <p className='detailsCard-p'>End Time: <span className='detailsCard-span' id='contractor-endTime'>{userDetails.endTime}</span></p>
             </div>
             <p className='detailsCard-p'>Location: <span className='detailsCard-span' id='contractor-location'>{userDetails.location}</span></p>
-            <p className='detailsCard-p'>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>
+            <p className='detailsCard-p'>Payment: <span className='detailsCard-span' id='contractor-totalPayment'>RM {userDetails.amount}</span></p>
           </div>
         </div>
       </div>

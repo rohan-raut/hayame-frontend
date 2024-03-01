@@ -13,7 +13,7 @@ const SectFive = () => {
           at a time, allowing you to improve your customer and team experience,
           whilst keeping your costs under control.
         </p>
-        <button className="sect5-btn">Learn More {">"}</button>
+        {/* <button className="sect5-btn">Learn More {">"}</button> */}
       </div>
     </div>
   );
