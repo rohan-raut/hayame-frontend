@@ -25,9 +25,9 @@ const Dashboard = () => {
         Choose the type of Workforce required:
       </h2>
 
-      <div className="col-10 col-sm-10 col-md-5 col-lg-5 contractor-dashboard-card my-4">
+      <div className="col-10 col-sm-10 col-md-3 col-lg-3 contractor-dashboard-card my-4">
         <div className="row contractor-dashboard-skills-row m-0">
-          <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+          <div className="col-12 col-sm-12 col-md-12 col-lg-12">
             <Link
               to="/dashboard/dashboardform?category=General Workers"
               className="contractor-dashboard-link"
@@ -43,7 +43,7 @@ const Dashboard = () => {
             </Link>
           </div>
 
-          <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+          {/* <div className="col-6 col-sm-6 col-md-6 col-lg-6">
             <Link
               to="/dashboard/dashboardform?category=Skilled Workers"
               className="contractor-dashboard-link"
@@ -57,7 +57,7 @@ const Dashboard = () => {
                 <p className="contractor-dashboard-p">Skilled Workers</p>
               </div>
             </Link>
-          </div>
+          </div> */}
 
         </div>
 

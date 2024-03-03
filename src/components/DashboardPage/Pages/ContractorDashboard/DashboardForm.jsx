@@ -164,8 +164,8 @@ const DashboardForm = () => {
             return false;
         }
 
-        if ((startTimeStamp - currentTimeStamp) < 7200000) {
-            showAlert("Cannot Book within 2 hours", "danger");
+        if ((startTimeStamp - currentTimeStamp) < 43200000) {
+            showAlert("Cannot Book within 12 hours", "danger");
             return false;
         }
 
