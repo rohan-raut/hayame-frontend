@@ -98,6 +98,7 @@ const DashboardForm = () => {
 
         autocomplete.addListener('place_changed', function () {
             var near_place = autocomplete.getPlace();
+            console.log(near_place);
             setInputs(values => ({ ...values, ["jobLocation"]: near_place["formatted_address"] }));
         });
 
@@ -114,11 +115,33 @@ const DashboardForm = () => {
     }
 
 
-    const validateForm = () => {
+    const validateForm = async () => {
         let startDate = new Date(Inputs.startDate);
         let endDate = new Date(Inputs.endDate);
         let today = new Date();
         today = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+        let available_locations = ['Selangor', 'Kuala Lumpur'];
+        let canService = false;
+
+        let geocoder = new google.maps.Geocoder();
+        let res = await geocoder.geocode({ 'address': Inputs.jobLocation }, await function (results, status) {
+            if (status == 'OK') {
+                for(let i=0; i<results[0]['address_components'].length; i++){
+                    if(available_locations.includes(results[0]['address_components'][i]['long_name'])){
+                        canService = true;
+                    }
+                }
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+
+
+        if(canService == false){
+            showAlert("Currently we do not provide Services at this Location", "danger");
+            return false;
+        }
 
         if (startDate < today) {
             showAlert("Invalid Start Date", "danger");
@@ -176,7 +199,8 @@ const DashboardForm = () => {
     async function handleNextClick(e) {
         e.preventDefault();
 
-        if (validateForm()) {
+        let validationOk = await validateForm();
+        if (validationOk == true) {
 
             console.log(Inputs);
 
@@ -203,27 +227,27 @@ const DashboardForm = () => {
             if (json.success === true) {
                 let hr = json.start_time[0] + json.start_time[1];
                 let mn = json.start_time[3] + json.start_time[4];
-                let st_time = "" + (parseInt(hr)%12) + ":" + mn;
-                if(parseInt(hr)%12 === 0){
+                let st_time = "" + (parseInt(hr) % 12) + ":" + mn;
+                if (parseInt(hr) % 12 === 0) {
                     st_time = "12" + ":" + mn;
                 }
-                if(parseInt(hr) >= 12){
+                if (parseInt(hr) >= 12) {
                     st_time += " PM";
                 }
-                else{
+                else {
                     st_time += " AM";
                 }
 
                 hr = json.end_time[0] + json.end_time[1];
                 mn = json.end_time[3] + json.end_time[4];
-                let ed_time = "" + (parseInt(hr)%12) + ":" + mn;
-                if(parseInt(hr)%12 === 0){
+                let ed_time = "" + (parseInt(hr) % 12) + ":" + mn;
+                if (parseInt(hr) % 12 === 0) {
                     ed_time = "12" + ":" + mn;
                 }
-                if(parseInt(hr) >= 12 > 0){
+                if (parseInt(hr) >= 12 > 0) {
                     ed_time += " PM";
                 }
-                else{
+                else {
                     ed_time += " AM";
                 }
 
