@@ -19,7 +19,7 @@ const ContactUs = () => {
               <h2 className='about-us-title'>Company Address</h2>
               <p>HAYAME SOLUTIONS SDN BHD</p>
               <p>A-6-4, BLOCK A,</p>
-              <p>MEGAM PHEONIX,</p>
+              <p>MEGAN PHOENIX,</p>
               <p>JALAN 2/142A, OFF JALAN CHERAS,</p>
               <p>WP KUALA LUMPUR</p>
               <p><a href="mailto: support@hayame.my">support@hayame.my</a></p>

@@ -28,7 +28,7 @@ const DashboardForm = () => {
         contractorName: "",
         contractorEmail: "",
         jobLoc: "",
-        labourCount: "",
+        labourCount: 1,
         labourGender: "",
         startDate: "",
         endDate: "",
@@ -111,6 +111,16 @@ const DashboardForm = () => {
         setInputs(values => ({ ...values, [name]: value }))
         if (name === "jobLocation") {
             handleJobLocation();
+        }
+        if (name === "labourCount"){
+            if(value < 1){
+                showAlert("Minimum 1 Labour should me selected", "danger");
+                setInputs(values => ({ ...values, [name]: 1 }))
+            }
+            if(value > 2){
+                showAlert("Maximum 2 Labour can be Booked", "danger");
+                setInputs(values => ({ ...values, [name]: 2 }))
+            }
         }
     }
 
@@ -363,7 +373,7 @@ const DashboardForm = () => {
                 ) : (<h2 className='contractor-dashboard-form-h2'>Job Details</h2>)}
                 {!confirmation ? (<form onSubmit={handleNextClick}>
                     <div >
-                        <label htmlFor="jobLocation" className="form-label contractor-dashboard-input-label" >Job Location</label>
+                        <label htmlFor="jobLocation" className="form-label contractor-dashboard-input-label" >Address</label>
                         <input type="text" value={Inputs.jobLocation || ""} onChange={handleChange} name="jobLocation" id="jobLocation" className="form-control contractor-dashboardform-input-field" placeholder='Job Location' required />
                     </div>
 

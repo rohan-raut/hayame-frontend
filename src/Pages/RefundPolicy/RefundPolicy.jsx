@@ -18,7 +18,7 @@ const RefundPolicy = () => {
         <p>Refunds may be considered under the following circumstances:</p>
         <p>If there has been an error on our part that prevents us from fulfilling the agreed-upon service.</p>
         <p>If the service provided does not meet the specifications outlined in the service agreement or contract.</p>
-        <p>Refunds will not be issued for services that have been satisfactorily rendered and meet the agreed-upon terms.</p>
+        <p>Refunds will not be issued for services that have been satisfactorily rendered and have met the agreed-upon terms.</p>
 
         <h2 className='refund-policy-title'>Refund Requests:</h2>
         <p>To request a refund, customers must contact our customer support team at refund@hayame.my within 7 days of the service completion date.

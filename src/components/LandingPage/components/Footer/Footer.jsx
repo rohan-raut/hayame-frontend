@@ -35,7 +35,7 @@ const Footer = () => {
       <div className="container footer-content">
         <div className="row justify-content-center">
           <div className="col-11 col-sm-11 col-md-4 col-lg-4">
-            <p className='footer-copywrite'>Copywrite ©️ 2023 Hayame. All Rights Reserved</p>
+            <p className='footer-copywrite'>Copyright ©️ 2023 Hayame. All Rights Reserved</p>
           </div>
           <div className="col-11 col-sm-11 col-md-8 col-lg-8 footer-link-list">
             <div className='footer-link-item'><Link className='footer-menu-item' to="/about-us">About Us</Link></div>
