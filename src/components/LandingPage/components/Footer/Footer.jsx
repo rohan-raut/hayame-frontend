@@ -1,5 +1,5 @@
 import React from 'react'
-import { instagramIcon, facebookIcon, twitterIcon, linkedInIcon } from '../../../../assets'
+// import { instagramIcon, facebookIcon, twitterIcon, linkedInIcon } from '../../../../assets'
 import "./footer.css"
 import { Link } from "react-router-dom";
 

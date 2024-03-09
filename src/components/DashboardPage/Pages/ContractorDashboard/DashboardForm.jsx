@@ -5,6 +5,8 @@ import AlertMessage from '../../../Alert/AlertMessage';
 import Select from "react-select";
 import { BackArrow } from '../../../../assets'
 import md5 from 'md5';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 
 const DashboardForm = () => {
@@ -112,12 +114,12 @@ const DashboardForm = () => {
         if (name === "jobLocation") {
             handleJobLocation();
         }
-        if (name === "labourCount"){
-            if(value < 1){
+        if (name === "labourCount") {
+            if (value < 1) {
                 showAlert("Minimum 1 Labour should me selected", "danger");
                 setInputs(values => ({ ...values, [name]: 1 }))
             }
-            if(value > 2){
+            if (value > 2) {
                 showAlert("Maximum 2 Labour can be Booked", "danger");
                 setInputs(values => ({ ...values, [name]: 2 }))
             }
@@ -137,8 +139,8 @@ const DashboardForm = () => {
         let geocoder = new google.maps.Geocoder();
         let res = await geocoder.geocode({ 'address': Inputs.jobLocation }, await function (results, status) {
             if (status == 'OK') {
-                for(let i=0; i<results[0]['address_components'].length; i++){
-                    if(available_locations.includes(results[0]['address_components'][i]['long_name'])){
+                for (let i = 0; i < results[0]['address_components'].length; i++) {
+                    if (available_locations.includes(results[0]['address_components'][i]['long_name'])) {
                         canService = true;
                     }
                 }
@@ -148,7 +150,7 @@ const DashboardForm = () => {
         });
 
 
-        if(canService == false){
+        if (canService == false) {
             showAlert("Currently we do not provide Services at this Location", "danger");
             return false;
         }
@@ -276,10 +278,10 @@ const DashboardForm = () => {
                     hours: json.hours,
                     minutes: json.mins,
                     publilcHolidays: json.public_holidays,
-                    costPerHourNormalDays: json.cost_per_hour_normal_days,
-                    costPerHourPublicHolidays: json.cost_per_hour_public_holiday,
-                    transportationCost: json.transportation_cost,
-                    totalCost: json.total_cost,
+                    costPerHourNormalDays: ((json.cost_per_hour_normal_days * 100) / 100).toFixed(2),
+                    costPerHourPublicHolidays: ((json.cost_per_hour_public_holiday * 100) / 100).toFixed(2),
+                    transportationCost: ((json.transportation_cost * 100) / 100).toFixed(2),
+                    totalCost: ((json.total_cost * 100) / 100).toFixed(2),
                 })
 
                 setConfirmation(prev => !prev)
@@ -362,7 +364,7 @@ const DashboardForm = () => {
             <AlertMessage alert={Alert} />
             <div className="col-9 col-sm-9 col-md-8 col-lg-5 contractor-dashboard-form-card">
                 {confirmation ? (
-                    <div className="row align-items-center heading-row py-2">
+                    <div className="row align-items-center heading-row py-2 m-0">
                         <div className="col-2">
                             <span onClick={handleBackArrowClick}><img src={BackArrow} alt="back-arrow" className='dashboard-icon-backarrow' /></span>
                         </div>
@@ -489,7 +491,7 @@ const DashboardForm = () => {
                         <input type="submit" className="btn contractor-dashboard-form-input-submit" value="Next" id='next-btn' />
                     </div>
                 </form>) : (<div>
-                    <h3 className='contractor-dashboardform-h3'>Job Location : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
+                    <h3 className='contractor-dashboardform-h3'>Address : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Skill : <span className='confirmation-span'>{bookingDetails.labourSkill || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
                     {/* <h3 className='contractor-dashboardform-h3'>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3> */}
@@ -503,10 +505,60 @@ const DashboardForm = () => {
                     <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>RM {bookingDetails.totalCost}</span></h3>
-                    <button className='btn contractor-dashboard-form-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>
+                    {/*<button className='btn contractor-dashboard-form-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>*/}
+
+                    <Popup
+                        trigger={<button className='btn contractor-dashboard-form-input-submit'>Confirm</button>}
+                        modal
+                        nested
+                        className="dashboard-booking-confirm-popup"
+                    >
+                        {close => (
+                            <div className="row">
+                                <div>
+                                    <div className="text-end">
+                                        <button className='btn btn-sm btn-outline-dark close' onClick={close}>&times;</button>
+                                    </div>
+                                    <div className="confirm-booking-content-popup">
+                                        <h3 className='text-center confirm-booking-header-popup'>Confirm Your Booking</h3>
+                                        <p>Please ensure all details are accurate. Once confirmed, your booking cannot be rescheduled or canceled. If you notice any discrepancies or need assistance, please contact us immediately at <a href="mailto: support@hayame.my">support@hayame.my</a></p>
+                                        <p>Thank you for choosing us, and we look forward to providing you with an exceptional experience.</p>
+                                        <div className='text-end'>
+                                            <button className='btn btn-sm confirm-booking-btn-popup' type='submit' onClick={handleConfirmation}>Confirm</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        )}
+                    </Popup>
+
                 </div>)}
             </div>
-        </div>
+
+            {/* <div className="text-end booking-form-instruction">
+                <Popup
+                    trigger={open => (
+                        <button className="btn btn-dark">?</button>
+                    )}
+                    position="left bottom"
+                    className="tooltip-content"
+                >
+                    <div>
+                        <h3 className="tooltip-booking-form-h3">Steps to Make a Successful Booking:</h3>
+                        <ol className="tooltip-ol-booking-form">
+                            <li>Fill out the booking form with your address, skill, number of workers, start and end dates, and start and end times. Currently, we provide services only in the Selangor and Kuala Lumpur regions.</li>
+                            <li>After completing the booking form, click on the Next button. You will see all the details of your booking, including worker and transportation costs.</li>
+                            <li>Click on Confirm if you want to proceed with the booking. A popup message will appear.</li>
+                            <li>Read the message and click on Confirm. You will be redirected to the payment page.</li>
+                            <li>After completing the payment, you will receive the invoice via email.</li>
+                            <li>If you don't receive the invoice after payment or notice any discrepancies while booking, please contact us immediately at support@hayame.my.</li>
+                        </ol>
+                    </div>
+                </Popup>
+            </div> */}
+        </div >
     )
 }
 

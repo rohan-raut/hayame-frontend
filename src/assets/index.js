@@ -40,6 +40,7 @@ import DarkConstructionWorker from "./construction-worker_dark.svg";
 import BackArrow from "./backarrow.svg";
 
 import Logo from "./logo.png"
+import GoogleIcon from "./google-icon.svg";
 
 export {
   logo,
@@ -80,4 +81,5 @@ export {
   DarkConstructionWorker,
   Logo,
   BackArrow,
+  GoogleIcon,
 };

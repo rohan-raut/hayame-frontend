@@ -37,3 +37,37 @@
 .register-input-field{
     margin-bottom: 30px;
 }
+
+.google-icon{
+    width: 20px;
+    margin-right: 5px;
+}
+
+.google-sign-up-btn{
+    font-size: 12px;
+}
+
+.register-popup-content{
+    width: 40% !important;
+    padding: 20px 0px !important;
+}
+
+.register-user-popup-h3{
+    font-size: 20px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .register-popup-content{
+        width: 60% !important;
+    }
+}
+
+
+@media screen and (max-width: 768px){
+    .register-popup-content{
+        width: 90% !important;
+    }
+}

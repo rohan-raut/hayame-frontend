@@ -170,7 +170,7 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="row justify-content-center pt-4">
+            <div className="row justify-content-center pt-4 m-0 p-0">
               <div id="signInGoogleDiv" className="col-6 m-0 p-0"></div>
             </div>
           </form>

@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Navbar } from "../../components/LandingPage/components";
 import AlertMessage from "../../components/Alert/AlertMessage";
 import Select from "react-select";
+import { GoogleIcon } from "../../assets";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -268,6 +271,7 @@ const Register = () => {
       method: "POST",
       body: JSON.stringify({
         token: response.credential,
+        phone: countryCode.value + " " + registerInputs.phoneNumber,
       }),
       headers: {
         "Content-type": "application/json",
@@ -286,6 +290,7 @@ const Register = () => {
         }
       });
   }
+
 
   useEffect(() => {
     /* global google */
@@ -354,6 +359,15 @@ const Register = () => {
         });
     }
   };
+
+
+  const handelGoogleSignUp = () => {
+    google.accounts.id.initialize({
+      client_id:
+        "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+      callback: handleCallBackResponse,
+    });
+  }
 
   return (
     <div className="register-container">
@@ -493,13 +507,78 @@ const Register = () => {
               Register
             </button>
 
-            <div className="row justify-content-center mt-4 ">
-              <div
+            <div className="justify-content-center mt-4 sign-up-google-container ">
+              {/* <div
                 id="signInGoogleDiv"
                 className="col-sm-1 col-md-5 col-lg-4 w-auto m-0 p-0"
-              ></div>
+              ></div> */}
             </div>
+
           </form>
+
+
+
+          <Popup
+            trigger={<button className="btn btn-light google-sign-up-btn"><img className="google-icon" src={GoogleIcon} /> Sign Up with Google</button>}
+            modal
+            nested
+            className="register-popup"
+          >
+            {close => (
+              <div className="row m-0">
+
+                <div className="text-end">
+                  <button className='btn btn-sm btn-outline-dark close' onClick={close}>&times;</button>
+                </div>
+
+                <div className="col-12 py-3">
+                  <h3 className='text-center register-user-popup-h3'>Sign Up with Google</h3>
+                  <form onSubmit={handelGoogleSignUp}>
+                    <div className="row justify-content-center px-2">
+                      <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <label
+                          for="phoneNumber"
+                          class="form-label register-input-label"
+                        >
+                          Phone Number
+                        </label>
+                        <div className="row justify-content-center">
+                          <div className="col-5 col-sm-5 col-md-6 col-lg-6">
+                            <Select
+                              onChange={setCountryCode}
+                              options={options}
+                              placeholder=""
+                              required
+                              className="form-control m-0 p-0"
+                            />
+                          </div>
+                          <div className="col-7 col-sm-7 col-md-6 col-lg-6">
+                            <input
+                              type="text" 
+                              value={registerInputs.phoneNumber || ""}
+                              onChange={handleChange}
+                              class="form-control register-input-field"
+                              id="phone_number"
+                              name="phoneNumber"
+                              placeholder="Phone Number"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="d-flex justify-content-center">
+                        <button className="btn btn-dark google-sign-up-btn"><img className="google-icon" src={GoogleIcon} /> Sign Up with Google</button>
+                      </div>
+
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+            )}
+          </Popup>
         </div>
       </div>
     </div>

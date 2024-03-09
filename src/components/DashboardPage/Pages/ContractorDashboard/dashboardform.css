@@ -60,6 +60,42 @@
 }
 
 
+/* Booking confirm Popup */
+.dashboard-booking-confirm-popup-content{
+    width: 40% !important;
+    padding: 15px !important;
+    border-radius: 10px;
+}
+
+.confirm-booking-header-popup{
+    font-size: 20px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.confirm-booking-btn-popup{
+    background-color: #17262B;
+    color: white;
+}
+
+.confirm-booking-btn-popup:hover{
+    background-color: white;
+    border: 1px solid #17262B;
+    color: black
+}
+
+.confirm-booking-content-popup{
+    padding: 10px 20px;
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+    .dashboard-booking-confirm-popup-content{
+        width: 60% !important;
+    }
+}
+
+
 @media screen and (max-width: 768px){
     .contractor-dashboard-form-card{
         background-color: #17262B;
@@ -68,4 +104,44 @@
         margin-bottom: 30px;
         border-radius: 30px;
     }
+
+    .dashboard-booking-confirm-popup-content{
+        width: 80% !important;
+    }
+
+    .heading-row{
+        position: relative;
+        right: 10px;
+    }
+}
+
+
+
+
+
+
+
+
+
+.booking-form-instruction{
+    position: fixed;
+    top: 85vh;
+    right: 60px;
+}
+
+.tooltip-content-content{
+    width: 30vw !important;
+    position: fixed !important;
+    top: 17vh !important;
+    padding: 15px 15px 0px 15px;
+}
+
+.tooltip-booking-form-h3{
+    font-size: 16px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.tooltip-ol-booking-form > li{
+    padding-bottom: 10px;
 }
