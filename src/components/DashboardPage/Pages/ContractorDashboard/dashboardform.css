@@ -89,9 +89,46 @@
 }
 
 
+/* Booking form instructions */
+.booking-form-instruction{
+    position: fixed;
+    top: 85vh;
+    right: 60px;
+}
+
+.booking-form-instruction-btn-img{
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.booking-form-instruction-btn-img > img{
+    width: 70px;
+    margin-right: -10px;
+}
+
+.tooltip-content-content{
+    width: 30vw !important;
+    padding: 15px 15px 0px 15px;
+}
+
+.tooltip-booking-form-h3{
+    font-size: 16px;
+    font-weight: 900;
+    padding-bottom: 10px;
+}
+
+.tooltip-ol-booking-form > li{
+    padding-bottom: 10px;
+}
+
+
 @media screen and (min-width: 769px) and (max-width: 991px){
     .dashboard-booking-confirm-popup-content{
         width: 60% !important;
+    }
+
+    .tooltip-content-content{
+        width: 60vw !important;
     }
 }
 
@@ -113,35 +150,17 @@
         position: relative;
         right: 10px;
     }
-}
 
+    .tooltip-content-content{
+        width: 80vw !important;
+    }
 
+    .booking-form-instruction{
+        position: static;
+        padding-right: 50px;
+    }
 
-
-
-
-
-
-
-.booking-form-instruction{
-    position: fixed;
-    top: 85vh;
-    right: 60px;
-}
-
-.tooltip-content-content{
-    width: 30vw !important;
-    position: fixed !important;
-    top: 17vh !important;
-    padding: 15px 15px 0px 15px;
-}
-
-.tooltip-booking-form-h3{
-    font-size: 16px;
-    font-weight: 900;
-    padding-bottom: 10px;
-}
-
-.tooltip-ol-booking-form > li{
-    padding-bottom: 10px;
+    .tooltip-ol-booking-form{
+        font-size: 13px;
+    }
 }

@@ -10,13 +10,16 @@
 
 .sectFour-section-1 {
     background-color: #d9dbdb;
-    border-top-right-radius: 20px;
-    border-top-left-radius: 20px;
+    /* border-top-right-radius: 20px;
+    border-top-left-radius: 20px; */
+    border-radius: 20px;
+    padding: 15px 10px;
 }
 
 .sectFour-icon-card {
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    /* border-top-left-radius: 20px;
+    border-top-right-radius: 20px; */
+    border-radius: 20px;
     padding: 12px 15px;
     cursor: pointer;
     text-align: left;

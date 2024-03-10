@@ -3,10 +3,11 @@ import "./dashboardform.css";
 import { useNavigate, Link, redirect } from "react-router-dom";
 import AlertMessage from '../../../Alert/AlertMessage';
 import Select from "react-select";
-import { BackArrow } from '../../../../assets'
+import { BackArrow, InstructionIcon } from '../../../../assets'
 import md5 from 'md5';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+
 
 
 const DashboardForm = () => {
@@ -369,7 +370,7 @@ const DashboardForm = () => {
                             <span onClick={handleBackArrowClick}><img src={BackArrow} alt="back-arrow" className='dashboard-icon-backarrow' /></span>
                         </div>
                         <div className="col-10">
-                            <h2 className='contractor-dashboard-form-h2'>Job Details</h2>
+                            <h2 className='contractor-dashboard-form-h2'>Booking Details</h2>
                         </div>
                     </div>
                 ) : (<h2 className='contractor-dashboard-form-h2'>Job Details</h2>)}
@@ -537,15 +538,50 @@ const DashboardForm = () => {
                 </div>)}
             </div>
 
-            {/* <div className="text-end booking-form-instruction">
+            <div className="text-end booking-form-instruction">
+
                 <Popup
+                    trigger={<span className='booking-form-instruction-btn-img'><img src={InstructionIcon} alt="" /><span>Guide</span></span>}
+                    modal
+                    nested
+                    className="tooltip-content"
+                >
+                    {close => (
+                        <div className="row">
+                            <div>
+                                <div>
+                                    <div className="text-end">
+                                        <button className='btn btn-sm btn-outline-dark close' onClick={close}>&times;</button>
+                                    </div>
+                                    <h3 className="tooltip-booking-form-h3">Steps to Make a Successful Booking:</h3>
+                                    <ol className="tooltip-ol-booking-form">
+                                        <li>Fill out the booking form with your address, skill, number of workers, start and end dates, and start and end times. Currently, we provide services only in the Selangor and Kuala Lumpur regions.</li>
+                                        <li>After completing the booking form, click on the Next button. You will see all the details of your booking, including worker and transportation costs.</li>
+                                        <li>Click on Confirm if you want to proceed with the booking. A popup message will appear.</li>
+                                        <li>Read the message and click on Confirm. You will be redirected to the payment page.</li>
+                                        <li>After completing the payment, you will receive the invoice via email.</li>
+                                        <li>If you don't receive the invoice after payment or notice any discrepancies while booking, please contact us immediately at support@hayame.my.</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    )}
+                </Popup>
+
+                {/* <Popup
                     trigger={open => (
                         <button className="btn btn-dark">?</button>
                     )}
-                    position="left bottom"
+                    modal
+                    nested
                     className="tooltip-content"
                 >
                     <div>
+                        <div className="text-end">
+                            <button className='btn btn-sm btn-outline-dark close' onClick={close}>&times;</button>
+                        </div>
                         <h3 className="tooltip-booking-form-h3">Steps to Make a Successful Booking:</h3>
                         <ol className="tooltip-ol-booking-form">
                             <li>Fill out the booking form with your address, skill, number of workers, start and end dates, and start and end times. Currently, we provide services only in the Selangor and Kuala Lumpur regions.</li>
@@ -556,8 +592,8 @@ const DashboardForm = () => {
                             <li>If you don't receive the invoice after payment or notice any discrepancies while booking, please contact us immediately at support@hayame.my.</li>
                         </ol>
                     </div>
-                </Popup>
-            </div> */}
+                </Popup> */}
+            </div>
         </div >
     )
 }

@@ -12,6 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [registerInputs, setRegisterInputs] = useState({});
+  const [phoneNumberGoogle, setPhoneNumberGoogle] = useState("");
   const [Alert, setAlert] = useState(null);
   const [countryCode, setCountryCode] = useState("+60");
   const options = [
@@ -253,6 +254,8 @@ const Register = () => {
     { value: "+263", label: "+263" },
   ];
 
+  let countryCodeGoogle = ""
+
   const showAlert = (message, type) => {
     setAlert({
       message: message,
@@ -267,43 +270,54 @@ const Register = () => {
   function handleCallBackResponse(response) {
     // console.log(response);
 
-    fetch("https://django.hayame.my/api/google-signin", {
-      method: "POST",
-      body: JSON.stringify({
-        token: response.credential,
-        phone: countryCode.value + " " + registerInputs.phoneNumber,
-      }),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.is_logged_in === true) {
-          showAlert(json.response, "success");
-          localStorage.setItem("token", json.token);
-          setTimeout(() => {
-            navigate("/dashboard");
-          }, 1500);
-        } else {
-          showAlert(json.response, "danger");
-        }
-      });
+    let phoneNumberGoogle = document.getElementById('phone_number_google').value;
+
+    let success = true;
+    if (countryCodeGoogle == "" || phoneNumberGoogle == "") {
+      success = false;
+      showAlert("Enter Country Code and Phone Number.", "danger");
+    }
+
+    if (success) {
+      fetch("https://django.hayame.my/api/google-signin", {
+        method: "POST",
+        body: JSON.stringify({
+          token: response.credential,
+          phone: countryCodeGoogle + " " + phoneNumberGoogle,
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.is_logged_in === true) {
+            showAlert(json.response, "success");
+            localStorage.setItem("token", json.token);
+            setTimeout(() => {
+              navigate("/dashboard");
+            }, 1500);
+          } else {
+            showAlert(json.response, "danger");
+          }
+        });
+    }
+
   }
 
 
   useEffect(() => {
     /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
-      callback: handleCallBackResponse,
-    });
+    // google.accounts.id.initialize({
+    //   client_id:
+    //     "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+    //   callback: handleCallBackResponse,
+    // });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInGoogleDiv"),
-      { theme: "outline", size: "large" }
-    );
+    // google.accounts.id.renderButton(
+    //   document.getElementById("signInGoogleDiv"),
+    //   { theme: "outline", size: "medium" }
+    // );
   }, []);
 
   const handleChange = (event) => {
@@ -361,13 +375,24 @@ const Register = () => {
   };
 
 
-  const handelGoogleSignUp = () => {
+  const renderGoogleBtn = () => {
+
     google.accounts.id.initialize({
       client_id:
         "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
       callback: handleCallBackResponse,
     });
+
+    google.accounts.id.renderButton(
+      document.getElementById("signInGoogleDiv"),
+      {
+        theme: "filled_black",
+        size: "large",
+      }
+    );
   }
+
+
 
   return (
     <div className="register-container">
@@ -507,7 +532,7 @@ const Register = () => {
               Register
             </button>
 
-            <div className="justify-content-center mt-4 sign-up-google-container ">
+            <div className="row justify-content-center mt-4 sign-up-google-container ">
               {/* <div
                 id="signInGoogleDiv"
                 className="col-sm-1 col-md-5 col-lg-4 w-auto m-0 p-0"
@@ -523,8 +548,10 @@ const Register = () => {
             modal
             nested
             className="register-popup"
+            onOpen={renderGoogleBtn}
           >
             {close => (
+
               <div className="row m-0">
 
                 <div className="text-end">
@@ -533,7 +560,7 @@ const Register = () => {
 
                 <div className="col-12 py-3">
                   <h3 className='text-center register-user-popup-h3'>Sign Up with Google</h3>
-                  <form onSubmit={handelGoogleSignUp}>
+                  <form>
                     <div className="row justify-content-center px-2">
                       <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                         <label
@@ -545,21 +572,22 @@ const Register = () => {
                         <div className="row justify-content-center">
                           <div className="col-5 col-sm-5 col-md-6 col-lg-6">
                             <Select
-                              onChange={setCountryCode}
+                              onChange={(choice) => { countryCodeGoogle = choice.value }}
                               options={options}
                               placeholder=""
                               required
                               className="form-control m-0 p-0"
+                              id="country_code_google"
                             />
                           </div>
                           <div className="col-7 col-sm-7 col-md-6 col-lg-6">
                             <input
-                              type="text" 
-                              value={registerInputs.phoneNumber || ""}
+                              type="text"
+                              value={registerInputs.phoneNumberGoogle || ""}
                               onChange={handleChange}
                               class="form-control register-input-field"
-                              id="phone_number"
-                              name="phoneNumber"
+                              id="phone_number_google"
+                              name="phoneNumberGoogle"
                               placeholder="Phone Number"
                               required
                             />
@@ -568,7 +596,13 @@ const Register = () => {
                       </div>
 
                       <div className="d-flex justify-content-center">
-                        <button className="btn btn-dark google-sign-up-btn"><img className="google-icon" src={GoogleIcon} /> Sign Up with Google</button>
+                        {/* <button className="btn btn-dark google-sign-up-btn" type="submit"><img className="google-icon" src={GoogleIcon} /> Sign Up with Google</button> */}
+
+                        <div
+                          id="signInGoogleDiv"
+                          className="col-sm-1 col-md-5 col-lg-4 w-auto m-0 p-0"
+                        ></div>
+
                       </div>
 
                     </div>

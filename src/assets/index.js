@@ -41,6 +41,7 @@ import BackArrow from "./backarrow.svg";
 
 import Logo from "./logo.png"
 import GoogleIcon from "./google-icon.svg";
+import InstructionIcon from "./instruction_icon.svg"
 
 export {
   logo,
@@ -82,4 +83,5 @@ export {
   Logo,
   BackArrow,
   GoogleIcon,
+  InstructionIcon,
 };

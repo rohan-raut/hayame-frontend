@@ -84,14 +84,15 @@ const SectFour = () => {
               Looking for a worker?
             </div>
             <div>
-              Dive deeper into the business we serve.
+              <p>Dive deeper into the business we serve.</p>
+              <button type="submit" className="btn btn-dark book-now-btn">Book Now!</button>
             </div>
           </div>
         </div>
 
       </div>
 
-      <div className="row justify-content-start m-0 sectFour-section-2">
+      {/* <div className="row justify-content-start m-0 sectFour-section-2">
         <form onSubmit={handleBookNowForm}>
           <div className="d-flex">
             <div className="sectFour-form-card border-right pr">
@@ -114,7 +115,7 @@ const SectFour = () => {
             </div>
           </div>
         </form>
-      </div>
+      </div> */}
 
       {/* for mobile */}
       <div className="row justify-content-center m-0 mobile-section">
