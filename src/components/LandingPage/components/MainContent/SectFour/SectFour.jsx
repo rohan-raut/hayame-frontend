@@ -59,9 +59,14 @@ const SectFour = () => {
   }
 
 
+  const handelBookingNavigate = () => {
+    navigate('/dashboard')
+  }
+
+
   return (
     <div className="container sectFour-container">
-      <div className="row justify-content-start m-0 sectFour-section-1">
+      {/* <div className="row justify-content-start m-0 sectFour-section-1">
         <div className="col-md-2 col-lg-2 d-flex align-items-center sectFour-icon-card" id="sectFour-labour-card" onClick={handleLabourCard}>
           <img src={DarkLabour} className="sectFour-img" />
           Labour
@@ -85,12 +90,12 @@ const SectFour = () => {
             </div>
             <div>
               <p>Dive deeper into the business we serve.</p>
-              <button type="submit" className="btn btn-dark book-now-btn">Book Now!</button>
+              <button type="submit" className="btn btn-dark book-now-btn" onClick={handelBookingNavigate}>Book Now!</button>
             </div>
           </div>
         </div>
 
-      </div>
+      </div> */}
 
       {/* <div className="row justify-content-start m-0 sectFour-section-2">
         <form onSubmit={handleBookNowForm}>
@@ -118,12 +123,12 @@ const SectFour = () => {
       </div> */}
 
       {/* for mobile */}
-      <div className="row justify-content-center m-0 mobile-section">
-        <h3>Looking for a Worker?</h3>
+      <div className="row justify-content-center m-0">
+        <h3 className="sect-four-h3">Looking for a Cleaner?</h3>
         <div>Dive deeper into the business we serve.</div>
-        <form onSubmit={handleBookNowForm}>
+        <form>
           <div className="my-3">
-            <button type="submit" className="btn btn-dark">Book Now!</button>
+            <button type="submit" className="btn btn-dark" onClick={handelBookingNavigate}>Book Now!</button>
           </div>
         </form>
       </div>

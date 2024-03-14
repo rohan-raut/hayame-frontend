@@ -1,0 +1,17 @@
+.sect-seven-video{
+    width: 70vw;
+    /* height: 200px; */
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+    .sect-seven-video{
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sect-seven-video{
+        width: 90vw;
+    }
+}

@@ -94,6 +94,7 @@
     position: fixed;
     top: 85vh;
     right: 60px;
+    z-index: -1;
 }
 
 .booking-form-instruction-btn-img{
@@ -119,6 +120,18 @@
 
 .tooltip-ol-booking-form > li{
     padding-bottom: 10px;
+}
+
+
+table, th, td {
+    border: 1px solid #34AFAA;
+    border-collapse: collapse;
+    padding: 5px 10px;
+}
+
+.booking-form-confirmation-table{
+    padding-bottom: 20px;
+    overflow: auto;
 }
 
 

@@ -80,6 +80,12 @@
     display: none;
 }
 
+
+.sect-four-h3{
+    font-size: 40px;
+    font-weight: 900;
+}
+
 @media screen and (min-width: 769px) and (max-width: 991px) {
 
     .sectFour-img {

@@ -492,10 +492,10 @@ const DashboardForm = () => {
                         <input type="submit" className="btn contractor-dashboard-form-input-submit" value="Next" id='next-btn' />
                     </div>
                 </form>) : (<div>
-                    <h3 className='contractor-dashboardform-h3'>Address : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
+                    {/* <h3 className='contractor-dashboardform-h3'>Address : <span className='confirmation-span'>{bookingDetails.jobLoc || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Skill : <span className='confirmation-span'>{bookingDetails.labourSkill || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Labour Count : <span className='confirmation-span'>{bookingDetails.labourCount || "null"}</span></h3>
-                    {/* <h3 className='contractor-dashboardform-h3'>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3> */}
+                    <h3 className='contractor-dashboardform-h3'>Labour Gender : <span className='confirmation-span'>{bookingDetails.labourGender || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Start Date : <span className='confirmation-span'>{bookingDetails.startDate || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>End Date : <span className='confirmation-span'>{bookingDetails.endDate || "null"}</span></h3>
                     <h3 className='contractor-dashboardform-h3'>Start Time : <span className='confirmation-span'>{bookingDetails.startTime || "null"}</span></h3>
@@ -505,8 +505,66 @@ const DashboardForm = () => {
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Public Holidays: <span className='confirmation-span'>{bookingDetails.publilcHolidays}</span></h3> : ""}
                     <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Normal Days: <span className='confirmation-span'>RM {bookingDetails.costPerHourNormalDays}</span></h3>
                     {bookingDetails.publilcHolidays ? <h3 className='contractor-dashboardform-h3'>Total Cost Per Hour on Public Holidays: <span className='confirmation-span'>RM {bookingDetails.costPerHourPublicHolidays}</span></h3> : ""}
-                    <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>RM {bookingDetails.totalCost}</span></h3>
+                    <h3 className='contractor-dashboardform-h3'>Total Cost: <span className='confirmation-span'>RM {bookingDetails.totalCost}</span></h3> */}
                     {/*<button className='btn contractor-dashboard-form-input-submit' type='submit' onClick={handleConfirmation}>Confirm</button>*/}
+
+                    <div className="booking-form-confirmation-table">
+                        <table>
+                            <tr>
+                                <th>Address</th>
+                                <td>{bookingDetails.jobLoc || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>Labour Skill</th>
+                                <td>{bookingDetails.labourSkill || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>Labour Count</th>
+                                <td>{bookingDetails.labourCount || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>Start Date</th>
+                                <td>{bookingDetails.startDate || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>End Date</th>
+                                <td>{bookingDetails.endDate || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>Start Time</th>
+                                <td>{bookingDetails.startTime || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>End Time</th>
+                                <td>{bookingDetails.endTime || "null"}</td>
+                            </tr>
+                            <tr>
+                                <th>Total Time</th>
+                                <td>{bookingDetails.hours || "0"} Hours {bookingDetails.minutes || "0"} Minutes</td>
+                            </tr>
+                            <tr>
+                                <th>Transportation Cost</th>
+                                <td>{bookingDetails.transportationCost || "null"}</td>
+                            </tr>
+                            {bookingDetails.publilcHolidays ? <tr>
+                                <th>Public Holidays</th>
+                                <td>{bookingDetails.publilcHolidays || "0"}</td>
+                            </tr> : ""}
+                            <tr>
+                                <th>Total Cost Per Hour on Normal Days</th>
+                                <td>RM {bookingDetails.costPerHourNormalDays || "null"}</td>
+                            </tr>
+                            {bookingDetails.publilcHolidays ? <tr>
+                                <th>Total Cost Per Hour on Public Holidays</th>
+                                <td>RM {bookingDetails.costPerHourPublicHolidays || "null"}</td>
+                            </tr> : ""}
+                            <tr>
+                                <th>Total Cost</th>
+                                <td>RM {bookingDetails.totalCost || "null"}</td>
+                            </tr>
+                        </table>
+                    </div>
+
 
                     <Popup
                         trigger={<button className='btn contractor-dashboard-form-input-submit'>Confirm</button>}

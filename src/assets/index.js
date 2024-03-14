@@ -43,6 +43,8 @@ import Logo from "./logo.png"
 import GoogleIcon from "./google-icon.svg";
 import InstructionIcon from "./instruction_icon.svg"
 
+import HayameVideo from "./hayame_video.mp4"
+
 export {
   logo,
   herobg,
@@ -84,4 +86,5 @@ export {
   BackArrow,
   GoogleIcon,
   InstructionIcon,
+  HayameVideo,
 };
