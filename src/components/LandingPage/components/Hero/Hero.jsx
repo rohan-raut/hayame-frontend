@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./hero.css";
-import { team } from "../../../../assets";
+import { team, HayameVideo } from "../../../../assets";
 
 const Hero = () => {
     let navigate = useNavigate();
@@ -22,8 +22,9 @@ const Hero = () => {
                 Experience hassle-free cleaning with <strong>Hayame</strong> today!
                 </p>
             </div>
-            <div className="col-12 col-sm-12 col-md-6 col-lg-6 hero-card-img">
-                <img src={team} alt="People working together" />
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 text-center">
+                {/* <img src={team} alt="People working together" /> */}
+                <video src={HayameVideo} autoplay="true" muted className="home-page-video" controls autoPlay></video>
             </div>
         </div>
     );

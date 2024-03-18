@@ -297,10 +297,10 @@ const DashboardForm = () => {
 
     const handleConfirmation = () => {
 
-        // let md5hash = md5(bookingDetails.totalCost + "hayamesolutions" + bookingDetails.bookingId + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
-        let md5hash = md5(1 + "hayamesolutions" + bookingDetails.bookingId + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
+        let md5hash = md5(bookingDetails.totalCost + "hayamesolutions" + bookingDetails.bookingId + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
+        // let md5hash = md5(1 + "hayamesolutions" + bookingDetails.bookingId + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
 
-        let url = "https://pay.merchant.razer.com/RMS/pay/hayamesolutions?amount=" + 1 + "&orderid=" + bookingDetails.bookingId + "&bill_name=" + bookingDetails.contractorName + "&bill_email=" + bookingDetails.contractorEmail + "&country=MY&vcode=" + md5hash;
+        let url = "https://pay.merchant.razer.com/RMS/pay/hayamesolutions?amount=" + bookingDetails.totalCost + "&orderid=" + bookingDetails.bookingId + "&bill_name=" + bookingDetails.contractorName + "&bill_email=" + bookingDetails.contractorEmail + "&country=MY&vcode=" + md5hash;
 
         // let url = "https://pay.merchant.razer.com/RMS/pay/hayamesolutions?amount=1&orderid=1&bill_name=Hayame&bill_email=rohanraut124@gmail.com&country=MY&vcode=977031b48ce8b66a1556482dc77bf0e7"
 
@@ -544,7 +544,7 @@ const DashboardForm = () => {
                             </tr>
                             <tr>
                                 <th>Transportation Cost</th>
-                                <td>{bookingDetails.transportationCost || "null"}</td>
+                                <td>RM {bookingDetails.transportationCost || "null"}</td>
                             </tr>
                             {bookingDetails.publilcHolidays ? <tr>
                                 <th>Public Holidays</th>
@@ -596,10 +596,10 @@ const DashboardForm = () => {
                 </div>)}
             </div>
 
-            <div className="text-end booking-form-instruction">
+            <div className="text-end">
 
                 <Popup
-                    trigger={<span className='booking-form-instruction-btn-img'><img src={InstructionIcon} alt="" /><span>Guide</span></span>}
+                    trigger={<span className='booking-form-instruction-btn-img'><img src={InstructionIcon} alt="" /><span>Info</span></span>}
                     modal
                     nested
                     className="tooltip-content"

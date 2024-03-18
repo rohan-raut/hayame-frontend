@@ -12,7 +12,7 @@ const ProductServices = () => {
 
       <Navbar />
 
-      <div className="row product-services-row justify-content-around align-items-center">
+      {/* <div className="row product-services-row justify-content-around align-items-center">
         <div className="col-11 col-sm-11 col-md-9 col-lg-4 product-services-card">
           <div className="product-services-inner-card">
             <div className="row">
@@ -21,7 +21,7 @@ const ProductServices = () => {
               </div>
               <div className="col-9 product-services-header-content">
                 <h2 className='product-services-h2'>Skilled Workers</h2>
-                {/* <p>MYR 20.00 per hour</p> */}
+                <p>MYR 20.00 per hour</p>
               </div>
             </div>
             <div className='product-services-skillset-list'>
@@ -44,7 +44,7 @@ const ProductServices = () => {
               </div>
               <div className="col-9 product-services-header-content">
                 <h2 className='product-services-h2'>Non-Skilled Workers</h2>
-                {/* <p>MYR 20.00 per hour</p> */}
+                <p>MYR 20.00 per hour</p>
               </div>
             </div>
             <div className='product-services-skillset-list'>
@@ -61,8 +61,28 @@ const ProductServices = () => {
         </div>
 
         
+      </div> */}
+
+      <div className="about-container">
+        <h1 className='product-services-header'>Product & Services</h1>
+
+        <ol className="product-services-ol">
+          <li><strong>Residential cleaning:</strong> Regular maintenance cleaning for homes, including bedrooms, bathrooms, kitchens, and common areas.</li>
+          <li><strong>Commercial cleaning:</strong> Tailored cleaning services for office spaces, retail stores, restaurants, and other commercial establishments.</li>
+          <li><strong>Deep cleaning:</strong> Thorough cleaning of hard-to-reach areas, appliances, and neglected spaces.</li>
+          <li><strong>Move-in/move-out cleaning:</strong> Detailed cleaning before or after moving into or out of a property.</li>
+          <li><strong>Post-construction cleaning:</strong> Removing dust, debris, and residue left behind after renovation or construction projects.</li>
+          <li><strong>Specialized cleaning:</strong> Cleaning services for specific needs such as carpet cleaning, upholstery cleaning, and window washing.</li>
+          <li><strong>Disinfection services:</strong> Sanitizing high-touch surfaces and areas to prevent the spread of germs and viruses.</li>
+          <li><strong>One-time cleaning:</strong> Occasional cleaning for special events, parties, or emergencies.</li>
+          <li><strong>Customized cleaning plans:</strong> Tailoring cleaning services to meet the unique needs and preferences of each client.</li>
+          <li><strong>Eco-friendly cleaning:</strong> Using environmentally friendly products and practices to minimize environmental impact.</li>
+        </ol>
+
+
+
       </div>
-      
+
       <Footer />
 
     </div>

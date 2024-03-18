@@ -41,9 +41,11 @@ import BackArrow from "./backarrow.svg";
 
 import Logo from "./logo.png"
 import GoogleIcon from "./google-icon.svg";
-import InstructionIcon from "./instruction_icon.svg"
+import InstructionIcon from "./instruction_icon.svg";
 
-import HayameVideo from "./hayame_video.mp4"
+import HayameVideo from "./hayame_video.mp4";
+
+import CleanerWithSponge from "./cleaner-sudsy-sponge.jpg";
 
 export {
   logo,
@@ -87,4 +89,5 @@ export {
   GoogleIcon,
   InstructionIcon,
   HayameVideo,
+  CleanerWithSponge
 };

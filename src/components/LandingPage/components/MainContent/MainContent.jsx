@@ -12,12 +12,12 @@ const MainContent = () => {
     <div>
       <section>
         <SectFour />
-        <SectSeven />
-        <SectThree />
+        {/* <SectSeven /> */}
+        {/* <SectThree /> */}
         <SectOne />
         <SectTwo />
-        <SectSix />
-        <SectFive />
+        {/* <SectSix /> */}
+        {/* <SectFive /> */}
       </section>
     </div>
   );

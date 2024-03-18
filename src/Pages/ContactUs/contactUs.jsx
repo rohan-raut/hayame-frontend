@@ -22,6 +22,7 @@ const ContactUs = () => {
               <p>MEGAN PHOENIX,</p>
               <p>JALAN 2/142A, OFF JALAN CHERAS,</p>
               <p>WP KUALA LUMPUR</p>
+              <p>+60 12-4343-470</p>
               <p><a href="mailto: support@hayame.my">support@hayame.my</a></p>
             </div>
 

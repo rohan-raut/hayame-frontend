@@ -49,6 +49,10 @@
     transform: scale(1);
 }
 
+.home-page-video{
+    width: 90%;
+}
+
 
 /* vertical tab  */
 @media screen and (min-width: 769px) and (max-width: 991px){
@@ -77,14 +81,18 @@
 
     .hero-card-img > img{
         width: 100%;
-    } 
+    }
+
+    .home-page-video{
+        width: 90%;
+    }
 }
 
 
 @media screen and (max-width: 768px){
     .hero-card-h1 {
-        font-size: 2rem;
-        line-height: 130%;
+        font-size: 1.2rem;
+        line-height: 150%;
         letter-spacing: 0;
         text-align: center;
         padding-bottom: 15px;
@@ -108,6 +116,10 @@
 
     .hero-card-img > img{
         width: 100%;
-    } 
+    }
+
+    .home-page-video{
+        width: 100%;
+    }
 }
 

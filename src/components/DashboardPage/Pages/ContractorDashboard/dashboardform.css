@@ -94,12 +94,15 @@
     position: fixed;
     top: 85vh;
     right: 60px;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .booking-form-instruction-btn-img{
     cursor: pointer;
     font-size: 18px;
+    position: fixed;
+    top: 85vh;
+    right: 60px;
 }
 
 .booking-form-instruction-btn-img > img{
@@ -169,6 +172,11 @@ table, th, td {
     }
 
     .booking-form-instruction{
+        position: static;
+        padding-right: 50px;
+    }
+
+    .booking-form-instruction-btn-img{
         position: static;
         padding-right: 50px;
     }

@@ -42,6 +42,28 @@
     margin-top: 15px;
 }
 
+.product-services-header{
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    padding-bottom: 20px;
+}
+
+.product-services-ol > li{
+    padding-bottom: 15px;
+}
+
+
+
+@media screen and (min-width: 769px) and (max-width: 991px) {
+
+    .product-services-header{
+        text-align: center;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+}
 
 @media screen and (max-width: 768px) {
     .product-services-row{
@@ -61,6 +83,12 @@
 
     .product-services-skillset-list{
         margin-top: 25px;
+    }
+
+    .product-services-header{
+        text-align: center;
+        font-weight: 700;
+        font-size: 1.4rem;
     }
 
 }

@@ -18,15 +18,7 @@ const SectOne = () => {
         <article>
           <h3>About Us</h3>
           <p>
-            HAYAME - A Leading Recruitment & Manpower Web Based company in
-            Malaysia. We’re a recruitment technology & manpower supply startup
-            founded in 2023 by a group of HR professionals and developers to
-            assist both employers and job seekers with their hiring needs. Our
-            initial focus was to address the problem of time-consuming and
-            inefficient recruitment processes, which our founder, Johannes
-            Losgrandes, experienced himself when he was tasked with hiring for
-            his company. We realized that many job seekers were also frustrated
-            with the lack of transparency and ease in finding job opportunities.
+          At Hayame, we're revolutionizing the way you book cleaning services. With our cutting-edge online platform, we've streamlined the entire process, making it easier and more convenient than ever before to schedule professional cleaning for your home or business. Founded with a passion for innovation and a commitment to exceptional service, Hayame brings together the best of technology and cleaning expertise. Our platform is designed to provide you with a hassle-free experience, allowing you to book your cleaning appointments with just a few clicks, anytime and anywhere.
             {"    "}
             <Link to="./about-us" style={{ color: "#17262B", opacity: "50%" }}>
               ....read more

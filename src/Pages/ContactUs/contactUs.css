@@ -5,12 +5,12 @@
 .contact-us-bg-img{
     position: relative;
     z-index: -1;
-    background-image: url('./../../assets/contact-us.jpg');
+    background-image: url('./../../assets/cleaner-sudsy-sponge.jpg');
     height: 80vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 40%;
-    opacity: 0.3;
+    opacity: 0.5;
 }
 
 .contact-us-card{
@@ -18,8 +18,8 @@
     background-color: white;
     z-index: 1;
     position: relative;
-    margin-top: -520px;
-    margin-right: 200px;
+    margin-top: -540px;
+    margin-right: 100px;
     height: fit-content;
     padding: 10px;
 
@@ -44,7 +44,7 @@
     }
 
     .contact-us-card{
-        margin-top: -720px;
+        margin-top: -730px;
         margin-right: 0px;
     }
 }
