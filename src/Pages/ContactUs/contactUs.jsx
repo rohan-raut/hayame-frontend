@@ -1,7 +1,8 @@
 import React from 'react'
 import "./contactUs.css"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Navbar, Footer } from "../../components/LandingPage/components"
+import { WhatsappIcon, PhoneIcon, WhatsappChatBtn } from '../../assets';
 
 
 const ContactUs = () => {
@@ -22,8 +23,9 @@ const ContactUs = () => {
               <p>MEGAN PHOENIX,</p>
               <p>JALAN 2/142A, OFF JALAN CHERAS,</p>
               <p>WP KUALA LUMPUR</p>
-              <p>+60 12-4343-470</p>
+              <p><img src={PhoneIcon} className="contact-us-whatsapp-icon" /> +60 12-4343-470</p>
               <p><a href="mailto: support@hayame.my">support@hayame.my</a></p>
+              <a href="https://wa.me/60124343470" target="_blank"><img src={WhatsappChatBtn} className="contact-us-whatsapp-btn" /></a>
             </div>
 
           </div>

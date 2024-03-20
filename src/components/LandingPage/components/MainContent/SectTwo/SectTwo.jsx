@@ -22,7 +22,7 @@ const SectTwo = () => {
               </h4>
             </div>
             <div className="sect2-content-items">
-              <h4 className="sect2-content-title">Step 3 - Let Us Clean Away</h4>
+              <h4 className="sect2-content-title">Step 3 - Clean</h4>
             </div>
           </div>
 

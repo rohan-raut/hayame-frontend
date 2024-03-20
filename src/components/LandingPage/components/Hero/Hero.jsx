@@ -25,14 +25,12 @@ const Hero = () => {
             </div> */}
 
             <div className="row m-0 justify-content-center hero-video-content">
-                <div className="col-12 col-sm-12 col-md-12 col-lg-12 text-center justify-content-center">
                     {/* <img src={team} alt="People working together" /> */}
                     <video src={HayameVideo} autoplay="true" muted className="home-page-video" autoPlay></video>
-                </div>
             </div>
 
             <div className="row m-0 justify-content-center align-items-center hero-div">
-                <div className="col-11 col-sm-11 col-md-10 col-lg-10 text-center hero-div-card">
+                <div className="col-12 col-sm-12 col-md-10 col-lg-10 text-center hero-div-card">
                     <h1 className="hero-card-h1">Welcome to Hayame, your on-demand cleaning service. With Hayame, cleanliness is just a click away.</h1>
                     <p className="hero-card-p">
                         Experience hassle-free cleaning with <strong>Hayame</strong> today!

@@ -46,6 +46,9 @@ import InstructionIcon from "./instruction_icon.svg";
 import HayameVideo from "./hayame_video.mp4";
 
 import CleanerWithSponge from "./cleaner-sudsy-sponge.jpg";
+import WhatsappIcon from "./whatsapp_icon.svg";
+import PhoneIcon from "./phone_icon.png";
+import WhatsappChatBtn from "./chat_on_whatsapp.png";
 
 export {
   logo,
@@ -89,5 +92,8 @@ export {
   GoogleIcon,
   InstructionIcon,
   HayameVideo,
-  CleanerWithSponge
+  CleanerWithSponge,
+  WhatsappIcon,
+  PhoneIcon,
+  WhatsappChatBtn,
 };

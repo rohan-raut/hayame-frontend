@@ -18,7 +18,7 @@
     background-color: white;
     z-index: 1;
     position: relative;
-    margin-top: -540px;
+    margin-top: -600px;
     margin-right: 100px;
     height: fit-content;
     padding: 10px;
@@ -33,6 +33,15 @@
 
 .contact-us-row{
     justify-content: end;
+}
+
+.contact-us-whatsapp-icon{
+    width: 1.5rem;
+    margin-right: 5px;
+}
+
+.contact-us-whatsapp-btn{
+    width: 40%;
 }
 
 
@@ -57,5 +66,7 @@
 
     .contact-us-card{
         margin-right: 0px;
+        margin-top: -515px;
     }
+
 }
