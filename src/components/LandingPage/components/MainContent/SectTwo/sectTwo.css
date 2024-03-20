@@ -22,21 +22,27 @@
     margin-right: 10rem;
     display: inline-block;
     position: relative;
-    top: 40%;
+    top: 20%;
 
 }
 
 .sect2-content {
     width: 35%;
-    display: grid;
+    display: flex;
     grid-template-columns: 90%;
     grid-template-rows: 30% 30% 30%;
     row-gap: 3rem;
+    text-align: left;
+    align-items: center;
+}
+
+.sect2-content > div{
+    margin-top: 50%;
 }
 
 .sect2-content-title {
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 2.4rem;
     line-height: 140%;    
     letter-spacing: 0.01em;
     color: #A2F1FB;
@@ -51,6 +57,10 @@
     letter-spacing: 0.01em;
     color: #e9eff8;
     width: 22rem;
+}
+
+.sect2-content-items{
+    margin-bottom: 20%;
 }
 
 
@@ -75,23 +85,27 @@
     }
 
     .grid img {
-        width: 90%;
+        width: 100%;
         margin-right: 0rem;
         display: inline-block;
         position: relative;
-        top: 46%;
+        top: 20%;
         left: 0%;
     }
 
     .sect2-content {
         width: 120%;
         row-gap: 0.5rem;
-        margin-bottom: 3rem;
+        /* margin-bottom: 3rem; */
         padding-top: 80px;
     }
 
+    .sect2-content > div{
+        margin-top: 10%;
+    }
+
     .sect2-content-title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         font-weight: 600;
         width: 100%;
         padding-bottom: 5px;
@@ -130,19 +144,23 @@
         margin-right: 0rem;
         display: inline-block;
         position: relative;
-        top: 40%;
+        top: 10%;
         left: 0%;
     }
 
     .sect2-content {
         width: 120%;
         row-gap: 0.5rem;
-        margin-bottom: 3rem;
+        /* margin-bottom: 3rem; */
         padding-top: 40px;
     }
 
+    .sect2-content > div{
+        margin-top: 20%;
+    }
+
     .sect2-content-title {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         font-weight: 600;
         width: 100%;
         padding-bottom: 3px;

@@ -1,5 +1,5 @@
 .sectFour-container {
-    padding: 40px 0px;
+    padding: 0px 0px 40px 0px;
 }
 
 .sectFour-img {
@@ -85,6 +85,10 @@
     font-weight: 900;
 }
 
+.sect-four-p{
+    font-size: 20px;
+}
+
 @media screen and (min-width: 769px) and (max-width: 991px) {
 
     .sectFour-img {
@@ -142,5 +146,14 @@
 
     .sectFour-section-2 {
         display: none;
+    }
+
+    .sect-four-h3{
+        font-size: 1.2rem;
+        font-weight: 900;
+    }
+
+    .sect-four-p{
+        font-size: 0.7rem;
     }
 }

@@ -2,8 +2,15 @@
 .hero-div {
     color: #17262B;
     text-align: left;
-    background-color: #34AFAA;
-    padding: 80px 70px 150px 70px;
+    /* background-color: #34AFAA; */
+    padding: 80px 70px 0px 70px;
+    position: relative;
+    bottom: 130px;
+}
+
+.hero-div-card{
+    background-color: rgba(52, 175, 171, 0.632);
+    padding: 80px 40px;
 }
 
 .hero-card-bg {
@@ -55,8 +62,10 @@
 }
 
 .hero-video-content{
-    position: relative;
-    bottom: 80px;
+    /* position: relative;
+    bottom: 80px; */
+    width: 100%;
+    padding-top: 20px;
 }
 
 
@@ -64,7 +73,7 @@
 @media screen and (min-width: 769px) and (max-width: 991px){
 
     .hero-div {
-        padding: 80px 0px 150px 0px;
+        padding: 80px 0px 0px 0px;
     }
 
     .hero-card-h1 {
@@ -101,7 +110,12 @@
 @media screen and (max-width: 768px){
 
     .hero-div {
-        padding: 80px 20px 80px 20px;
+        padding: 80px 20px 0px 20px;
+        bottom: 100px;
+    }
+
+    .hero-div-card{
+        padding: 20px 30px;
     }
 
     .hero-video-content{
@@ -109,7 +123,7 @@
     }
 
     .hero-card-h1 {
-        font-size: 1.2rem;
+        font-size: 0.7rem;
         line-height: 170%;
         letter-spacing: 0;
         text-align: center;
@@ -117,11 +131,10 @@
     }
 
     .hero-card-p {
-        font-size: 1rem;
+        font-size: 0.6rem;
         line-height: 130%;
         letter-spacing: 0;
         text-align: center;
-        padding-bottom: 15px;
     }
 
     .hero-card-img{

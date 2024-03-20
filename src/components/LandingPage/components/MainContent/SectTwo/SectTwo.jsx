@@ -11,30 +11,21 @@ const SectTwo = () => {
         </div>
         <div className="sect2-content">
           <div>
-            <h4 className="sect2-content-title">
-              Expand your business with us.
-            </h4>
-            <p className="sect2-content-para">
-              Fulfill customer needs and improve your customer experience by
-              delivering results on time using extra some helping hands.
-            </p>
+            <div className="sect2-content-items">
+              <h4 className="sect2-content-title">
+                Step 1 - Book
+              </h4>
+            </div>
+            <div className="sect2-content-items">
+              <h4 className="sect2-content-title">
+                Step 2 - Pay
+              </h4>
+            </div>
+            <div className="sect2-content-items">
+              <h4 className="sect2-content-title">Step 3 - Let Us Clean Away</h4>
+            </div>
           </div>
-          <div>
-            <h4 className="sect2-content-title">
-              Opt for an innovative way to hire staff
-            </h4>
-            <p className="sect2-content-para">
-              From hospitality to warehouse skills, we got you covered. Take
-              care of tasks at peak hours with us.
-            </p>
-          </div>
-          <div>
-            <h4 className="sect2-content-title">Let Us Do the Heavy Lifting</h4>
-            <p className="sect2-content-para">
-              Our reliable laborers are more than just workers, they're your
-              on-demand solution, always at your service.
-            </p>
-          </div>
+
         </div>
       </div>
     </div>
