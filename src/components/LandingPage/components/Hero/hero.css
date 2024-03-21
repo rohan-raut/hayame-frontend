@@ -65,7 +65,6 @@
     /* position: relative;
     bottom: 80px; */
     width: 100%;
-    padding-top: 20px;
 }
 
 
@@ -111,10 +110,6 @@
 
     .hero-div-card{
         padding: 20px 30px;
-    }
-
-    .hero-video-content{
-        bottom: 50px;
     }
 
     .hero-card-h1 {

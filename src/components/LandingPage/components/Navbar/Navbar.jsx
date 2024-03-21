@@ -1,9 +1,10 @@
 import React from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Logo } from "../../../../assets";
 
 const Navbar = () => {
+    const navigate = useNavigate();
 
     const handleSandwich = () => {
         if (document.getElementById("navbar-links").style.display == "none") {
@@ -12,6 +13,10 @@ const Navbar = () => {
             document.getElementById("navbar-links").style.display = "none";
         }
     };
+
+    const handelBookNowBtnNavbar = () => {
+        navigate('/dashboard');
+    }
 
 
     return (
@@ -37,13 +42,16 @@ const Navbar = () => {
                             <li class="nav-item px-3">
                                 {(localStorage.getItem('token') !== null) ? (
                                     <Link class="nav-link active" aria-current="page" to="/dashboard">Dashboard</Link>
-                                    ) : (
+                                ) : (
                                     <Link class="nav-link active" aria-current="page" to="/login">Login</Link>
                                 )
-                            }
+                                }
                             </li>
 
                         </ul>
+                        <form onSubmit={handelBookNowBtnNavbar}>
+                            <button class="btn btn-dark" type="submit">Book Now!</button>
+                        </form>
                     </div>
                 </div>
             </nav>
