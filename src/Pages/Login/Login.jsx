@@ -37,17 +37,24 @@ const Login = () => {
   }
 
   useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
-      callback: handleCallBackResponse,
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("signInGoogleDiv"),
-      { theme: "outline", size: "large" }
-    );
+    
+    try{
+      /* global google */
+      google.accounts.id.initialize({
+        client_id:
+          "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+        callback: handleCallBackResponse,
+      });
+  
+      google.accounts.id.renderButton(
+        document.getElementById("signInGoogleDiv"),
+        { theme: "outline", size: "large" }
+      );
+    }
+    catch{
+      console.log("Some error!");
+    }
+    
   }, []);
 
   const showAlert = (message, type) => {

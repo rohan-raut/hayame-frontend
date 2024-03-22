@@ -253,6 +253,7 @@ const Register = () => {
     { value: "+255", label: "+255" },
     { value: "+263", label: "+263" },
   ];
+  const [displaySignUpBtn, setDisplaySignUpBtn] = useState(true);
 
   let countryCodeGoogle = ""
 
@@ -307,17 +308,23 @@ const Register = () => {
 
 
   useEffect(() => {
-    /* global google */
-    // google.accounts.id.initialize({
-    //   client_id:
-    //     "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
-    //   callback: handleCallBackResponse,
-    // });
+    try {
+      /* global google */
+      google.accounts.id.initialize({
+        client_id:
+          "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+        callback: handleCallBackResponse,
+      });
 
-    // google.accounts.id.renderButton(
-    //   document.getElementById("signInGoogleDiv"),
-    //   { theme: "outline", size: "medium" }
-    // );
+      google.accounts.id.renderButton(
+        document.getElementById("signInGoogleDiv"),
+        { theme: "outline", size: "large" }
+      );
+    }
+    catch {
+      console.log("Some error!");
+      setDisplaySignUpBtn(false);
+    }
   }, []);
 
   const handleChange = (event) => {
@@ -376,20 +383,26 @@ const Register = () => {
 
 
   const renderGoogleBtn = () => {
+    try {
 
-    google.accounts.id.initialize({
-      client_id:
-        "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
-      callback: handleCallBackResponse,
-    });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInGoogleDiv"),
-      {
-        theme: "filled_black",
-        size: "large",
-      }
-    );
+      google.accounts.id.initialize({
+        client_id:
+          "311936151809-eupfq5t4fcg43bu87kne2jnkssovhh27.apps.googleusercontent.com",
+        callback: handleCallBackResponse,
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("signInGoogleDiv"),
+        {
+          theme: "filled_black",
+          size: "large",
+        }
+      );
+    }
+    catch {
+      console.log("Some error!");
+    }
   }
 
 
@@ -541,7 +554,7 @@ const Register = () => {
 
           </form>
 
-
+            {displaySignUpBtn ? 
 
           <Popup
             trigger={<button className="btn btn-light google-sign-up-btn"><img className="google-icon" src={GoogleIcon} /> Sign Up with Google</button>}
@@ -549,6 +562,7 @@ const Register = () => {
             nested
             className="register-popup"
             onOpen={renderGoogleBtn}
+            id="register-google-signup-popup"
           >
             {close => (
 
@@ -612,7 +626,7 @@ const Register = () => {
               </div>
 
             )}
-          </Popup>
+          </Popup> : ""}
         </div>
       </div>
     </div>
