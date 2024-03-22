@@ -74,6 +74,14 @@ const AdminBookings = () => {
         field: "contractorEmail"
       },
       {
+        label: "Start Date",
+        field: "startDate"
+      },
+      {
+        label: "End Date",
+        field: "endDate"
+      },
+      {
         label: "Skills",
         field: "skills"
       },
@@ -109,6 +117,8 @@ const AdminBookings = () => {
           bookingID: td[i]["booking_id"],
           contractorName: td[i]["contractor_name"],
           contractorEmail: td[i]["contractor_email"],
+          startDate: td[i]["start_date"],
+          endDate: td[i]["end_date"],
           skills: td[i]["labour_skill"],
           labourCount: td[i]["labour_count"],
           status: td[i]["status"],
@@ -162,7 +172,7 @@ const AdminBookings = () => {
               <p className='detailsCard-p'>End Time: <span className='detailsCard-span' id='contractor-endTime'>{userDetails.endTime}</span></p>
             </div>
             <p className='detailsCard-p'>Location: <span className='detailsCard-span' id='contractor-location'>{userDetails.location}</span></p>
-            <p className='detailsCard-p'>Payment: $ <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>
+            <p className='detailsCard-p'>Payment: RM <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>
             <button className="btn btn-primary btn-sm admin-bookings-labour-allocate-btn" onClick={handleAllocation}>Allocate Workforce</button>
           </div>
         </div>
