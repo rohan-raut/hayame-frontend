@@ -70,11 +70,11 @@ const Report = (props) => {
             field: 'booking_id',
         },
         {
-            label: 'Labour Email',
+            label: 'Worker Email',
             field: 'labour_email',
         },
         {
-            label: 'Contractor Name',
+            label: 'Customer Name',
             field: 'contractor_name',
         },
         {

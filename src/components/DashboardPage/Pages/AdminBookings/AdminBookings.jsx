@@ -66,12 +66,12 @@ const AdminBookings = () => {
         field: "bookingID"
       },
       {
-        label: "Contractor Name",
+        label: "Customer Name",
         field: "contractorName"
       },
       {
-        label: "Contractor Email",
-        field: "contractorEmail"
+        label: "Address",
+        field: "address"
       },
       {
         label: "Start Date",
@@ -82,12 +82,12 @@ const AdminBookings = () => {
         field: "endDate"
       },
       {
-        label: "Skills",
-        field: "skills"
+        label: "Start Time",
+        field: "startTime"
       },
       {
-        label: "Labour Count",
-        field: "labourCount"
+        label: "End Time",
+        field: "endTime"
       },
       {
         label: "Action",
@@ -95,6 +95,24 @@ const AdminBookings = () => {
       }
     ],
     rows: tableData
+  }
+
+
+  function changeTimeFormat(time) {
+    let hr = time[0] + time[1];
+    let mn = time[3] + time[4];
+    let new_time = "" + (parseInt(hr) % 12) + ":" + mn;
+    if (parseInt(hr) % 12 === 0) {
+      new_time = "12" + ":" + mn;
+    }
+    if (parseInt(hr) >= 12) {
+      new_time += " PM";
+    }
+    else {
+      new_time += " AM";
+    }
+
+    return new_time;
   }
 
 
@@ -112,17 +130,21 @@ const AdminBookings = () => {
         }
       );
       const td = await response.json();
+      console.log(td);
       for (let i = 0; i < td.length; i++) {
         d.push({
           bookingID: td[i]["booking_id"],
           contractorName: td[i]["contractor_name"],
+          address: td[i]["location"],
           contractorEmail: td[i]["contractor_email"],
           startDate: td[i]["start_date"],
           endDate: td[i]["end_date"],
+          startTime: changeTimeFormat(td[i]["start_time"]),
+          endTime: changeTimeFormat(td[i]["end_time"]),
           skills: td[i]["labour_skill"],
           labourCount: td[i]["labour_count"],
           status: td[i]["status"],
-          action: <p style={{cursor: "pointer", color: "green"}} onClick={handleDetailsAction}>Details</p>,
+          action: <p style={{ cursor: "pointer", color: "green" }} onClick={handleDetailsAction}>Details</p>,
         });
       }
       setTableData(d);
@@ -168,8 +190,8 @@ const AdminBookings = () => {
               <p className='detailsCard-p'>End Date: <span className='detailsCard-span' id='contractor-endDate'>{userDetails.endDate}</span></p>
             </div>
             <div className="d-flex justify-content-between">
-              <p className='detailsCard-p'>Start Time: <span className='detailsCard-span' id='contractor-startTime'>{userDetails.startTime}</span></p>
-              <p className='detailsCard-p'>End Time: <span className='detailsCard-span' id='contractor-endTime'>{userDetails.endTime}</span></p>
+              <p className='detailsCard-p'>Start Time: <span className='detailsCard-span' id='contractor-startTime'>{changeTimeFormat(userDetails.startTime)}</span></p>
+              <p className='detailsCard-p'>End Time: <span className='detailsCard-span' id='contractor-endTime'>{changeTimeFormat(userDetails.endTime)}</span></p>
             </div>
             <p className='detailsCard-p'>Location: <span className='detailsCard-span' id='contractor-location'>{userDetails.location}</span></p>
             <p className='detailsCard-p'>Payment: RM <span className='detailsCard-span' id='contractor-totalPayment'>{userDetails.amount}</span></p>

@@ -140,6 +140,7 @@ const DashboardForm = () => {
         let geocoder = new google.maps.Geocoder();
         let res = await geocoder.geocode({ 'address': Inputs.jobLocation }, await function (results, status) {
             if (status == 'OK') {
+                console.log(results[0]['address_components']);
                 for (let i = 0; i < results[0]['address_components'].length; i++) {
                     if (available_locations.includes(results[0]['address_components'][i]['long_name'])) {
                         canService = true;
