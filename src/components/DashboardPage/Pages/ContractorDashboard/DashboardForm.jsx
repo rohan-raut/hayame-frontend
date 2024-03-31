@@ -7,6 +7,7 @@ import { BackArrow, InstructionIcon } from '../../../../assets'
 import md5 from 'md5';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { IoLocation } from "react-icons/io5";
 
 
 
@@ -308,56 +309,41 @@ const DashboardForm = () => {
 
         window.location.href = url;
 
-        // fetch("https://pay.merchant.razer.com/RMS/pay/hayamesolutions/", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         "amount": bookingDetails.totalCost,
-        //         "orderid": 1,
-        //         "bill_name": "Hayame - " + bookingDetails.labourSkill,
-        //         "bill_email": "rohanraut124@gmail.com",
-        //         "country": "MY",
-        //         "vcode": md5(bookingDetails.totalCost + "hayamesolutions" + "1" + "9d6c2b8c9cdd591ebd27c16ca5720fe4")
-        //     }),
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // })
-        // .then((response) => response.text())
-        // .then((response) => {
-        //     console.log(response);
-        //     // return {__html: response}
-        // })
-
-        // fetch("https://django.hayame.my/api/booking", {
-        //     method: "POST",
-        //     body: JSON.stringify({
-        //         "labour_skill": labourSkill.value,
-        //         "labour_count": bookingDetails.labourCount,
-        //         "labour_gender": bookingDetails.labourGender,
-        //         "start_date": bookingDetails.startDate,
-        //         "end_date": bookingDetails.endDate,
-        //         "start_time": bookingDetails.startTime,
-        //         "end_time": bookingDetails.endTime,
-        //         "location": bookingDetails.jobLoc,
-        //         "amount": bookingDetails.totalCost,
-        //     }),
-        //     headers: {
-        //         'Authorization': 'Token ' + localStorage.getItem("token"),
-        //         'Content-Type': 'application/json'
-        //     },
-        // })
-        //     .then((response) => response.json())
-        //     .then((json) => {
-        //         showAlert(json.response, "success");
-        //         setTimeout(() => {
-        //             navigate('/dashboard/contractor-bookings');
-        //         }, 2000);
-        //     })
     }
 
 
     const handleBackArrowClick = () => {
         setConfirmation(prev => !prev)
+    }
+
+
+    const getLocation = async () => {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(async function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                console.log(latitude);
+                console.log(longitude);
+
+                let api = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude + "&key=AIzaSyDECJ4Zx4x_Iz5iRSTCvewjuDcaCNmz6l8";
+
+                fetch(api, {
+                    method: "GET",
+                })
+                    .then((response) => response.json())
+                    .then((json) => {
+                        console.log(json);
+                        setInputs(values => ({ ...values, ["jobLocation"]: json["results"][0]["formatted_address"] }));
+                    });
+
+            }, function (error) {
+                console.error("Error getting location:", error.message);
+            });
+        }
+        else {
+            console.log("Geolocation is not supported by this browser.");
+        }
     }
 
 
@@ -380,6 +366,7 @@ const DashboardForm = () => {
                     <div >
                         <label htmlFor="jobLocation" className="form-label contractor-dashboard-input-label" >Address</label>
                         <input type="text" value={Inputs.jobLocation || ""} onChange={handleChange} name="jobLocation" id="jobLocation" className="form-control contractor-dashboardform-input-field" placeholder='Job Location' required />
+                        <div className="current-location-div" onClick={getLocation}><IoLocation /> Get Current Location</div>
                     </div>
 
                     <div>

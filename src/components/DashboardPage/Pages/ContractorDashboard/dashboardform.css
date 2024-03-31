@@ -137,6 +137,14 @@ table, th, td {
     overflow: auto;
 }
 
+.current-location-div{
+    text-align: left;
+    padding: 0;
+    margin-top: -12px;
+    padding-bottom: 15px;
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 769px) and (max-width: 991px){
     .dashboard-booking-confirm-popup-content{
