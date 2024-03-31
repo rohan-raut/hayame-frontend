@@ -1,43 +1,16 @@
-.sect2-div {
-    padding: 3rem;
+
+.sect2-row{
     background-image: url("../../../../../assets/im.png");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 140vh; /*86rem*/
+    height: 130vh;
+    padding: 20px 100px;
     display: flex;
-    justify-content: center;
-    align-items: center; 
-    /* padding-bottom: 300px; */
-    margin-bottom: 250px;
+    align-items: end;
 }
-
-.sect2-card {
-    display: flex;
-    justify-content: center;
-}
-
 
 .grid img {
-    width: 50vw;
-    margin-right: 10rem;
-    display: inline-block;
-    position: relative;
-    top: 20%;
-
-}
-
-.sect2-content {
-    width: 35%;
-    display: flex;
-    grid-template-columns: 90%;
-    grid-template-rows: 30% 30% 30%;
-    row-gap: 3rem;
-    text-align: left;
-    align-items: center;
-}
-
-.sect2-content > div{
-    margin-top: 50%;
+    width: 100%;
 }
 
 .sect2-content-title {
@@ -46,130 +19,57 @@
     line-height: 140%;    
     letter-spacing: 0.01em;
     color: #A2F1FB;
-    margin-bottom: 0;
-    padding-bottom: 5px;
-}
-
-.sect2-content-para {
-    font-weight: 500;
-    font-size: 1.1rem;
-    line-height: 140%;
-    letter-spacing: 0.01em;
-    color: #e9eff8;
-    width: 22rem;
+    margin-bottom: 50px;
 }
 
 .sect2-content-items{
-    margin-bottom: 20%;
+    text-align: left;
+    margin-bottom: 30vh;
+    padding-left: 10vw;
 }
 
 
 @media screen and (min-width: 769px) and (max-width: 991px){
-    .sect2-div {
-        width: 100vw;
-        box-sizing: border-box;
-        padding: 1.5rem;
-        height: 65vh;
-        /*86rem*/
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    .sect2-card {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 5rem;
-    }
-
-    .grid img {
-        width: 100%;
-        margin-right: 0rem;
-        display: inline-block;
-        position: relative;
-        top: 20%;
-        left: 0%;
-    }
-
-    .sect2-content {
-        width: 120%;
-        row-gap: 0.5rem;
-        /* margin-bottom: 3rem; */
-        padding-top: 80px;
-        /* border: 2px solid green; */
-    }
-
-    .sect2-content > div{
-        margin-top: 10%;
+    .sect2-row{
+        height: 50vh;
+        padding: 20px 20px;
     }
 
     .sect2-content-title {
         font-size: 1.4rem;
         font-weight: 600;
         width: 100%;
-        padding-bottom: 5px;
     }
 
-    .sect2-content-para {
-        font-size: 0.8rem;
-        font-weight: 200;
-        width: 100%;
-        padding-bottom: 20px;
+    .sect2-content-items{
+        text-align: left;
+        margin-bottom: 5vh;
+        padding-left: 5vw;
     }
+
 }
 
 
 @media screen and (max-width: 768px){
-    .sect2-div {
-        width: 100vw;
-        box-sizing: border-box;
-        padding: 1.5rem;
-        height: 70vh;
-        display: flex;
-        justify-content: center;
+
+    .sect2-row{
+        height: 60vh;
+        padding: 20px 20px;
         align-items: center;
-    }
-
-    .sect2-card {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-
-    .grid img {
-        width: 90%;
-        margin-right: 0rem;
-        display: inline-block;
-        position: relative;
-        top: 10%;
-        left: 0%;
-    }
-
-    .sect2-content {
-        width: 120%;
-        row-gap: 0.5rem;
-        /* margin-bottom: 3rem; */
-        padding-top: 40px;
-    }
-
-    .sect2-content > div{
-        margin-top: 20%;
     }
 
     .sect2-content-title {
         font-size: 0.7rem;
         font-weight: 600;
         width: 100%;
-        padding-bottom: 3px;
     }
 
-    .sect2-content-para {
-        font-size: 0.5rem;
-        font-weight: 200;
-        width: 100%
+    .sect2-content-items{
+        text-align: left;
+        margin-bottom: 0;
+        padding: 0;
+        padding-left: 20px;
     }
+
 }

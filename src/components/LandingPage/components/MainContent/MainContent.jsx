@@ -6,6 +6,7 @@ import SectFour from "./SectFour/SectFour";
 import SectFive from "./SectFive/SectFive";
 import SectSix from "./SectSix/SectSix";
 import SectSeven from "./SectSeven/SectSeven";
+import Testimonials from "./Testimonials/Testimonials";
 
 const MainContent = () => {
   return (
@@ -18,6 +19,7 @@ const MainContent = () => {
         <SectTwo />
         {/* <SectSix /> */}
         {/* <SectFive /> */}
+        {/* <Testimonials /> */}
       </section>
     </div>
   );

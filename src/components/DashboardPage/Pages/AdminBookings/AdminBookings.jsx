@@ -82,12 +82,12 @@ const AdminBookings = () => {
         field: "endDate"
       },
       {
-        label: "Start Time",
-        field: "startTime"
+        label: "Time",
+        field: "time"
       },
       {
-        label: "End Time",
-        field: "endTime"
+        label: "Status",
+        field: "status"
       },
       {
         label: "Action",
@@ -132,15 +132,16 @@ const AdminBookings = () => {
       const td = await response.json();
       console.log(td);
       for (let i = 0; i < td.length; i++) {
+        let address_link = "https://www.google.com/maps/search/" + td[i]["location"];
+        address_link = address_link.replaceAll(" ", "+");
         d.push({
           bookingID: td[i]["booking_id"],
           contractorName: td[i]["contractor_name"],
-          address: td[i]["location"],
+          address: <a href={address_link} target="_blank">{td[i]["location"]}</a>,
           contractorEmail: td[i]["contractor_email"],
           startDate: td[i]["start_date"],
           endDate: td[i]["end_date"],
-          startTime: changeTimeFormat(td[i]["start_time"]),
-          endTime: changeTimeFormat(td[i]["end_time"]),
+          time: changeTimeFormat(td[i]["start_time"]) + " to " + changeTimeFormat(td[i]["end_time"]),
           skills: td[i]["labour_skill"],
           labourCount: td[i]["labour_count"],
           status: td[i]["status"],

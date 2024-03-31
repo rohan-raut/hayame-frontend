@@ -41,6 +41,7 @@ const Footer = () => {
             <div className='footer-link-item'><Link className='footer-menu-item' to="/about-us">About Us</Link></div>
             <div className='footer-link-item'><Link className='footer-menu-item' to="/product-and-services">Product & Services</Link></div>
             <div className='footer-link-item'><Link className='footer-menu-item' to="/refund-policy">Refund Policy</Link></div>
+            <div className='footer-link-item'><Link className='footer-menu-item' to="/faq">FAQ</Link></div>
             <div className='footer-link-item'><Link className='footer-menu-item' to="/contact-us">Contact Us</Link></div>
           </div>
         </div>

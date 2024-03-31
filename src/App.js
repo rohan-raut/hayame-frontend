@@ -12,6 +12,7 @@ import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 import ResetPassword from "./Pages/ResetPassword/ResetPassword";
 import VerifyUser from "./Pages/VerifyUser/VerifyUser";
 import DashboardPage from "./components/DashboardPage/DashboardPage";
+import Faq from "./Pages/Faq/Faq";
 import {
   Dashboard,
   DashboardForm,
@@ -59,6 +60,10 @@ function App() {
     {
       path: "/contact-us",
       element: <ContactUs />,
+    },
+    {
+      path: "/faq",
+      element: <Faq />,
     },
     {
       path: "/refund-policy",

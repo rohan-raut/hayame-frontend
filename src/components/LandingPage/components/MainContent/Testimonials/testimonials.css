@@ -1,0 +1,14 @@
+.testimonial-card{
+    background-color: #A4E2D5;
+    /* box-shadow: 2px 7px 20px 0px #b7d3d3; */
+    box-shadow: 100px 100px 100px 100px black;
+}
+
+.testimonial-container{
+    width: 60%;
+}
+
+.testimonial-row{
+    margin: 0;
+    padding: 0px 0px 40px 0px;
+}
