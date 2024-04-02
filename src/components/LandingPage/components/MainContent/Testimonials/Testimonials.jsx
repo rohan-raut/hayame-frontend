@@ -27,7 +27,8 @@ const Testimonials = () => {
             <div className="slider-container testimonial-container">
                 <Slider {...settings}>
                     <div className="testimonial-card">
-                        <h3>1</h3>
+                        <h3>Ajitha Ratnam</h3>
+                        <p>The cleaning service I hired did an excellent job, very thorough. Highly recommended!</p>
                     </div>
                     <div className="testimonial-card">
                         <h3>2</h3>

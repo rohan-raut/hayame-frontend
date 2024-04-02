@@ -31,7 +31,7 @@ const AdminBookings = () => {
     bookingId = e.target.parentElement.parentElement.cells[0].innerText
 
     fetch(
-      "https://django.hayame.my/api/booking?booking_id=" + bookingId,
+      "http://127.0.0.1:8000/api/booking?booking_id=" + bookingId,
       {
         method: "GET",
         headers: {
@@ -68,6 +68,10 @@ const AdminBookings = () => {
       {
         label: "Customer Name",
         field: "contractorName"
+      },
+      {
+        label: "Phone",
+        field: "contractorPhone",
       },
       {
         label: "Address",
@@ -121,7 +125,7 @@ const AdminBookings = () => {
 
     const fillTable = async () => {
       const response = await fetch(
-        "https://django.hayame.my/api/booking?status=Pending",
+        "http://127.0.0.1:8000/api/booking?status=Pending",
         {
           headers: {
             Authorization: "Token " + localStorage.getItem("token"),
@@ -137,6 +141,7 @@ const AdminBookings = () => {
         d.push({
           bookingID: td[i]["booking_id"],
           contractorName: td[i]["contractor_name"],
+          contractorPhone: td[i]["contractor_phone"],
           address: <a href={address_link} target="_blank">{td[i]["location"]}</a>,
           contractorEmail: td[i]["contractor_email"],
           startDate: td[i]["start_date"],

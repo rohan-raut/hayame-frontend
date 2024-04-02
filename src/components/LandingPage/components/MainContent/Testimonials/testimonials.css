@@ -1,7 +1,7 @@
 .testimonial-card{
-    background-color: #A4E2D5;
-    /* box-shadow: 2px 7px 20px 0px #b7d3d3; */
-    box-shadow: 100px 100px 100px 100px black;
+    background-color: white;
+    padding: 20px;
+    height: 20vh;
 }
 
 .testimonial-container{
