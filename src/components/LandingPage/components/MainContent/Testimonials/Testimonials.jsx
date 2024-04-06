@@ -9,9 +9,12 @@ const Testimonials = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 500,
+        autoplay: true,
+        speed: 1000,
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        autoplaySpeed: 3000,
+        cssEase: "linear"
     };
 
     useEffect(() => {
@@ -23,27 +26,74 @@ const Testimonials = () => {
 
     return (
         <div className="row justify-content-center testimonial-row">
-            <h2>Reviews</h2>
+            <h2 className="testimonials-h2">Reviews</h2>
             <div className="slider-container testimonial-container">
                 <Slider {...settings}>
                     <div className="testimonial-card">
-                        <h3>Ajitha Ratnam</h3>
+                        <h3 className="testimonials-h3">Ajitha Ratnam</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
                         <p>The cleaning service I hired did an excellent job, very thorough. Highly recommended!</p>
                     </div>
                     <div className="testimonial-card">
-                        <h3>2</h3>
+                        <h3 className="testimonials-h3">Mani Kagita</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
+                        <p>Faster response time, easy booking and reasonable price. Cleaners listen to our requirements and careful in cleaning fragile items. Will book again.</p>
                     </div>
                     <div className="testimonial-card">
-                        <h3>3</h3>
+                        <h3 className="testimonials-h3">Reeshmma Gunaseharan</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
+                        <p>I felt confident entrusting my home to the cleaning service I hired. Highly recommended!</p>
                     </div>
                     <div className="testimonial-card">
-                        <h3>4</h3>
+                        <h3 className="testimonials-h3">Sures</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
+                        <p>I must say, the cleaning service I recently used was quite impressive.</p>
                     </div>
                     <div className="testimonial-card">
-                        <h3>5</h3>
+                        <h3 className="testimonials-h3">Ashwin Ramankutty</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
+                        <p>I was really pleased with the result of the cleaning service I booked. Bravo and keep up the great work!</p>
                     </div>
                     <div className="testimonial-card">
-                        <h3>6</h3>
+                        <h3 className="testimonials-h3">Jonathan Lim</h3>
+                        <div className="testimonials-rating-container">
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                            <span className="testimonials-star-ratings">★</span>
+                        </div>
+                        <p>I've tried a few cleaning services, but this one stands out for its professionalism.</p>
                     </div>
                 </Slider>
             </div>

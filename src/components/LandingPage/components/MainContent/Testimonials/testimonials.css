@@ -1,7 +1,10 @@
 .testimonial-card{
-    background-color: white;
-    padding: 20px;
-    height: 20vh;
+    background-color: #F0FBF9;
+    padding: 30px 20px;
+    border-radius: 5px;
+    width: 90% !important;
+    box-shadow: 2px 7px 10px 0px #b7d3d3;
+    margin: 20px 0;
 }
 
 .testimonial-container{
@@ -9,6 +12,38 @@
 }
 
 .testimonial-row{
-    margin: 0;
+    margin: 0px 0px 40px 0px;
     padding: 0px 0px 40px 0px;
+}
+
+.testimonials-star-ratings{
+    color: orange;
+    font-size: 18px;
+}
+
+.testimonials-h2{
+    font-weight: 900;
+    margin: 40px 0 10px 0px;
+}
+
+.testimonials-h3{
+    margin: 0;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.testimonials-rating-container{
+    margin-bottom: 10px;
+}
+
+
+@media screen and (min-width: 769px) and (max-width: 991px){
+
+}
+
+
+@media screen and (max-width: 768px){
+    .testimonial-container{
+        width: 90%;
+    }
 }

@@ -62,10 +62,6 @@ const AdminBookings = () => {
   const data = {
     columns: [
       {
-        label: "Booking ID",
-        field: "bookingID"
-      },
-      {
         label: "Customer Name",
         field: "contractorName"
       },
@@ -78,12 +74,8 @@ const AdminBookings = () => {
         field: "address"
       },
       {
-        label: "Start Date",
-        field: "startDate"
-      },
-      {
-        label: "End Date",
-        field: "endDate"
+        label: "Date",
+        field: "date"
       },
       {
         label: "Time",
@@ -120,6 +112,14 @@ const AdminBookings = () => {
   }
 
 
+  function changeDateFormat(dt) {
+    let day = dt[8] + dt[9];
+    let month = dt[5] + dt[6];
+    let year = dt[0] + dt[1] + dt[2] + dt[3];
+    return day + "-" + month + "-" + year;
+  }
+
+
   useEffect(() => {
     let d = [];
 
@@ -146,7 +146,8 @@ const AdminBookings = () => {
           contractorEmail: td[i]["contractor_email"],
           startDate: td[i]["start_date"],
           endDate: td[i]["end_date"],
-          time: changeTimeFormat(td[i]["start_time"]) + " to " + changeTimeFormat(td[i]["end_time"]),
+          date: <p>{changeDateFormat(td[i]["start_date"])} <br /> to <br /> {changeDateFormat(td[i]["end_date"])}</p>,
+          time: <p>{changeTimeFormat(td[i]["start_time"])} <br /> to <br /> {changeTimeFormat(td[i]["end_time"])}</p>,
           skills: td[i]["labour_skill"],
           labourCount: td[i]["labour_count"],
           status: td[i]["status"],
@@ -192,8 +193,8 @@ const AdminBookings = () => {
             <p className='detailsCard-p' >Count: <span className='detailsCard-span' id='contractor-labourCount'>{userDetails.labourCount}</span></p>
             <p className='detailsCard-p' >Status: <span className='detailsCard-span' id='contractor-Status'>{userDetails.status}</span></p>
             <div className="d-flex justify-content-between">
-              <p className='detailsCard-p'>Start Date: <span className='detailsCard-span' id='contractor-startDate'>{userDetails.startDate}</span></p>
-              <p className='detailsCard-p'>End Date: <span className='detailsCard-span' id='contractor-endDate'>{userDetails.endDate}</span></p>
+              <p className='detailsCard-p'>Start Date: <span className='detailsCard-span' id='contractor-startDate'>{changeDateFormat(userDetails.startDate)}</span></p>
+              <p className='detailsCard-p'>End Date: <span className='detailsCard-span' id='contractor-endDate'>{changeDateFormat(userDetails.endDate)}</span></p>
             </div>
             <div className="d-flex justify-content-between">
               <p className='detailsCard-p'>Start Time: <span className='detailsCard-span' id='contractor-startTime'>{changeTimeFormat(userDetails.startTime)}</span></p>

@@ -19,7 +19,7 @@ const MainContent = () => {
         <SectTwo />
         {/* <SectSix /> */}
         {/* <SectFive /> */}
-        {/* <Testimonials /> */}
+        <Testimonials />
       </section>
     </div>
   );

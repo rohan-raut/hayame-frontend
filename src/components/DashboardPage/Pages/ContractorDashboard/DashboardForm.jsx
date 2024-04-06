@@ -347,6 +347,14 @@ const DashboardForm = () => {
     }
 
 
+    function changeDateFormat(dt) {
+        let day = dt[8] + dt[9];
+        let month = dt[5] + dt[6];
+        let year = dt[0] + dt[1] + dt[2] + dt[3];
+        return day + "-" + month + "-" + year;
+    }
+
+
     return (
 
         <div className="row justify-content-center">
@@ -513,11 +521,11 @@ const DashboardForm = () => {
                             </tr>
                             <tr>
                                 <th>Start Date</th>
-                                <td>{bookingDetails.startDate || "null"}</td>
+                                <td>{changeDateFormat(bookingDetails.startDate)}</td>
                             </tr>
                             <tr>
                                 <th>End Date</th>
-                                <td>{bookingDetails.endDate || "null"}</td>
+                                <td>{changeDateFormat(bookingDetails.endDate)}</td>
                             </tr>
                             <tr>
                                 <th>Start Time</th>
