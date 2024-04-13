@@ -28,7 +28,8 @@ const AdminBookings = () => {
 
   const handleDetailsAction = (e) => {
     document.getElementById("detail-card-popup-row-id").style.display = "block";
-    bookingId = e.target.parentElement.parentElement.cells[0].innerText
+    bookingId = e.target.parentElement.parentElement.cells[0].innerText;
+    console.log(bookingId);
 
     fetch(
       "https://django.hayame.my/api/booking?booking_id=" + bookingId,
@@ -61,6 +62,10 @@ const AdminBookings = () => {
   const [tableData, setTableData] = useState([]);
   const data = {
     columns: [
+      {
+        label: "Booking Id",
+        field: "bookingID"
+      },
       {
         label: "Customer Name",
         field: "contractorName"
