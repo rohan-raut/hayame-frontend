@@ -50,7 +50,7 @@ const Navbar = () => {
 
                         </ul>
                         <form onSubmit={handelBookNowBtnNavbar}>
-                            <button class="btn btn-dark" type="submit">Book Now!</button>
+                            <button class="btn btn-dark" type="submit">Check Your Price!</button>
                         </form>
                     </div>
                 </div>
