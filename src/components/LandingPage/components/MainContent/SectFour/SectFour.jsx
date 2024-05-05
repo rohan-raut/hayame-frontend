@@ -128,7 +128,7 @@ const SectFour = () => {
         <div className="sect-four-p">Simple Booking, Spotless Results</div>
         <form>
           <div className="my-3">
-            <button type="submit" className="btn btn-dark" onClick={handelBookingNavigate}>Book Now!</button>
+            <button type="submit" className="btn btn-dark" onClick={handelBookingNavigate}>Check Your Price!</button>
           </div>
         </form>
       </div>
