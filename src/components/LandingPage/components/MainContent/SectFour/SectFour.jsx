@@ -125,7 +125,7 @@ const SectFour = () => {
       {/* for mobile */}
       <div className="row justify-content-center m-0">
         <h3 className="sect-four-h3">Looking for a Cleaner?</h3>
-        <div className="sect-four-p">Simple Booking, Spotless Results</div>
+        <div>Dive deeper into the business we serve.</div>
         <form>
           <div className="my-3">
             <button type="submit" className="btn btn-dark" onClick={handelBookingNavigate}>Check Your Price!</button>
