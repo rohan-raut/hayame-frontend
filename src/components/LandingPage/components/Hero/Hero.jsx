@@ -78,7 +78,7 @@ const Hero = () => {
                     </p>
 
                     <div className="row m-0 justify-content-center py-3">
-                        <div className="col-4">
+                        <div className="col-11 col-sm-11 col-md-6 col-lg-6">
                             <form onSubmit={handleSubmit}>
                                 <div >
                                     <input type="number" value={Inputs.postCode || ""} onChange={handleChange} name="postCode" id="postCode" className="form-control contractor-dashboardform-input-field p-2" placeholder='Post Code' required />
